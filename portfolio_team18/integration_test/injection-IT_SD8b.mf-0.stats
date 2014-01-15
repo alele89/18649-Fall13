@@ -1,0 +1,42 @@
+18649 Fall 2013
+Team 18
+Yi Huo (yhuo)
+Mustafa Bilgen (mbilgen)
+Sairam Krishnan (sbkrishn)
+Abhijit Lele (alele)
+
+Simulator Parameters:
+Command line = -head header.txt -cf IT_SD8b.cf -mf IT_SD8b.mf
+RandomSeed = 1386533716304
+CanNetworkBitTime = 0 ns
+Effective Can Bitrate = Infinity
+Run Time = null
+Real time rate = null
+Message File = IT_SD8b.mf
+Controller File = IT_SD8b.cf
+
+Assertion Results:
+@0.41s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@d1b9cfd :: getFloor ?== 4 PASSED
+@0.41s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@25c78000 :: getDirection ?== STOP PASSED
+@0.41s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@48c7aaef :: getHallway ?== NONE PASSED
+@0.41s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@1e0ed5b2 :: getValue ?== 6 PASSED
+@0.41s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@6f21a9ec :: getValue ?== 6 PASSED
+@0.92s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@1916a3de :: getValue ?== true PASSED
+@0.92s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@1e5161e1 :: getFloor ?== 5 PASSED
+@0.92s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@60dd0912 :: getDirection ?== UP PASSED
+@0.92s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@5ed5d3a :: getHallway ?== FRONT PASSED
+@0.92s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@6ad77ed3 :: getValue ?== 6 PASSED
+@0.92s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@2a09f3f8 :: getValue ?== 6 PASSED
+@2.35s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@328c3770 :: getFloor ?== 5 PASSED
+@2.35s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@38d5b111 :: getDirection ?== UP PASSED
+@2.35s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@6f96093 :: getHallway ?== FRONT PASSED
+@2.56s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@7c721098 :: command ?== OPEN PASSED
+@2.56s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@6e92992c :: command ?== OPEN PASSED
+@3.37s:  PASSED simulator.payloads.CarLanternPayload$ReadableCarLanternPayload@b2e0415 :: lighted ?== true PASSED
+
+
+******************Summary******************
+Passed:  17
+Failed:  0
+Total :  17
+

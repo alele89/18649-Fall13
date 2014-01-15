@@ -1,0 +1,36 @@
+18649 Fall 2013
+Team 18
+Yi Huo (yhuo)
+Mustafa Bilgen (mbilgen)
+Sairam Krishnan (sbkrishn)
+Abhijit Lele (alele)
+
+Simulator Parameters:
+Command line = -head header.txt -cf IT_SD8a.cf -mf IT_SD8a.mf
+RandomSeed = 1386533696583
+CanNetworkBitTime = 0 ns
+Effective Can Bitrate = Infinity
+Run Time = null
+Real time rate = null
+Message File = IT_SD8a.mf
+Controller File = IT_SD8a.cf
+
+Assertion Results:
+@10.5s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@3abd6b1e :: command ?== CLOSE PASSED
+@10.5s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@2964a05d :: command ?== CLOSE PASSED
+@11.8s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@273fe4e4 :: command ?== STOP PASSED
+@11.8s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@8c3d026 :: command ?== STOP PASSED
+@12.5s:  PASSED LanternControl[UP]::checkState(STATE) ?== LANTERN_OFF PASSED
+@12.5s:  PASSED LanternControl[DOWN]::checkState(STATE) ?== LANTERN_OFF PASSED
+@12.5s:  PASSED simulator.payloads.CarLanternPayload$ReadableCarLanternPayload@68c50e46 :: lighted ?== false PASSED
+@12.5s:  PASSED simulator.payloads.CarLanternPayload$ReadableCarLanternPayload@230a4761 :: lighted ?== false PASSED
+@13.5s:  PASSED simulator.payloads.DrivePayload$ReadableDrivePayload@251970e2 :: speed ?== SLOW PASSED
+@13.5s:  PASSED simulator.payloads.DrivePayload$ReadableDrivePayload@3253be7c :: direction ?== UP PASSED
+@13.5s:  PASSED DriveControl::checkState(STATE) ?== DRIVE_MOVING PASSED
+
+
+******************Summary******************
+Passed:  11
+Failed:  0
+Total :  11
+

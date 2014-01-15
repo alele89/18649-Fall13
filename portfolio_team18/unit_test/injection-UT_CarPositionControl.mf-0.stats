@@ -1,0 +1,39 @@
+18649 Fall 2013
+Team 18
+Yi Huo (yhuo)
+Mustafa Bilgen (mbilgen)
+Sairam Krishnan (sbkrishn)
+Abhijit Lele (alele)
+
+Simulator Parameters:
+Command line = -head header.txt -cf UT_CarPositionControl.cf -mf UT_CarPositionControl.mf
+RandomSeed = 1386532888097
+CanNetworkBitTime = 0 ns
+Effective Can Bitrate = Infinity
+Run Time = null
+Real time rate = null
+Message File = UT_CarPositionControl.mf
+Controller File = UT_CarPositionControl.cf
+
+Assertion Results:
+@0.21s:  PASSED CarPositionControl::checkState(STATE) ?== AT_FLOOR PASSED
+@0.21s:  PASSED simulator.payloads.CarPositionIndicatorPayload$ReadableCarPositionIndicatorPayload@6684b1e0 :: floor ?== 1 PASSED
+@0.51s:  PASSED CarPositionControl::checkState(STATE) ?== MOVING PASSED
+@0.51s:  PASSED simulator.payloads.CarPositionIndicatorPayload$ReadableCarPositionIndicatorPayload@293e86f :: floor ?== 1 PASSED
+@0.81s:  PASSED CarPositionControl::checkState(STATE) ?== MOVING PASSED
+@0.81s:  PASSED simulator.payloads.CarPositionIndicatorPayload$ReadableCarPositionIndicatorPayload@1943b93b :: floor ?== 1 PASSED
+@1.11s:  PASSED CarPositionControl::checkState(STATE) ?== AT_FLOOR PASSED
+@1.11s:  PASSED simulator.payloads.CarPositionIndicatorPayload$ReadableCarPositionIndicatorPayload@71fb2e0 :: floor ?== 8 PASSED
+@1.41s:  PASSED CarPositionControl::checkState(STATE) ?== MOVING PASSED
+@1.41s:  PASSED simulator.payloads.CarPositionIndicatorPayload$ReadableCarPositionIndicatorPayload@633a494d :: floor ?== 8 PASSED
+@1.71s:  PASSED CarPositionControl::checkState(STATE) ?== MOVING PASSED
+@1.71s:  PASSED simulator.payloads.CarPositionIndicatorPayload$ReadableCarPositionIndicatorPayload@56acf892 :: floor ?> 2 PASSED
+@2.009999999s:  PASSED CarPositionControl::checkState(STATE) ?== AT_FLOOR PASSED
+@2.009999999s:  PASSED simulator.payloads.CarPositionIndicatorPayload$ReadableCarPositionIndicatorPayload@617ce686 :: floor ?== 2 PASSED
+
+
+******************Summary******************
+Passed:  14
+Failed:  0
+Total :  14
+

@@ -1,0 +1,39 @@
+;18-649 Fall 2013
+;Group 18
+;Mustafa Yigit Bilgen (mbilgen)
+;Yi Huo (yhuo)
+;Sairam Krishnan (sbkrishn)
+;Abhijit Lele(alele)
+;
+;Integration Test for SD 1a - Tests
+
+#INCLUDE defines.mf
+
+;Set up preconditions
+;Assuming that the passenger wants to go up and the elevator is currently at another floor.
+;Passenger arrives at 5th floor, front hallway and wants to go up.
+0s I HALL_BUTTON_CONTROL_PERIOD F HallCall 5 FRONT UP = false
+0s I 0s F HallLight 5 FRONT UP = false 
+
+;Car is empty.
+0s I WEIGHT_PERIOD N CAR_WEIGHT_CAN_ID CarWeight = 0
+
+;All doors are closed.
+0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = true
+0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][RIGHT]_CAN_ID DoorClosed FRONT RIGHT = true
+0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][LEFT]_CAN_ID DoorClosed BACK LEFT = true
+0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][RIGHT]_CAN_ID DoorClosed BACK RIGHT = true
+0s I DOOR_OPENED_SENSOR_PERIOD N DOOR_OPEN_SENSOR_[FRONT][LEFT]_CAN_ID DoorOpened FRONT LEFT = false
+0s I DOOR_OPENED_SENSOR_PERIOD N DOOR_OPEN_SENSOR_[FRONT][RIGHT]_CAN_ID DoorOpened FRONT RIGHT = false
+0s I DOOR_OPENED_SENSOR_PERIOD N DOOR_OPEN_SENSOR_[BACK][LEFT]_CAN_ID DoorOpened BACK LEFT = false
+0s I DOOR_OPENED_SENSOR_PERIOD N DOOR_OPEN_SENSOR_[BACK][RIGHT]_CAN_ID DoorOpened BACK RIGHT = false
+
+;The elevator is currently at 7th floor.
+0s I AT_FLOOR_PERIOD N AT_FLOOR_[7][FRONT]_CAN_ID AtFloor 7 FRONT = true
+
+;#arc '1a/1b'
+;Passenger presses "up" hall call button, to go to the 7th floor.
+0.5s I HALL_BUTTON_CONTROL_PERIOD F HallCall 5 FRONT UP = true
+
+;#arc '2a/2b'
+0.81s A F HallLight 5 FRONT UP : lighted == true

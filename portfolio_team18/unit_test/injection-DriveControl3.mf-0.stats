@@ -1,0 +1,48 @@
+18649 Fall 2013
+Team 18
+Yi Huo (yhuo)
+Mustafa Bilgen (mbilgen)
+Sairam Krishnan (sbkrishn)
+Abhijit Lele (alele)
+
+Simulator Parameters:
+Command line = -head header -cf unit_test/DriveControl.cf -mf unit_test/DriveControl3.mf
+RandomSeed = 1386722892953
+CanNetworkBitTime = 0 ns
+Effective Can Bitrate = Infinity
+Run Time = null
+Real time rate = null
+Message File = unit_test/DriveControl3.mf
+Controller File = unit_test/DriveControl.cf
+
+Assertion Results:
+@0.5s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@385b5df0 :: getDirection ?== STOP PASSED
+@0.5s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@4f558d62 :: getSpeed ?== 0.0 PASSED
+@0.5s:  PASSED simulator.payloads.DrivePayload$ReadableDrivePayload@6bedc67e :: speed ?== STOP PASSED
+@0.5s:  PASSED simulator.payloads.DrivePayload$ReadableDrivePayload@5556c4a8 :: direction ?== STOP PASSED
+@0.5s:  PASSED DriveControl::checkState(STATE) ?== DRIVE_STOP PASSED
+@0.89s:  PASSED DriveControl::checkState(STATE) ?== DRIVE_MOVING PASSED
+@0.92s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@2aa89e44 :: getDirection ?== UP PASSED
+@0.92s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@6f0cdf59 :: getSpeed ?== 0.25 PASSED
+@1.5s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@48b9e55c :: getDirection ?== UP PASSED
+@1.5s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@1970b890 :: getSpeed ?== 1.0 PASSED
+@1.5s:  PASSED simulator.payloads.DrivePayload$ReadableDrivePayload@48a70acd :: speed ?== FAST PASSED
+@1.5s:  PASSED simulator.payloads.DrivePayload$ReadableDrivePayload@1ea01711 :: direction ?== UP PASSED
+@1.5s:  PASSED DriveControl::checkState(STATE) ?== DRIVE_MOVING_FAST PASSED
+@2.5s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@797dfcf1 :: getDirection ?== UP PASSED
+@2.5s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@7c5acf13 :: getSpeed ?== 0.25 PASSED
+@2.5s:  PASSED simulator.payloads.DrivePayload$ReadableDrivePayload@7ea4b9da :: speed ?== SLOW PASSED
+@2.5s:  PASSED simulator.payloads.DrivePayload$ReadableDrivePayload@1812e72d :: direction ?== UP PASSED
+@2.5s:  PASSED DriveControl::checkState(STATE) ?== DRIVE_MOVING PASSED
+@3.5s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@4eb3ea0f :: getSpeed ?== 0.0 PASSED
+@3.5s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@7d4af469 :: getDirection ?== STOP PASSED
+@3.5s:  PASSED DriveControl::checkState(STATE) ?== EMERGENCY PASSED
+@3.5s:  PASSED simulator.payloads.DrivePayload$ReadableDrivePayload@67abaab :: speed ?== STOP PASSED
+@3.5s:  PASSED simulator.payloads.DrivePayload$ReadableDrivePayload@23a0a87c :: direction ?== STOP PASSED
+
+
+******************Summary******************
+Passed:  23
+Failed:  0
+Total :  23
+

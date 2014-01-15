@@ -1,0 +1,43 @@
+18649 Fall 2013
+Team 18
+Yi Huo (yhuo)
+Mustafa Bilgen (mbilgen)
+Sairam Krishnan (sbkrishn)
+Abhijit Lele (alele)
+
+Simulator Parameters:
+Command line = -head header.txt -cf IT_SD3a.cf -mf IT_SD3a.mf
+RandomSeed = 1386533564191
+CanNetworkBitTime = 0 ns
+Effective Can Bitrate = Infinity
+Run Time = null
+Real time rate = null
+Message File = IT_SD3a.mf
+Controller File = IT_SD3a.cf
+
+Assertion Results:
+@0.51s:  PASSED simulator.payloads.DrivePayload$ReadableDrivePayload@4f7eae6c :: speed ?== SLOW PASSED
+@0.51s:  PASSED simulator.payloads.DrivePayload$ReadableDrivePayload@22838de0 :: direction ?== UP PASSED
+@0.91s:  PASSED simulator.payloads.DrivePayload$ReadableDrivePayload@69c78571 :: speed ?== LEVEL PASSED
+@0.91s:  PASSED simulator.payloads.DrivePayload$ReadableDrivePayload@73703457 :: direction ?== UP PASSED
+@1.11s:  PASSED simulator.payloads.DrivePayload$ReadableDrivePayload@58663731 :: speed ?== STOP PASSED
+@1.51s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@1f51c9a0 :: command ?== OPEN PASSED
+@1.51s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@138bb3fd :: command ?== OPEN PASSED
+@1.51s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@555bf03d :: command ?== STOP PASSED
+@1.51s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@5e335678 :: command ?== STOP PASSED
+@2.71s:  PASSED simulator.payloads.CarLanternPayload$ReadableCarLanternPayload@249faafc :: lighted ?== true PASSED
+@2.71s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@5a86506a :: command ?== STOP PASSED
+@2.71s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@b2e0415 :: command ?== STOP PASSED
+@2.71s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@2e45105c :: command ?== STOP PASSED
+@2.71s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@27b7516d :: command ?== STOP PASSED
+@4.01s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@806bc2f :: command ?== CLOSE PASSED
+@4.01s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@555214b9 :: command ?== CLOSE PASSED
+@4.01s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@58d67b44 :: command ?== STOP PASSED
+@4.01s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@105ef1eb :: command ?== STOP PASSED
+
+
+******************Summary******************
+Passed:  18
+Failed:  0
+Total :  18
+

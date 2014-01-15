@@ -1,0 +1,48 @@
+;18-649 Fall 2013
+;Group 18
+;Mustafa Yigit Bilgen (mbilgen)
+;Yi Huo (yhuo)
+;Sairam Krishnan (sbkrishn)
+;Abhijit Lele(alele)
+;
+;Integration Test for SD 7c - Tests
+
+
+#INCLUDE defines.mf
+
+;Set up preconditions and assumptions.
+;Empty car
+0.0s I WEIGHT_PERIOD N CAR_WEIGHT_CAN_ID CarWeight = 0
+
+;Both doors facing the front hallway are open.
+0.0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = false
+0.0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][RIGHT]_CAN_ID DoorClosed FRONT RIGHT = false
+
+;#arc '1a'
+0.0s I DOOR_OPENED_SENSOR_PERIOD N DOOR_OPEN_SENSOR_[FRONT][LEFT]_CAN_ID DoorOpened FRONT LEFT = true
+0.0s I DOOR_OPENED_SENSOR_PERIOD N DOOR_OPEN_SENSOR_[FRONT][RIGHT]_CAN_ID DoorOpened FRONT RIGHT = true
+
+;Car is currently stopped at fLoor 5 and dispatcher is content to wait here for the moment.
+0.0s I AT_FLOOR_PERIOD N AT_FLOOR_[5][FRONT]_CAN_ID AtFloor 5 FRONT = true
+0.0s I DISPATCHER_PERIOD N DESIRED_FLOOR_CAN_ID DesiredFloor = 5 FRONT STOP
+0.0s I DRIVE_CONTROL_PERIOD N DRIVE_SPEED_CAN_ID DriveSpeed = 1.0 STOP
+
+;Doors should close after 10 seconds.
+0.0s I DISPATCHER_PERIOD N DESIRED_DWELL_[FRONT]_CAN_ID DesiredDwell FRONT = 10 
+
+;#arc '1b'
+0.51s A F DoorMotor FRONT LEFT : command == STOP
+0.51s A F DoorMotor FRONT RIGHT : command == STOP
+
+;#arc '2/3a'
+10.41s A F DoorMotor FRONT LEFT : command == CLOSE
+10.41s A F DoorMotor FRONT RIGHT : command == CLOSE
+
+;#arc '3b'
+10.5s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][RIGHT]_CAN_ID DoorClosed FRONT RIGHT = true
+10.5s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = true
+10.5s I AT_FLOOR_PERIOD N AT_FLOOR_[5][FRONT]_CAN_ID AtFloor 5 FRONT = false
+
+;#arc '3c'
+10.81s A F DoorMotor FRONT LEFT : command == STOP
+10.81s A F DoorMotor FRONT LEFT : command == STOP

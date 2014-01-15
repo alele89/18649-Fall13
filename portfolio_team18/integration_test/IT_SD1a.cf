@@ -1,0 +1,10 @@
+;18-649 Fall 2013
+;Group 18
+;Mustafa Yigit Bilgen (mbilgen)
+;Yi Huo (yhuo)
+;Sairam Krishnan (sbkrishn)
+;Abhijit Lele(alele)
+;
+;Integration Test for SD 1a - Configuration File
+
+HallButtonControl 5 FRONT UP 100.0ms TRUE 

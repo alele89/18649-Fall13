@@ -1,0 +1,19 @@
+;18649 Fall 2013
+;Team 18
+;Yi Huo (yhuo)
+;Mustafa Bilgen (mbilgen)
+;Sairam Krishnan (sbkrishn)
+;Abhijit Lele (alele)
+;
+;Integration Test - SD8A
+
+LanternControl UP 200.0ms true
+LanternControl DOWN 200.0ms true
+Dispatcher 8 10.0ms true
+DoorControl FRONT LEFT 10.0ms true
+DoorControl FRONT RIGHT 10.0ms true
+DoorControl BACK LEFT 10.0ms true
+DoorControl BACK RIGHT 10.0ms true
+HallButtonControl 5 FRONT UP 100.0ms true
+HallButtonControl 3 FRONT DOWN 100.0ms true
+HallButtonControl 6 FRONT UP 100.0ms true

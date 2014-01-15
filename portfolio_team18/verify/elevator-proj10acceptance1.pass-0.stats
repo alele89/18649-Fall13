@@ -1,0 +1,90 @@
+;18-649 Fall '13
+;Group 18
+;Mustafa Yigit Bilgen (mbilgen)
+;Yi Huo (yhuo)
+;Sairam Krishnan (sbkrishn)
+;Abhijit Lele(alele)
+
+Simulator Parameters:
+Command line = -head header.txt -seed 666666666 -monitor Proj11RuntimeMonitor -b 200 -fs 5.0 -pf proj10acceptance1.pass
+RandomSeed = 666666666
+CanNetworkBitTime = 5000 ns
+Effective Can Bitrate = 199999.99999999997
+Run Time = null
+Real time rate = null
+Acceptance Test File = proj10acceptance1.pass
+Monitors: Proj11RuntimeMonitor  
+
+STATISTICS FOR ELEVATOR SIMULATION PASSENGER DELIVERY
+-----------------------------------------------------
+
+
+These passengers were delivered:
+Passenger 0: INJECTED AT 0.0s and DELIVERED in 21.64s
+  Satisfaction score: 100.0
+Passenger 2: INJECTED AT 0.6s and DELIVERED in 38.796s
+  Satisfaction score: 100.0
+Passenger 1: INJECTED AT 0.3s and DELIVERED in 56.491s
+  Satisfaction score: 100.0
+Passenger 14: INJECTED AT 66.2s and DELIVERED in 31.13s
+  Satisfaction score: 100.0
+Passenger 13: INJECTED AT 58.0s and DELIVERED in 55.649s
+  Satisfaction score: 100.0
+Passenger 12: INJECTED AT 7.1s and DELIVERED in 133.299s
+  Satisfaction score: 100.0
+Passenger 10: INJECTED AT 6.0s and DELIVERED in 150.18s
+  Satisfaction score: 100.0
+Passenger 5: INJECTED AT 3.0s and DELIVERED in 170.009s
+  Satisfaction score: 100.0
+Passenger 7: INJECTED AT 3.0s and DELIVERED in 171.803s
+  Satisfaction score: 100.0
+Passenger 11: INJECTED AT 7.0s and DELIVERED in 182.063s
+  Satisfaction score: 100.0
+Passenger 4: INJECTED AT 2.0s and DELIVERED in 188.479s
+  Satisfaction score: 100.0
+Passenger 8: INJECTED AT 4.0s and DELIVERED in 201.405s
+  Satisfaction score: 100.0
+Passenger 3: INJECTED AT 1.0s and DELIVERED in 205.648s
+  Satisfaction score: 100.0
+Passenger 6: INJECTED AT 3.0s and DELIVERED in 218.819s
+  Satisfaction score: 100.0
+Passenger 16: INJECTED AT 101.0s and DELIVERED in 152.961s
+  Satisfaction score: 100.0
+Passenger 15: INJECTED AT 100.0s and DELIVERED in 187.083s
+  Satisfaction score: 100.0
+Passenger 9: INJECTED AT 5.0s and DELIVERED in 317.329s
+  Satisfaction score: 100.0
+
+Passenger Delivery Summary
+Delivered: 17
+Stranded: 0
+Total: 17
+
+Deliver Stats (lower is better):
+Average_delivery_time: 146.046
+Maximum_delivery_time:  317.329
+Delivery_performance_score:  901.513
+
+Satisfaction Stats (higher is better):
+Average_satisfaction_score: 100.000
+Min_satisfaction_score:  100.000
+Satisfaction_performance_score:  500.000
+
+
+
+
+Network Utilization Summary:
+Recent: 69.50 % Max: 69.50 %  Overall:  69.50 %
+
+Monitors Warning Results: 
+RuntimeMonitor generated 0 warnings.
+
+Monitors Summmary Results: 
+R-T.6 Violations: 0
+R-T.7 Violations: 0
+R-T.8.1 Violations: 0
+R-T.8.2 Violations: 0
+R-T.8.3 Violations: 0
+R-T.9 Violations: 0
+R-T.10 Violations: 0
+

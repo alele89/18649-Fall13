@@ -1,0 +1,783 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <meta content="text/html; charset=ISO-8859-1"
+      http-equiv="Content-Type">
+    <title>18649 - Issue Log</title>
+  </head>
+  <body>
+    <h1 style="text-align: center;">18649 - Issue Log<br>
+    </h1>
+    <hr style="width: 100%; height: 2px;">18649 Fall 2013<br>
+    Group 18 - Sairam Krishnan (sbkrishn), Yi Huo (yhuo), Abhijit Lele
+    (alele), Mustafa Bilgen (mbilgen)<br>
+    <hr style="width: 100%; height: 2px;">This table has an entry for
+    each design issue during the semester.&nbsp; Add new entries to the
+    bottom of the table (you may need to add new rows).&nbsp; Leave all
+    the previous entries in place so that at the end of the project you
+    have a complete list of the design changes that you have made
+    throughout the project.&nbsp; The meaning of the table entries is as
+    follows:<br>
+    <ul>
+      <li>Issue number - unique identifier for each entry</li>
+      <li>Date found - the date the issue was found</li>
+      <li>Date fixed - the date the issue was fixed</li>
+      <li>Change made by - andrewID of the person or persons responsible
+        for the change</li>
+      <li>Origin - the earliest artifact where the issue was
+        present.&nbsp; For example, if the a bug in the code is
+        ultimately the result of an incorrect sequence diagram, then the
+        origin would be that particular sequence diargam</li>
+      <li>Description - brief description of the issue</li>
+      <li>Resolution - brief description of the changes made to resolve
+        the issue.&nbsp; If the entry is not resolved, put a note like
+        "Pending" here.<br>
+      </li>
+      <li>Artifact(s) chagned - a list of the artifacts that were
+        modified to resolve the issue.&nbsp; This should be a specific
+        list, such as "doorcontrol requirements", "SD 1.4A",
+        "DriveControl statechart", "doorcontrol.java"<br>
+      </li>
+    </ul>
+    <br>
+    <table style="text-align: left; width: 100%;" border="1"
+      cellpadding="2" cellspacing="2">
+      <tbody>
+        <tr>
+          <td style="vertical-align: top;">Issue #<br></td>
+          <td style="vertical-align: top;">Date Found<br></td>
+          <td style="vertical-align: top;">Date Fixed<br></td>
+          <td style="vertical-align: top;">Change Made By<br></td>
+          <td style="vertical-align: top;">Origin<br></td>
+          <td style="vertical-align: top;">Description<br></td>
+          <td style="vertical-align: top;">Resolution<br></td>
+          <td style="vertical-align: top;">Artifact(s) Changed<br></td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top;">1<br></td>
+          <td style="vertical-align: top;">9/18/2013<br></td>
+          <td style="vertical-align: top;">9/19/2013<br></td>
+          <td style="vertical-align: top;">Sairam Krishnan<br></td>
+          <td style="vertical-align: top;">sd7b<br></td>
+          <td style="vertical-align: top;">Pressing HallButton did not
+            turn on HallLight<br></td>
+          <td style="vertical-align: top;">HallButton light turns on
+            when passenger presses the hall button in the scenario.
+            Added corresponding arcs (b/w HallButton, HallLight, and
+            HallButtonControl) in the SD.<br></td>
+          <td style="vertical-align: top;">Scenario 7B, Sequence Diagram
+            7B<br></td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top;">2<br>
+          </td>
+          <td style="vertical-align: top;">9/18/2013<br>
+          </td>
+          <td style="vertical-align: top;">9/19/2013<br>
+          </td>
+          <td style="vertical-align: top;">Yi Huo<br>
+          </td>
+          <td style="vertical-align: top;">sd3a<br>
+          </td>
+          <td style="vertical-align: top;">CarLantern should not turn on
+            at every floor<br>
+          </td>
+          <td style="vertical-align: top;">CarLantern turns on as door
+            starts to open.<br>
+          </td>
+          <td style="vertical-align: top;">Sequence Diagram 3A<br>
+          </td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top;">3<br></td>
+          <td style="vertical-align: top;">9/18/2013<br></td>
+          <td style="vertical-align: top;">9/18/2013<br></td>
+          <td style="vertical-align: top;">Abhijit Lele<br></td>
+          <td style="vertical-align: top;">sd4a<br></td>
+          <td style="vertical-align: top;">CarLantern should not turn on at every floor<br></td>
+          <td style="vertical-align: top;">Check if DoorClosed is false (doors are opening)
+           before turning on CarLantern.<br></td>
+          <td style="vertical-align: top;">Sequence Diagram 4A<br></td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top;">4<br>
+          </td>
+          <td style="vertical-align: top;">9/18/2013<br>
+          </td>
+          <td style="vertical-align: top;">9/18/2013<br>
+          </td>
+          <td style="vertical-align: top;">Sairam Krishnan<br>
+          </td>
+          <td style="vertical-align: top;">sd7a<br>
+          </td>
+          <td style="vertical-align: top;">CarLantern should not turn on
+            at every floor<br>
+          </td>
+          <td style="vertical-align: top;">CarLantern turns on as door
+            starts to open.<br>
+          </td>
+          <td style="vertical-align: top;">Scenario 7A, Sequence Diagram
+            7A<br>
+          </td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top;">5<br>
+          </td>
+          <td style="vertical-align: top;">9/18/2013<br>
+          </td>
+          <td style="vertical-align: top;">9/19/2013<br>
+          </td>
+          <td style="vertical-align: top;">Sairam Krishnan<br>
+          </td>
+          <td style="vertical-align: top;">sd7b<br>
+          </td>
+          <td style="vertical-align: top;">CarLantern should not turn on
+            at every floor<br>
+          </td>
+          <td style="vertical-align: top;">CarLantern is now triggered
+            by the doors opening.<br>
+          </td>
+          <td style="vertical-align: top;">Scenario 7B, Sequence Diagram
+            7B<br>
+          </td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top;">6<br>
+          </td>
+          <td style="vertical-align: top;">9/19/2013<br>
+          </td>
+          <td style="vertical-align: top;">9/19/2013<br>
+          </td>
+          <td style="vertical-align: top;">Yi Huo<br>
+          </td>
+          <td style="vertical-align: top;">sd3a<br>
+          </td>
+          <td style="vertical-align: top;">The same # and letter has
+            been assigned to 2 arcs that perform different actions.
+            Specifically, the arc that turns on the CarLantern and the
+            arc that stops the door motor after the door opens
+            completely are both assigned 2d. <br>
+          </td>
+          <td style="vertical-align: top;">Assigned 2d to the arc that
+            turns on the CarLantern and 2e to the arc that stops the
+            door motor.<br>
+          </td>
+          <td style="vertical-align: top;">Sequence Diagram 3A<br>
+          </td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top;">7<br>
+          </td>
+          <td style="vertical-align: top;">9/19/2013<br>
+          </td>
+          <td style="vertical-align: top;">9/19/2013<br>
+          </td>
+          <td style="vertical-align: top;">Abhijit Lele<br>
+          </td>
+          <td style="vertical-align: top;">sd5b<br>
+          </td>
+          <td style="vertical-align: top;">The blue arc from the
+            DoorControl to the DoorMotor, commanding the latter to Stop,
+            is misnumbered; it should be numbered 3d instead of 3c. <br>
+          </td>
+          <td style="vertical-align: top;">Fixed the numbering - changed from 3c to 3d.<br></td>
+          <td style="vertical-align: top;">Sequence Diagram 5B<br>
+          </td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top;">8<br>
+          </td>
+          <td style="vertical-align: top;">9/19/2013<br>
+          </td>
+          <td style="vertical-align: top;">9/23/2013<br>
+          </td>
+          <td style="vertical-align: top;">Yigit Bilgen<br>
+          </td>
+          <td style="vertical-align: top;">Dispatcher Requirements<br>
+          </td>
+          <td style="vertical-align: top;">Currently, the dispatcher is
+            very dumb. The requirements need to be changed to make it
+            smarter.<br>
+          </td>
+          <td style="vertical-align: top;">Changed requirements to make
+            the elevator go up and down. It is still sabbath, however.<br>
+          </td>
+          <td style="vertical-align: top;">Requirements 11.*<br>
+          </td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top;">9<br>
+          </td>
+          <td style="vertical-align: top;">9/19/2013<br>
+          </td>
+          <td style="vertical-align: top;">9/19/2013<br>
+          </td>
+          <td style="vertical-align: top;">Yigit Bilgen<br>
+          </td>
+          <td style="vertical-align: top;">Use Cases/Scenarios<br>
+          </td>
+          <td style="vertical-align: top;">There are no scenarios
+            exercising dispatcher requirements 11.7* and 11.9.<br>
+          </td>
+          <td style="vertical-align: top;">Added use
+            cases/scenarios/sequence diagrams.<br>
+          </td>
+          <td style="vertical-align: top;">Use case/scenario/SD 10, 11<br>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top">10<br>
+          </td>
+          <td valign="top">9/19/2013<br>
+          </td>
+          <td valign="top">9/19/2013<br>
+          </td>
+          <td valign="top">Abhijit Lele<br>
+          </td>
+          <td valign="top">Sequence Diagrams<br>
+          </td>
+          <td valign="top">Sequence diagram 4a does not conform with
+            CarLanternControl requirements. 5a needs cosmetic changes<br>
+          </td>
+          <td valign="top">Fixed sequence diagrams 4a,5b based on
+            changes in LanternControl requirements</td>
+          <td valign="top">sd4a, sd5b<br>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top">11<br>
+          </td>
+          <td valign="top">9/22/2013<br>
+          </td>
+          <td valign="top">9/22/2013<br>
+          </td>
+          <td valign="top">Yigit Bilgen<br>
+          </td>
+          <td valign="top">Requirements<br>
+          </td>
+          <td valign="top">No requirement turns off mHallCall.<br>
+          </td>
+          <td valign="top">Fixed requirements.</td>
+          <td valign="top">req 8.*<br>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top">12<br>
+          </td>
+          <td valign="top">9/22/2013<br>
+          </td>
+          <td valign="top">9/22/2013<br>
+          </td>
+          <td valign="top">Yigit Bilgen<br>
+          </td>
+          <td valign="top">Requirements<br>
+          </td>
+          <td valign="top">No requirement turns off mHallLight.<br>
+          </td>
+          <td valign="top">Fixed requirements.</td>
+          <td valign="top">req 8.*<br>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top">13<br>
+          </td>
+          <td valign="top">9/24/2013<br>
+          </td>
+          <td valign="top">9/24/2013<br>
+          </td>
+          <td valign="top">Sairam Krishnan<br>
+          </td>
+          <td valign="top">Time-Triggered Requirements for DoorControl<br>
+          </td>
+          <td valign="top">Req 5.9 currently commands DoorMotor to Nudge
+            when CountDown expires. But we want DoorMotor to Close
+            instead; we want it to Nudge only when there's a
+            DoorReversal.<br>
+          </td>
+          <td valign="top">Fixed requirement to command DoorMotor to
+            Close when CountDown expires.</td>
+          <td valign="top">req 5.9<br>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top">14<br>
+          </td>
+          <td valign="top">9/28/2013<br>
+          </td>
+          <td valign="top">10/1/2013<br>
+          </td>
+          <td valign="top">Sairam Krishnan<br>
+          </td>
+          <td valign="top">Initial State in DoorControl State Chart<br>
+          </td>
+          <td valign="top">No initial state specified for Door
+            Controller<br>
+          </td>
+          <td valign="top">Initialized Controller to DOOR_CLOSED<br>
+          </td>
+          <td valign="top">DoorControl State Chart<br>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top">15<br>
+          </td>
+          <td valign="top">10/1/2013<br>
+          </td>
+          <td valign="top">10/1/2013<br>
+          </td>
+          <td valign="top">Yigit Bilgen<br>
+          </td>
+          <td valign="top">HallButtonControl state chart<br>
+          </td>
+          <td valign="top">T2 guard condition is incorrect, should be f
+            instead of mDesiredFloor.f<br>
+          </td>
+          <td valign="top">CurrentFloor now checks against f<br>
+          </td>
+          <td valign="top">HallButtonControl State Chart<br>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top">16<br>
+          </td>
+          <td valign="top">10/2/2013<br>
+          </td>
+          <td valign="top">10/2/2013<br>
+          </td>
+          <td valign="top">Sairam Krishnan<br>
+          </td>
+          <td valign="top">DoorControl State Chart<br>
+          </td>
+          <td valign="top">Need to set CountDown to 0 in DOOR_CLOSED
+            state<br>
+          </td>
+          <td valign="top">CountDown initialized to 0 in DOOR_CLOSED
+            state (State 1)<br>
+          </td>
+          <td valign="top">DoorControl State Chart<br>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top">17<br>
+          </td>
+          <td valign="top">10/5/2013<br>
+          </td>
+          <td valign="top">10/9/2013<br>
+          </td>
+          <td valign="top">Sairam Krishnan<br>
+          </td>
+          <td valign="top">LanternControl State Chart<br>
+          </td>
+          <td valign="top">Lantern will not display because current
+            floor always equals desired floor<br>
+          </td>
+          <td valign="top">Transitions from OFF to UP or DOWN when
+            mDoorOpened[b,*] == True, instead of mDoorClosed[b,*] ==
+            False<br>
+          </td>
+          <td valign="top">LanternControl State Chart<br>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top">18<br>
+          </td>
+          <td valign="top">10/6/2013<br>
+          </td>
+          <td valign="top">10/6/2013<br>
+          </td>
+          <td valign="top">Yigit Bilgen<br>
+          </td>
+          <td valign="top">Dispatcher state chart<br>
+          </td>
+          <td valign="top">Guard conditions on T.11.3 and T.11.6 cause
+            target to increase/decrease without bound.<br>
+          </td>
+          <td valign="top">Changed 2nd guard condition to
+            mAtFloor[target, *] == TRUE<br>
+          </td>
+          <td valign="top">Dispatcher State Chart, Dispatcher.java<br>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top">19<br>
+          </td>
+          <td valign="top">10/13/2013<br>
+          </td>
+          <td valign="top">10/16/2013<br>
+          </td>
+          <td valign="top">Yigit Bilgen<br>
+          </td>
+          <td valign="top">DriveControl state chart<br>
+          </td>
+          <td valign="top">Guard conditions on T.6.7 and T.6.8 cause
+            triggers the emergency brake.<br>
+          </td>
+          <td valign="top">Changed guard condition to check for
+            mDriveSpeed == 0<br>
+          </td>
+          <td valign="top">DriveControl state chart, DriveControl.java<br>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top">20<br>
+          </td>
+          <td valign="top">10/13/2013<br>
+          </td>
+          <td valign="top">10/15/2013<br>
+          </td>
+          <td valign="top">Yigit Bilgen<br>
+          </td>
+          <td valign="top">DriveSpeedCanPayloadTranslator<br>
+          </td>
+          <td valign="top">Converts doubles to ints, causes all
+            DriveSpeed to be read as zero.<br>
+          </td>
+          <td valign="top">Changed translator to encode as floats
+            instead of ints<br>
+          </td>
+          <td valign="top">DriveSpeedCanPayloadTranslator.java<br>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top">21<br>
+          </td>
+          <td valign="top">10/16/2013<br>
+          </td>
+          <td valign="top">10/17/2013<br>
+          </td>
+          <td valign="top">Abhijit Lele<br>
+          </td>
+          <td valign="top">Drive Control State Chart and
+            DriveControl.java<br>
+          </td>
+          <td valign="top">State chart needs re design for project 7<br>
+          </td>
+          <td valign="top">Changed the design quite a bit upon
+            discussion with Yigit Bilgen due to issue 19. Removed
+            leveling before going to stop. Drive now checks for leveling
+            once the elevator arrives at a floor.</td>
+          <td valign="top">Drive Control state chart and code
+            implementation<br>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top">22<br>
+          </td>
+          <td valign="top">10/21/2013<br>
+          </td>
+          <td valign="top">10/21/2013<br>
+          </td>
+          <td valign="top">Sairam Krishnan<br>
+          </td>
+          <td valign="top">Sequence Diagrams and Time-Triggered Requirements for DoorControl<br>
+          </td>
+          <td valign="top">Must fulfill new high-level requirement that DoorControl should
+            reverse doors at least once on a floor before commanding the doorst to nudge. <br>
+          </td>
+          <td valign="top">Added a state variable "ReversedOnce" to keep track of whether or not
+            the door has been reversed once yet; the first time that the door is reversed, ReversedOnce
+            is set to true, and if we get a door reversal message again, we see that ReversedOnce is true
+            and can thereby switch to Nudge.</td>
+          <td valign="top">SD 5A & 5B, DoorControl Requirements<br></td>
+        </tr>
+        <tr>
+          <td valign="top">23<br>
+          </td>
+          <td valign="top">10/21/2013<br>
+          </td>
+          <td valign="top">10/22/2013<br>
+          </td>
+          <td valign="top">Sairam Krishnan<br>
+          </td>
+          <td valign="top">Requirements for DoorControl<br>
+          </td>
+          <td valign="top">State variable ReversedOnce is never set to False.<br>
+          </td>
+          <td valign="top">Set ReversedOnce to false in the reset state (DOOR_CLOSED).</td>
+          <td valign="top">DoorControl Requirement 5.8 <br>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top">24<br>
+          </td>
+          <td valign="top">10/23/2013<br>
+          </td>
+          <td valign="top">10/24/2013<br>
+          </td>
+          <td valign="top">Sairam Krishnan<br>
+          </td>
+          <td valign="top">Requirements for DoorControl<br>
+          </td>
+          <td valign="top">There is no requirement specifying that the doors must open only
+            at the hallway registered for pickup.<br>
+          </td>
+          <td valign="top">Appended a guard condition to an existing requirement that
+            mDesiredFloor.b == b (the hallway that the current door faces).</td>
+          <td valign="top">DoorControl Requirement 5.6 <br></td>
+        </tr>
+        <tr>
+          <td valign="top">25<br>
+          </td>
+          <td valign="top">10/24/2013<br>
+          </td>
+          <td valign="top">10/24/2013<br>
+          </td>
+          <td valign="top">Sairam Krishnan<br>
+          </td>
+          <td valign="top">SD 5A/5B, arc 2a<br>
+          </td>
+          <td valign="top">mDoorReversal is a network message, but arc 2a is blue.<br>
+          </td>
+          <td valign="top">Changed arc 2a's color to black</td>
+          <td valign="top">SD 5A and 5B<br></td>
+        </tr>
+        <tr>
+          <td valign="top">26<br></td>
+          <td valign="top">10/22/2013<br></td>
+          <td valign="top">10/22/2013<br></td>
+          <td valign="top">Yi Huo<br></td>
+          <td valign="top">SD 8B<br></td>
+          <td valign="top">Must meet the new high-level requirements, RT-6 and RT-8.3<br></td>
+          <td valign="top">Created a SD and scenario to visualize a situation where the
+            elevator receives multiple hall and car calls</td>
+          <td valign="top">SD 5A and 5B<br></td>
+        </tr>
+        <tr>
+          <td valign="top">27<br></td>
+          <td valign="top">10/22/2013<br></td>
+          <td valign="top">10/22/2013<br></td>
+          <td valign="top">Abhijit Lele<br></td>
+          <td valign="top">SD 6A<br></td>
+          <td valign="top">Must meet the new high-level requirement, RT-9, which states that
+            Drive must be commanded to Fast to the maximum extent possible.<br></td>
+          <td valign="top">Added several arcs to SD 6A to account for Fast Drive</td>
+          <td valign="top">SD 6A<br></td>
+        </tr>
+        <tr>
+          <td valign="top">28<br></td>
+          <td valign="top">10/22/2013<br></td>
+          <td valign="top">10/22/2013<br></td>
+          <td valign="top">Abhijit Lele<br></td>
+          <td valign="top">DriveControl Requirements<br></td>
+          <td valign="top">Support Fast Drive.<br></td>
+          <td valign="top">Added requirements 6.11 and 6.12 to account for Fast Drive.</td>
+          <td valign="top">DriveControl Requirements 6.11 and 6.12<br></td>
+        </tr>
+        <tr>
+          <td valign="top">29<br></td>
+          <td valign="top">10/26/2013<br></td>
+          <td valign="top">10/26/2013<br></td>
+          <td valign="top">Sairam Krishnan<br></td>
+          <td valign="top">DoorControl Requirements<br></td>
+          <td valign="top">Reqt. 5.6 needs to be clearer about when these guard conditions apply.<br></td>
+          <td valign="top">Specified that the guard conditions are considered when the doors are closed (
+            in other words, in the DOOR_CLOSED state).</td>
+          <td valign="top">DoorControl Requirement 5.6<br></td>
+        </tr>
+        <tr>
+          <td valign="top">30<br></td>
+          <td valign="top">10/26/2013<br></td>
+          <td valign="top">10/26/2013<br></td>
+          <td valign="top">Sairam Krishnan<br></td>
+          <td valign="top">DoorControl State Chart and Implementation<br></td>
+          <td valign="top">Opening doors fully for mCarWeight == MaxCarCapacity rather than allowing them to finish closing</td>
+          <td valign="top">Changed guard conditions with "mCarWeight < MaxCarCapacity" to "mCarWeight <= MaxCarCapacity"</td>
+          <td valign="top">DoorControl State Chart and Implementation<br></td>
+        </tr>
+        <tr>
+          <td valign="top">31<br></td>
+          <td valign="top">10/28/2013<br></td>
+          <td valign="top">10/28/2013<br></td>
+          <td valign="top">mbilgen<br></td>
+          <td valign="top">Architecture<br></td>
+          <td valign="top">Added mDriveSpeed and mCarLevelPosition to the input of the Dispatcher</td>
+          <td valign="top">n/a</td>
+          <td valign="top">Architecture; Dispatcher interface, requirements, state chart, code, tests<br></td>
+        </tr>
+        <tr>
+          <td valign="top">32<br></td>
+          <td valign="top">10/31/2013<br></td>
+          <td valign="top">10/31/2013<br></td>
+          <td valign="top">Abhijit Lele<br></td>
+          <td valign="top">DriveControl State Chart<br></td>
+          <td valign="top">Elevator does not level when stopped at a floor</td>
+          <td valign="top">Added state for leveling; handles leveling when passengers enter/exit elevator.</td>
+          <td valign="top">Drive Control State Chart<br></td>
+        </tr>
+        <tr>
+          <td valign="top">33<br></td>
+          <td valign="top">10/31/2013<br></td>
+          <td valign="top">10/31/2013<br></td>
+          <td valign="top">Abhijit Lele<br></td>
+          <td valign="top">DriveControl.java<br></td>
+          <td valign="top">getCommitPoint logic is backwards</td>
+          <td valign="top">Rewrote getCommitPoint logic - get commit point, check if at point, then level.</td>
+          <td valign="top">DriveControl.java<br></td>
+        </tr>
+        <tr>
+          <td valign="top">34<br></td>
+          <td valign="top">10/31/2013<br></td>
+          <td valign="top">10/31/2013<br></td>
+          <td valign="top">Abhijit Lele<br></td>
+          <td valign="top">DriveControl.java<br></td>
+          <td valign="top">Use static final values instead of constants </td>
+          <td valign="top">Used static final values - better style.</td>
+          <td valign="top">DriveControl.java<br></td>
+        </tr>
+        <tr>
+          <td valign="top">35<br></td>
+          <td valign="top">10/31/2013<br></td>
+          <td valign="top">10/31/2013<br></td>
+          <td valign="top">Abhijit Lele<br></td>
+          <td valign="top">DriveControl Requirements<br></td>
+          <td valign="top">Elevator does not start moving fast if it is already moving faster than slow</td>
+          <td valign="top">n/a</td>
+          <td valign="top">DriveControl Requirements<br></td>
+        </tr>
+        <tr>
+          <td valign="top">36<br></td>
+          <td valign="top">10/31/2013<br></td>
+          <td valign="top">10/31/2013<br></td>
+          <td valign="top">Abhijit Lele<br></td>
+          <td valign="top">DriveControl.java<br></td>
+          <td valign="top">Elevator does not slow down from FAST if it is moving down</td>
+          <td valign="top">Revise commit point calculations to account for downward motion.</td>
+          <td valign="top">DriveControl.java<br></td>
+        </tr>  
+        <tr>
+          <td valign="top">37<br></td>
+          <td valign="top">11/2/2013<br></td>
+          <td valign="top">11/2/2013<br></td>
+          <td valign="top">mbilgen<br></td>
+          <td valign="top">Architecture<br></td>
+          <td valign="top">Network bandwidth full</td>
+          <td valign="top">Removed mDrive, mDoorMotor, mCarLight, mHallLight, mCarPositionIndicator, mCarLantern</td>
+          <td valign="top">Message Dictionary, DriveControl, DoorControl HallButtonControl, CarButtonControl, LanternControl, CarPositionControl requirements, interfaces, statecharts, code</td>
+        </tr>          
+        <tr>
+          <td valign="top">38<br></td>
+          <td valign="top">11/3/2013<br></td>
+          <td valign="top">11/3/2013<br></td>
+          <td valign="top">sbkrishn<br></td>
+          <td valign="top">DoorControl Design<br></td>
+          <td valign="top">mDoorMotor message has been removed.</td>
+          <td valign="top">Removed Reqt. 5.13, which stated that mDoorMotor shall always be set equal to DoorMotor. In statechart, I no
+            longer set mDoorMotor to same value as DoorMotor within each state.</td>
+          <td valign="top">DoorControl Statechart, Requirements, Statechart-Reqts. Traceability</td>
+        </tr>
+        <tr>
+          <td valign="top">39<br></td>
+          <td valign="top">11/5/2013<br></td>
+          <td valign="top">11/5/2013<br></td>
+          <td valign="top">sbkrishn<br></td>
+          <td valign="top">CarPositionControl Design<br></td>
+          <td valign="top">Need to update one floor at a time as elevator is moving.</td>
+          <td valign="top">Redesigned state chart, overhauled implementation</td>
+          <td valign="top">CarPositionControl State Chart, Implementation, Unit Tests</td>
+        </tr>
+        <tr>
+          <td valign="top">40<br></td>
+          <td valign="top">11/7/2013<br></td>
+          <td valign="top">11/8/2013<br></td>
+          <td valign="top">mbilgen<br></td>
+          <td valign="top">Dispatcher<br></td>
+          <td valign="top">Dispatcher sometimes skips calls that occur while moving.</td>
+          <td valign="top">Fixed dispatcher code.<br></td>
+          <td valign="top">Dispatcher.java<br></td>
+        </tr> 
+        <tr>
+          <td valign="top">41<br></td>
+          <td valign="top">11/8/2013<br></td>
+          <td valign="top">11/10/2013<br></td>
+          <td valign="top">sbkrishn<br></td>
+          <td valign="top">CarPositionControl<br></td>
+          <td valign="top">CarPositionIndicator jumps to mDesiredFloor when moving continuously across multiple floors.</td>
+          <td valign="top">Created custom CommitPoint method that doesn't consider drive speed but simply determines if the
+            car position is at/near the commit point for a floor.<br></td>
+          <td valign="top">CarPositionControl.java, Utility.java<br></td>
+        </tr> 
+        <tr>
+          <td valign="top">42<br></td>
+          <td valign="top">11/14/2013<br></td>
+          <td valign="top">11/14/2013<br></td>
+          <td valign="top">sbkrishn<br></td>
+          <td valign="top">RM R10 Statechart and Implementation<br></td>
+          <td valign="top">Need an init state where numReversals is reset to 0</td>
+          <td valign="top">Added a state called "Closed"<br></td>
+          <td valign="top">Proj11RuntimeMonitor.java, R10 statechart<br></td>
+        </tr> 
+        <tr>
+          <td valign="top">43<br></td>
+          <td valign="top">11/14/2013<br></td>
+          <td valign="top">11/14/2013<br></td>
+          <td valign="top">sbkrishn<br></td>
+          <td valign="top">RM R10 Statechart<br></td>
+          <td valign="top">Need to show state where numReversals is incremented</td>
+          <td valign="top">Added a state called "Reversed" where numReversals is incremented<br></td>
+          <td valign="top">Proj11RuntimeMonitor.java<br></td>
+        </tr>   
+        <tr>
+          <td valign="top">44<br></td>
+          <td valign="top">11/14/2013<br></td>
+          <td valign="top">11/14/2013<br></td>
+          <td valign="top">sbkrishn<br></td>
+          <td valign="top">RM R10 Statechart and Implementation<br></td>
+          <td valign="top">Use only DoorMotor's' state for guards.</td>
+          <td valign="top">Removed references to other payloads, focused only on DoorMotor on arcs<br></td>
+          <td valign="top">Proj11RuntimeMonitor.java, R10 statechart<br></td>
+        </tr>   
+        <tr>
+          <td valign="top">45<br></td>
+          <td valign="top">11/14/2013<br></td>
+          <td valign="top">11/14/2013<br></td>
+          <td valign="top">alele<br></td>
+          <td valign="top">RM R8.2 State Chart<br></td>
+          <td valign="top">CarLanterns are turned off only after DoorClosed == true.</td>
+          <td valign="top">Change guard condition (when moving to LanternsOff state) from DoorOpened == false to DoorClosed == true.<br></td>
+          <td valign="top">RM R8.2 State Chart<br></td>
+        </tr>   
+        <tr>
+          <td valign="top">46<br></td>
+          <td valign="top">11/14/2013<br></td>
+          <td valign="top">11/14/2013<br></td>
+          <td valign="top">alele<br></td>
+          <td valign="top">RM R8.3 State Chart<br></td>
+          <td valign="top">CarLanterns are turned off only after DoorClosed == true.</td>
+          <td valign="top">Change guard condition (when moving to LanternsOff state) from DoorOpened == false to DoorClosed == true.<br></td>
+          <td valign="top">RM R8.3 State Chart<br></td>
+        </tr>      
+        <tr>
+          <td valign="top">47<br></td>
+          <td valign="top">11/14/2013<br></td>
+          <td valign="top">11/15/2013<br></td>
+          <td valign="top">mbilgen<br></td>
+          <td valign="top">Dispatcher/DriveControl<br></td>
+          <td valign="top">There is a race condition where Dispatcher's Target gets stuck at current floor if a call occurs just as the elevator starts moving away from current floor. Drive control doesn't react to that and keeps moving up.</td>
+          <td valign="top">Fixed DriveControl - now updates mDriveSpeed correctly.<br></td>
+          <td valign="top">DriveControl.java<br></td>
+        </tr>   
+        <tr>
+          <td valign="top">48<br></td>
+          <td valign="top">11/17/2013<br></td>
+          <td valign="top">11/17/2013<br></td>
+          <td valign="top">mbilgen<br></td>
+          <td valign="top">DriveControl / Commit Point<br></td>
+          <td valign="top">Faster FAST speed (High speed design change).</td>
+          <td valign="top">Reduced DriveControl period to 5 ms (approved by Gunjan). Increased the slack in CommitPoint calculations to 50 cm.<br></td>
+          <td valign="top">DriveControl.java, Utility.java<br></td>
+        </tr> 
+        <tr>
+          <td valign="top">49<br></td>
+          <td valign="top">12/2/2013<br></td>
+          <td valign="top">12/2/2013<br></td>
+          <td valign="top">sbkrishn<br></td>
+          <td valign="top">DoorControl Transitions to DOOR_REVERSED and DOOR_NUDGE states from DOOR_CLOSING state<br></td>
+          <td valign="top">Need to check whether mDoorReversed is true for either of the two doors.</td>
+          <td valign="top">Created Utility object DoorReversedArray, so that DoorReversal sensors for both doors can be monitored simultaneously.<br></td>
+          <td valign="top">DoorControl Transition Table, Implementation<br></td>
+        </tr>           
+      </tbody>
+    </table>
+    <br>
+  </body>
+</html>

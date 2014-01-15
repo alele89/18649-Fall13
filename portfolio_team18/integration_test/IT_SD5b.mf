@@ -1,0 +1,79 @@
+;18-649 Fall 2013
+;Group 18
+;Yi Huo (yhuo)
+;Mustafa Bilgen (mbilgen)
+;Sairam Krishnan (sbkrishn)
+;Abhijit Lele (alele)
+;
+;Integration Test for SD 5b - Tests
+
+#INCLUDE defines.mf
+
+;Initialize the pre conditions. Set Doors to open.
+0.0s I AT_FLOOR_PERIOD N AT_FLOOR_[1][FRONT]_CAN_ID AtFloor 1 FRONT = true
+0.0s I DISPATCHER_PERIOD N DESIRED_FLOOR_CAN_ID DesiredFloor = 1 STOP FRONT
+0.0s I WEIGHT_PERIOD N CAR_WEIGHT_CAN_ID CarWeight = 3000
+0.0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = false
+
+2.5s I AT_FLOOR_PERIOD N AT_FLOOR_[1][FRONT]_CAN_ID AtFloor 1 FRONT = true
+2.5s I DOOR_OPENED_SENSOR_PERIOD N DOOR_OPEN_SENSOR_[FRONT][LEFT]_CAN_ID DoorOpened FRONT LEFT = true
+
+;Setup for arcs 1a and 1b
+3.0s I WEIGHT_PERIOD N CAR_WEIGHT_CAN_ID CarWeight = 3000
+;so that we don't transition to DOOR_CLOSED before we check DOOR_CLOSING
+3.0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = false
+
+;#arcs 1a and 1b
+5.3s A F DoorMotor FRONT LEFT : command == CLOSE
+5.3s A S DoorControl[FRONT][LEFT] : STATE == DOOR_CLOSING
+
+;Passenger tries to enter the elevator when the doors are closing
+;#arc 1c
+;Door Reversal triggered #arc 2a
+5.5s I WEIGHT_PERIOD N CAR_WEIGHT_CAN_ID CarWeight = 14000
+5.5s I DOOR_REVERSAL_NETWORK_PERIOD N DOOR_REVERSAL_SENSOR_[FRONT][LEFT]_CAN_ID DoorReversal FRONT LEFT = true
+5.5s I DOOR_OPENED_SENSOR_PERIOD N DOOR_OPEN_SENSOR_[FRONT][LEFT]_CAN_ID DoorOpened FRONT LEFT = true
+5.5s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = false
+
+;Car Weight less than max permitted value. 
+6.4s I WEIGHT_PERIOD N CAR_WEIGHT_CAN_ID CarWeight = 13999
+
+;Check whether the elevator door nudges after reversal
+;#arc 2a
+6.8s A F DoorMotor FRONT LEFT : command == NUDGE
+6.8s A S DoorControl[FRONT][LEFT] : STATE == DOOR_NUDGE
+7.3s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = true
+7.3s I WEIGHT_PERIOD N CAR_WEIGHT_CAN_ID CarWeight = 1
+
+;Insertion to trigger door opening
+8.0s I DOOR_OPENED_SENSOR_PERIOD N DOOR_OPEN_SENSOR_[FRONT][LEFT]_CAN_ID DoorOpened FRONT LEFT = false
+
+;Check if the Doors are opening
+;#arc '2b', '2c'
+8.7s A F DoorMotor FRONT LEFT : command == OPEN
+8.7s A S DoorControl[FRONT][LEFT] : STATE == DOOR_OPENING
+
+9.0s I AT_FLOOR_PERIOD N AT_FLOOR_[1][FRONT]_CAN_ID AtFloor 1 FRONT = true
+9.0s I DOOR_OPENED_SENSOR_PERIOD N DOOR_OPEN_SENSOR_[FRONT][LEFT]_CAN_ID DoorOpened FRONT LEFT = true
+9.0s I WEIGHT_PERIOD N CAR_WEIGHT_CAN_ID CarWeight = 13999
+
+;#arc '2d' and '3a' doors are open and passenger enters.
+9.25s A S DoorControl[FRONT][LEFT] : STATE == DOOR_OPEN
+9.27s A F DoorMotor FRONT LEFT : command == OPEN
+
+9.3s I AT_FLOOR_PERIOD N AT_FLOOR_[1][FRONT]_CAN_ID AtFloor 1 FRONT = false
+9.3s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = false
+9.3s I DOOR_REVERSAL_NETWORK_PERIOD N DOOR_REVERSAL_SENSOR_[FRONT][LEFT]_CAN_ID DoorReversal FRONT LEFT = false
+
+;#arc '3b'
+9.57s A S DoorControl[FRONT][LEFT] : STATE == DOOR_CLOSING
+9.57s A F DoorMotor FRONT LEFT : command == CLOSE
+
+9.6s I AT_FLOOR_PERIOD N AT_FLOOR_[1][FRONT]_CAN_ID AtFloor 1 FRONT = false
+
+;#arc '3c'
+9.7s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = true
+
+;arc '3d'
+10.07s A S DoorControl[FRONT][LEFT] : STATE == DOOR_CLOSED
+10.07s A F DoorMotor FRONT LEFT : command == STOP

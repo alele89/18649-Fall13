@@ -1,0 +1,13 @@
+;18-649 Fall 2013
+;Group 18
+;Yi Huo (yhuo)
+;Mustafa Bilgen (mbilgen)
+;Sairam Krishnan (sbkrishn)
+;Abhijit Lele (alele)
+;
+;Unit Test - DoorControl
+
+DoorControl FRONT LEFT 100ms TRUE
+DoorControl FRONT RIGHT 100ms TRUE
+DoorControl BACK LEFT 100ms TRUE
+DoorControl BACK RIGHT 100ms TRUE

@@ -1,0 +1,55 @@
+;18-649 Fall '13
+;Group 18
+;Mustafa Yigit Bilgen (mbilgen)
+;Yi Huo (yhuo)
+;Sairam Krishnan (sbkrishn)
+;Abhijit Lele(alele)
+;
+;This unit test tests DriveController
+
+; 
+ ;* 
+ ;* Input interface:
+ ;* - mAtFloor[f,b]
+ ;* - mDesiredFloor
+ ;* - mDoorClosed[b,r]
+ ;* - mlevel[d]
+ ;* - mEmergencyBrake
+ ;* 
+ ;* Output interface:
+ ;* - Drive[s,d]
+ ;* - mDrive[f,b]
+ ;* - mDriveSpeed[f,b]
+ ;* 
+ ;* @author alele
+ ;*/
+;Unit test for scenario : Elevator goes from Moving - Fast - Emergency
+#INCLUDE defines.mf
+
+;Initialize Drive Controller
+
+0.0s I AT_FLOOR_PERIOD N AT_FLOOR_[1][FRONT]_CAN_ID AtFloor 1 FRONT = true
+0.0s I DRIVE_CONTROL_PERIOD N DESIRED_FLOOR_CAN_ID DesiredFloor = 3 STOP FRONT 
+0.0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = true
+0.0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][RIGHT]_CAN_ID DoorClosed FRONT RIGHT = true
+0.0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][LEFT]_CAN_ID DoorClosed BACK LEFT = true
+0.0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][RIGHT]_CAN_ID DoorClosed BACK RIGHT = true
+0.0s I DRIVE_CONTROL_PERIOD F DriveSpeed = UP 0.25
+
+;#Transition T6.9
+0.50s A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == UP
+0.50s A F Drive :  speed == FAST
+0.50s A F Drive :  direction == UP
+0.50s A S DriveControl : STATE == DRIVE_MOVING_FAST
+
+1.00s I DRIVE_CONTROL_PERIOD N EMERGENCY_BRAKE_CAN_ID SafetySensor = true
+1.00s I DRIVE_CONTROL_PERIOD F DriveSpeed = STOP 0
+
+;check if the drive is in state STATE_EMERGENCY
+;#Transition T6.10
+1.50s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 0
+1.50s  A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == STOP
+1.50s  A S DriveControl : STATE == EMERGENCY
+1.50s  A F Drive : speed == STOP
+1.50s  A F Drive : direction == STOP
+

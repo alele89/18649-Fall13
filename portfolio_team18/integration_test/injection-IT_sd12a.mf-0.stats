@@ -1,0 +1,33 @@
+18649 Fall 2013
+Team 18
+Yi Huo (yhuo)
+Mustafa Bilgen (mbilgen)
+Sairam Krishnan (sbkrishn)
+Abhijit Lele (alele)
+
+Simulator Parameters:
+Command line = -head header.txt -cf IT_SD12a.cf -mf IT_SD12a.mf
+RandomSeed = 1386533704068
+CanNetworkBitTime = 0 ns
+Effective Can Bitrate = Infinity
+Run Time = null
+Real time rate = null
+Message File = IT_SD12a.mf
+Controller File = IT_SD12a.cf
+
+Assertion Results:
+@5.01s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@1ef2c499 :: command ?== OPEN PASSED
+@5.01s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@f0de2bd :: command ?== OPEN PASSED
+@5.01s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@2d6a346a :: command ?== OPEN PASSED
+@5.01s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@4770a4d0 :: command ?== OPEN PASSED
+@6.51s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@15a7eda3 :: command ?== STOP PASSED
+@6.51s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@4808e0e1 :: command ?== STOP PASSED
+@6.51s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@68de59f0 :: command ?== STOP PASSED
+@6.51s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@561e5a36 :: command ?== STOP PASSED
+
+
+******************Summary******************
+Passed:  8
+Failed:  0
+Total :  8
+

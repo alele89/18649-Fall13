@@ -1,0 +1,78 @@
+;18649 Fall 2013
+;Team 18
+;Yi Huo (yhuo)
+;Mustafa Bilgen (mbilgen)
+;Sairam Krishnan (sbkrishn)
+;Abhijit Lele (alele)
+;
+;Integration Test - SD8B
+
+#INCLUDE defines.mf
+
+;set initial conditions
+0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = true
+0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][RIGHT]_CAN_ID DoorClosed FRONT RIGHT = true
+0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][LEFT]_CAN_ID DoorClosed BACK LEFT = false
+0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][RIGHT]_CAN_ID DoorClosed BACK RIGHT = true 
+0s I AT_FLOOR_PERIOD N AT_FLOOR_[4][FRONT]_CAN_ID AtFloor 4 FRONT = true
+0s I DRIVE_PERIOD N DRIVE_SPEED_CAN_ID DriveSpeed = 0 STOP
+
+;check initial conditions
++0.41s A N DESIRED_FLOOR_CAN_ID DesiredFloor : getFloor == 4
++0s A N DESIRED_FLOOR_CAN_ID DesiredFloor : getDirection == STOP
++0s A N DESIRED_FLOOR_CAN_ID DesiredFloor : getHallway == NONE
++0s A N DESIRED_DWELL_[FRONT]_CAN_ID DesiredDwell FRONT : getValue == 6
++0s A N DESIRED_DWELL_[BACK]_CAN_ID DesiredDwell BACK : getValue == 6
+
+;elevator gets a hall call
++0.10s I HALL_BUTTON_CONTROL_PERIOD F HallCall 5 FRONT UP = true
++0s I CAR_POSITION_CONTROL_PERIOD N CAR_LEVEL_POSITION_CAN_ID Integer = 15000
+
+;check that elevator receives hall call
++0.41s A N HALL_CALL_[5][FRONT][UP]_CAN_ID Boolean : getValue == true
++0s A N DESIRED_FLOOR_CAN_ID DesiredFloor : getFloor == 5
++0s A N DESIRED_FLOOR_CAN_ID DesiredFloor : getDirection == UP
++0s A N DESIRED_FLOOR_CAN_ID DesiredFloor : getHallway == FRONT
++0s A N DESIRED_DWELL_[FRONT]_CAN_ID DesiredDwell FRONT : getValue == 6
++0s A N DESIRED_DWELL_[BACK]_CAN_ID DesiredDwell BACK : getValue == 6
+
+;close elevator doors
++0.10s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = true
++0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][RIGHT]_CAN_ID DoorClosed FRONT RIGHT = true
++0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][LEFT]_CAN_ID DoorClosed BACK LEFT = true
++0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][RIGHT]_CAN_ID DoorClosed BACK RIGHT = true 
+
+;elevator starts to move
++0.41s I DRIVE_PERIOD N DRIVE_SPEED_CAN_ID DriveSpeed = 0.2 UP
++0s I AT_FLOOR_PERIOD N AT_FLOOR_[4][FRONT]_CAN_ID AtFloor 4 FRONT = false
+
+;#arc '1a/1b/2a/2b'
++0.30s I HALL_BUTTON_CONTROL_PERIOD F HallCall 6 FRONT UP = true
++0s I HALL_BUTTON_CONTROL_PERIOD F HallCall 3 FRONT DOWN = true
+
+;#arc '3a'
++0.41s I AT_FLOOR_PERIOD N AT_FLOOR_[5][FRONT]_CAN_ID AtFloor 5 FRONT = true
++0s I DRIVE_PERIOD N DRIVE_SPEED_CAN_ID DriveSpeed = 0 STOP
++0s I CAR_POSITION_CONTROL_PERIOD N CAR_LEVEL_POSITION_CAN_ID Integer = 20000
++0s I HALL_BUTTON_CONTROL_PERIOD F HallCall 5 FRONT UP = false
+
+;#arc '3b'
+;check that dispatcher gives the correct desired floor
++0.21s A N DESIRED_FLOOR_CAN_ID DesiredFloor : getFloor == 5
++0s A N DESIRED_FLOOR_CAN_ID DesiredFloor : getDirection == UP
++0s A N DESIRED_FLOOR_CAN_ID DesiredFloor : getHallway == FRONT
+
+;#arc '4'
+;check that door motor is set to open
++0.21s A F DoorMotor FRONT RIGHT : command == OPEN
++0s A F DoorMotor FRONT LEFT : command == OPEN
+
+;#arc '5a'
+;check that doors are open
++0.10s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = false
++0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][RIGHT]_CAN_ID DoorClosed FRONT RIGHT = false
++0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][LEFT]_CAN_ID DoorClosed BACK LEFT = false
++0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][RIGHT]_CAN_ID DoorClosed BACK RIGHT = false 
+
+;#arc '5b'
++0.71s A F CarLantern UP : lighted == true

@@ -1,0 +1,101 @@
+;18-649 Fall '13
+;Group 18
+;Mustafa Yigit Bilgen (mbilgen)
+;Yi Huo (yhuo)
+;Sairam Krishnan (sbkrishn)
+;Abhijit Lele(alele)
+;
+;This unit test tests DriveController
+
+; 
+ ;* 
+ ;* Input interface:
+ ;* - mAtFloor[f,b]
+ ;* - mDesiredFloor
+ ;* - mDoorClosed[b,r]
+ ;* - mlevel[d]
+ ;* - mEmergencyBrake
+ ;* 
+ ;* Output interface:
+ ;* - Drive[s,d]
+ ;* - mDrive[f,b]
+ ;* - mDriveSpeed[f,b]
+ ;* 
+ ;* @author alele
+ ;*/
+;Unit test for scenario : Elevator goes from Fast Moving - Slow - Moving - Stop
+#INCLUDE defines.mf
+
+;Initialize Drive Controller
+
+0.0s I AT_FLOOR_PERIOD N AT_FLOOR_[1][FRONT]_CAN_ID AtFloor 1 FRONT = true
+0.0s I DRIVE_CONTROL_PERIOD N DESIRED_FLOOR_CAN_ID DesiredFloor = 1 STOP FRONT   
+0.0s I LEVEL_SENSOR_PERIOD N LEVEL_SENSOR_[DOWN]_CAN_ID Leveling DOWN = true
+0.0s I LEVEL_SENSOR_PERIOD N LEVEL_SENSOR_[UP]_CAN_ID Leveling UP = true
+
+;Checking the drive in stop state
+0.50s A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == STOP
+0.50s A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 0
+0.50s A F Drive :  speed == STOP
+0.50s A F Drive :  direction == STOP
+0.50s A S DriveControl : STATE == DRIVE_STOP
+
+0.70s I AT_FLOOR_PERIOD N AT_FLOOR_[1][FRONT]_CAN_ID AtFloor 1 FRONT = true
+0.70s I DRIVE_CONTROL_PERIOD N DESIRED_FLOOR_CAN_ID DesiredFloor = 5 STOP FRONT 
+0.70s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = true
+0.70s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][RIGHT]_CAN_ID DoorClosed FRONT RIGHT = true
+0.70s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][LEFT]_CAN_ID DoorClosed BACK LEFT = true
+0.70s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][RIGHT]_CAN_ID DoorClosed BACK RIGHT = true
+0.70s I DRIVE_CONTROL_PERIOD F DriveSpeed = UP 0.25
+
+2.00s I CAR_LEVEL_POSITION_PERIOD N CAR_LEVEL_POSITION_CAN_ID CarLevelPosition = 19990
+2.00s I DRIVE_CONTROL_PERIOD F DriveSpeed = UP 0.25
+
+;Transition T6.8
+2.50s A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == UP
+2.50s A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 0.25
+2.50s A F Drive :  speed == SLOW
+2.50s A F Drive :  direction == UP
+2.50s A S DriveControl : STATE == DRIVE_MOVING
+
+2.80s I AT_FLOOR_PERIOD N AT_FLOOR_[1][FRONT]_CAN_ID AtFloor 1 FRONT = false
+3.20s I AT_FLOOR_PERIOD N AT_FLOOR_[5][FRONT]_CAN_ID AtFloor 5 FRONT = true
+3.20s I DRIVE_CONTROL_PERIOD N DESIRED_FLOOR_CAN_ID DesiredFloor = 5 STOP FRONT 
+3.20s I LEVEL_SENSOR_PERIOD N LEVEL_SENSOR_[UP]_CAN_ID Leveling UP = false
+3.20s I LEVEL_SENSOR_PERIOD N LEVEL_SENSOR_[DOWN]_CAN_ID Leveling DOWN = true
+3.20s I DRIVE_CONTROL_PERIOD F DriveSpeed = UP 0
+
+;Transiton T6.2
+3.50s A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == UP
+3.60s A F Drive :  speed == LEVEL
+3.50s A F Drive :  direction == UP
+3.50s A S DriveControl : STATE == DRIVE_Level_UP
+
+3.70s I AT_FLOOR_PERIOD N AT_FLOOR_[5][FRONT]_CAN_ID AtFloor 5 FRONT = false
+3.80s I AT_FLOOR_PERIOD N AT_FLOOR_[4][FRONT]_CAN_ID AtFloor 4 FRONT = true
+3.80s I DRIVE_CONTROL_PERIOD N DESIRED_FLOOR_CAN_ID DesiredFloor = 1 STOP FRONT 
+3.80s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = true
+3.80s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][RIGHT]_CAN_ID DoorClosed FRONT RIGHT = true
+3.80s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][LEFT]_CAN_ID DoorClosed BACK LEFT = true
+3.80s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][RIGHT]_CAN_ID DoorClosed BACK RIGHT = true
+3.80s I DRIVE_CONTROL_PERIOD F DriveSpeed = DOWN 0.25
+
+5.00s I CAR_LEVEL_POSITION_PERIOD N CAR_LEVEL_POSITION_CAN_ID CarLevelPosition = 10
+5.00s I DRIVE_CONTROL_PERIOD F DriveSpeed = DOWN 0.25
+
+;Transition T6.8
+5.50s A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == DOWN
+5.50s A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 0.25
+
+5.80s I AT_FLOOR_PERIOD N AT_FLOOR_[4][FRONT]_CAN_ID AtFloor 4 FRONT = false
+6.20s I AT_FLOOR_PERIOD N AT_FLOOR_[1][FRONT]_CAN_ID AtFloor 1 FRONT = true
+6.20s I DRIVE_CONTROL_PERIOD N DESIRED_FLOOR_CAN_ID DesiredFloor = 1 STOP FRONT 
+6.20s I LEVEL_SENSOR_PERIOD N LEVEL_SENSOR_[DOWN]_CAN_ID Leveling DOWN = false
+6.20s I LEVEL_SENSOR_PERIOD N LEVEL_SENSOR_[UP]_CAN_ID Leveling UP = true
+6.20s I DRIVE_CONTROL_PERIOD F DriveSpeed = DOWN 0
+
+;Transiton T6.11
+6.50s A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == DOWN
+6.71s A F Drive :  speed == LEVEL
+6.71s A F Drive :  direction == DOWN
+6.71s A S DriveControl : STATE == DRIVE_Level_Down

@@ -1,0 +1,58 @@
+;18-649 Fall '13
+;Group 18
+;Mustafa Yigit Bilgen (mbilgen)
+;Yi Huo (yhuo)
+;Sairam Krishnan (sbkrishn)
+;Abhijit Lele(alele)
+;
+;This integration test tests SD 8a
+
+#INCLUDE defines.mf
+
+;Set up preconditions and assumptions.
+;Empty car
+0s I WEIGHT_PERIOD N CAR_WEIGHT_CAN_ID CarWeight = 0
+
+;Both doors facing the front hallway are open.
+0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = false
+0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][RIGHT]_CAN_ID DoorClosed FRONT RIGHT = false
+
+
+0s I DOOR_OPENED_SENSOR_PERIOD N DOOR_OPEN_SENSOR_[FRONT][LEFT]_CAN_ID DoorOpened FRONT LEFT = true
+0s I DOOR_OPENED_SENSOR_PERIOD N DOOR_OPEN_SENSOR_[FRONT][RIGHT]_CAN_ID DoorOpened FRONT RIGHT = true
+
+;Car is currently stopped at fLoor 5 and dispatcher is content to wait here for the moment.
+0s I AT_FLOOR_PERIOD N AT_FLOOR_[5][FRONT]_CAN_ID AtFloor 5 FRONT = true
+0s I DISPATCHER_PERIOD N DESIRED_FLOOR_CAN_ID DesiredFloor = 5 FRONT STOP
+
+;Doors should close after 10 seconds.
+0s I DISPATCHER_PERIOD N DESIRED_DWELL_[FRONT]_CAN_ID DesiredDwell FRONT = 10 
+
+;#arc '1a'
+10.50s A F DoorMotor FRONT LEFT : command == CLOSE
+10.50s A F DoorMotor FRONT RIGHT : command == CLOSE
+
+;#arc '2a'
+11.00s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][RIGHT]_CAN_ID DoorClosed FRONT RIGHT = true
+11.00s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = true
+
+;#arc '2b'
+11.80s A F DoorMotor FRONT LEFT : command == STOP
+11.80s A F DoorMotor FRONT LEFT : command == STOP
+
+12.00s I DISPATCHER_PERIOD N DESIRED_FLOOR_CAN_ID DesiredFloor = 7 FRONT UP
+
+;#arc '3'
+12.50s A S LanternControl[UP] : STATE == LANTERN_OFF
+12.50s A S LanternControl[DOWN] : STATE == LANTERN_OFF
+12.50s A F CarLantern UP : lighted == false
+12.50s A F CarLantern DOWN : lighted == false
+
+12.50s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][LEFT]_CAN_ID DoorClosed BACK LEFT = true
+12.50s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][RIGHT]_CAN_ID DoorClosed BACK RIGHT = true
+
+;#arc '4'
+13.50s A F Drive :  speed == SLOW
+13.50s A F Drive :  direction == UP
+13.50s A S DriveControl : STATE == DRIVE_MOVING
+

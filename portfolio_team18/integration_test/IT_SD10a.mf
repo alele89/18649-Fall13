@@ -1,0 +1,22 @@
+;18-649 Fall 2013
+;Group 18
+;Mustafa Yigit Bilgen (mbilgen)
+;Yi Huo (yhuo)
+;Sairam Krishnan (sbkrishn)
+;Abhijit Lele(alele)
+;
+;Integration Test for SD 10a - Tests
+
+#INCLUDE defines.mf
+
+;Set up preconditions
+;Assuming that the elevator started off moving to 1st floor.
+;Get the elevator to 1st floor.
+0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = true
+0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][RIGHT]_CAN_ID DoorClosed FRONT RIGHT = true
+0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][LEFT]_CAN_ID DoorClosed BACK LEFT = true
+0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][RIGHT]_CAN_ID DoorClosed BACK RIGHT = true
+
+;#arc '1a'
+1s A N DESIRED_DWELL_[FRONT]_CAN_ID DesiredDwell FRONT : getValue == 6
+1s A N DESIRED_DWELL_[BACK]_CAN_ID DesiredDwell BACK : getValue == 6

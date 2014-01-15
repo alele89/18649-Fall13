@@ -1,0 +1,58 @@
+;18-649 Fall 2013
+;Group 18
+;Yi Huo (yhuo)
+;Mustafa Bilgen (mbilgen)
+;Sairam Krishnan (sbkrishn)
+;Abhijit Lele(alele)
+;
+;Unit Test - CarButtonControl
+;Inputs:
+; mAtFloor[f, b]
+; mDesiredFloor
+; mDoorClosed[b, r]
+; CarCall[f, b]
+;
+;Outputs:
+; CarLight[f, b]
+; mCarLight[f, b]
+; mCarCall[f, b]
+
+#INCLUDE defines.mf
+
+;initialize 
+0s	I CAR_BUTTON_CONTROL_PERIOD	F CarCall 1 FRONT = false
+0s 	I AT_FLOOR_PERIOD N AT_FLOOR_[1][FRONT]_CAN_ID AtFloor 1 FRONT = false 
+0s 	I DISPATCHER_PERIOD N DESIRED_FLOOR_CAN_ID Integer = 5 
+
+;check that the light is off initially
+;#state 'S.9.2 OFF'  	
+0.21s	A S CarButtonControl[1][FRONT] : STATE == CAR_LIGHT_OFF
+0.21s 	A N CAR_CALL_[1][FRONT]_CAN_ID Boolean : getValue == false
+
+;press the button
+;set conditions for T.9.1
+0.50s	I CAR_BUTTON_CONTROL_PERIOD	F CarCall 1 FRONT = true
+0.50s 	I AT_FLOOR_PERIOD N AT_FLOOR_[1][FRONT]_CAN_ID AtFloor 1 FRONT = false
+
+;check that the light is on
+;#transition 'T.9.1'
+;#state 'S.9.1 ON'
+0.91s	A S CarButtonControl[1][FRONT] : STATE == CAR_LIGHT_ON
+0.91s 	A F CarLight 1 FRONT : lighted == true
+0.91s 	A N CAR_CALL_[1][FRONT]_CAN_ID Boolean : getValue == true
+
+;arrive at floor and doors open
+;set conditions for T.9.2
+1.00s 	I DISPATCHER_PERIOD N DESIRED_FLOOR_CAN_ID Integer = 1
+1.00s 	I AT_FLOOR_PERIOD N AT_FLOOR_[1][FRONT]_CAN_ID AtFloor 1 FRONT = true
+1.00s	I CAR_BUTTON_CONTROL_PERIOD	F CarCall 1 FRONT = false
+1.00s	I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = false
+1.00s 	I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][RIGHT]_CAN_ID DoorClosed FRONT RIGHT = false 
+
+;check that the light is off
+;#transition 'T.9.2'
+;#state 'S.9.2 OFF'
+1.41s	A S CarButtonControl[1][FRONT] : STATE == CAR_LIGHT_OFF
+1.41s	A F CarLight 1 FRONT : lighted == false
+1.41s 	A N CAR_CALL_[1][FRONT]_CAN_ID Boolean : getValue == false
+

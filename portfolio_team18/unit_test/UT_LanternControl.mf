@@ -1,0 +1,86 @@
+; 18649 Fall 2013
+; Team 18
+; Yi Huo (yhuo)
+; Mustafa Bilgen (mbilgen)
+; Sairam Krishnan (sbkrishn)
+; Abhijit Lele (alele)
+;
+; Unit Test - Lantern Control
+;
+; Inputs:
+;    mDoorClosed[b,r]
+;    mDesiredFloor[f,b]
+;    mAtFloor[f,b]
+;
+; Output:
+;    CarLantern[d]
+
+#INCLUDE defines.mf
+
+;initialization
+;All doors are closed.
+0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][RIGHT]_CAN_ID DoorClosed FRONT RIGHT = true
+0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = true
+0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][RIGHT]_CAN_ID DoorClosed BACK RIGHT = true
+0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][LEFT]_CAN_ID DoorClosed BACK LEFT = true
+;At floor 1 currently; want to get to floor 2, front hallway
+0s I AT_FLOOR_PERIOD N AT_FLOOR_[1][FRONT]_CAN_ID AtFloor 1 FRONT = true
+0s I AT_FLOOR_PERIOD N AT_FLOOR_[1][BACK]_CAN_ID AtFloor 1 BACK = true
+0s I DISPATCHER_PERIOD N DESIRED_FLOOR_CAN_ID DesiredFloor = 1 FRONT UP
+
+;Check if the lanterns are off initially (when all of the doors are off).
+;#state 'S.7.1: LANTERN_OFF'
+0.21s A S LanternControl[UP] : STATE == LANTERN_OFF
+0.21s A S LanternControl[DOWN] : STATE == LANTERN_OFF
+0.21s A F CarLantern UP : lighted == false
+0.21s A F CarLantern DOWN : lighted == false
+
+;Set up for transition 'T.7.1'.
+;At floor 1 front hallway, front doors open fully.
+0.3s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][RIGHT]_CAN_ID DoorClosed FRONT RIGHT = false
+0.3s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = false
+;At floor 1 back hallway, back doors open fully.
+0.3s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][RIGHT]_CAN_ID DoorClosed BACK RIGHT = false
+0.3s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][LEFT]_CAN_ID DoorClosed BACK LEFT = false
+
+;#transition 'T.7.1'
+;#state 'S.7.2: LANTERN_ON'
+0.81s A S LanternControl[UP] : STATE == LANTERN_ON
+0.81s A S LanternControl[DOWN] : STATE == LANTERN_OFF
+0.81s A F CarLantern UP : lighted == true
+0.81s A F CarLantern DOWN : lighted == false
+
+;Check if we stay in state 'S.7.2' if mDoorClosed becomes true only
+;for the doors in the front hallway.
+0.9s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][RIGHT]_CAN_ID DoorClosed FRONT RIGHT = true
+0.9s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = true
+
+;#state 'S.7.2: LANTERN_ON'
+1.11s A S LanternControl[UP] : STATE == LANTERN_ON
+1.11s A S LanternControl[DOWN] : STATE == LANTERN_OFF
+1.11s A F CarLantern UP : lighted == true
+1.11s A F CarLantern DOWN : lighted == false
+
+;Check if we stay in state 'S.7.2' if mDoorClosed becomes true only
+;for the doors in the back hallway.
+1.2s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][RIGHT]_CAN_ID DoorClosed FRONT RIGHT = false
+1.2s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = false
+1.2s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][RIGHT]_CAN_ID DoorClosed BACK RIGHT = true
+1.2s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][LEFT]_CAN_ID DoorClosed BACK LEFT = true
+
+;#state 'S.7.2: LANTERN_ON'
+1.41s A F CarLantern UP : lighted == true
+1.41s A F CarLantern DOWN : lighted == false
+1.41s A S LanternControl[UP] : STATE == LANTERN_ON
+1.41s A S LanternControl[DOWN] : STATE == LANTERN_OFF
+
+;Set up transition 'T.7.2'. Close the front doors, leave the back doors closed.
+1.5s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][RIGHT]_CAN_ID DoorClosed FRONT RIGHT = true
+1.5s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = true
+
+;#state 'S.7.1 OFF'
+;#transition 'T.7.2'
+2.01s A S LanternControl[UP] : STATE == LANTERN_OFF
+2.01s A S LanternControl[DOWN] : STATE == LANTERN_OFF
+2.01s A F CarLantern UP : lighted == false
+2.01s A F CarLantern DOWN : lighted == false

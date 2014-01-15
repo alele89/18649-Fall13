@@ -1,0 +1,62 @@
+;18-649 Fall 2013
+;Group 18
+;Yi Huo (yhuo)
+;Mustafa Bilgen (mbilgen)
+;Sairam Krishnan (sbkrishn)
+;Abhijit Lele (alele)
+;
+;Integration Test for SD 5a - Tests
+
+#INCLUDE defines.mf
+
+;Initialize the pre conditions. Get both doors open.
+0.0s I AT_FLOOR_PERIOD N AT_FLOOR_[1][FRONT]_CAN_ID AtFloor 1 FRONT = true
+0.0s I DISPATCHER_PERIOD N DESIRED_FLOOR_CAN_ID DesiredFloor = 1 STOP FRONT
+0.0s I DRIVE_CONTROL_PERIOD N DRIVE_SPEED_CAN_ID DriveSpeed = 1.0 STOP
+0.0s I WEIGHT_PERIOD N CAR_WEIGHT_CAN_ID CarWeight = 14001
+0.0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = false
+0.0s I DISPATCHER_PERIOD N DESIRED_DWELL_[FRONT]_CAN_ID DesiredDwell FRONT = 3
+0.0s I DOOR_REVERSAL_NETWORK_PERIOD N DOOR_REVERSAL_SENSOR_[FRONT][LEFT]_CAN_ID DoorReversal FRONT LEFT = false
+
+;Doors are completely open.
+0.5s I DOOR_OPENED_SENSOR_PERIOD N DOOR_OPEN_SENSOR_[FRONT][LEFT]_CAN_ID DoorOpened FRONT LEFT = true
+
+;Setup for arc 1a
+0.6s I WEIGHT_PERIOD N CAR_WEIGHT_CAN_ID CarWeight = 14000
+0.6s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = false
+
+;#arc 1a - Doors start closing.
+3.81s A F DoorMotor FRONT LEFT : command == CLOSE
+3.81s A S DoorControl[FRONT][LEFT] : STATE == DOOR_CLOSING
+
+;#arc 1b - mDoorOpened is false since the doors are no longer fully open (they have started closing).
+4.0s I DOOR_OPENED_SENSOR_PERIOD N DOOR_OPEN_SENSOR_[FRONT][LEFT]_CAN_ID DoorOpened FRONT LEFT = false
+
+;#arc 1c/2a - Passenger tries to enter car as doors are closing, and door reversal is triggered.
+4.1s I DOOR_REVERSAL_NETWORK_PERIOD N DOOR_REVERSAL_SENSOR_[FRONT][LEFT]_CAN_ID DoorReversal FRONT LEFT = true
+4.1s I WEIGHT_PERIOD N CAR_WEIGHT_CAN_ID CarWeight = 14001
+
+;#arc 2b - Doors reverse and start opening.
+4.51s A F DoorMotor FRONT LEFT : command == OPEN
+4.51s A S DoorControl[FRONT][LEFT] : STATE == DOOR_OPENING
+
+;#arc 3a - Doors are fully open.
+4.6s I WEIGHT_PERIOD N CAR_WEIGHT_CAN_ID CarWeight = 14000
+4.6s I DOOR_OPENED_SENSOR_PERIOD N DOOR_OPEN_SENSOR_[FRONT][LEFT]_CAN_ID DoorOpened FRONT LEFT = true
+
+;#arc 3b/3c - Door motors stop opening the doors since they are fully open. Passenger enters elevator.
+7.11s A F DoorMotor FRONT LEFT : command == STOP
+7.11s A S DoorControl[FRONT][LEFT] : STATE == DOOR_OPEN
+
+;#arc 4a - Doors start closing again after countdown expires.
+7.2s I DOOR_REVERSAL_NETWORK_PERIOD N DOOR_REVERSAL_SENSOR_[FRONT][LEFT]_CAN_ID DoorReversal FRONT LEFT = false
+10.11s A F DoorMotor FRONT LEFT : command == CLOSE
+10.11s A S DoorControl[FRONT][LEFT] : STATE == DOOR_CLOSING
+
+;#arc 4b - Since doors have started closing, mDoorOpened is now false.
+10.2s I DOOR_OPENED_SENSOR_PERIOD N DOOR_OPEN_SENSOR_[FRONT][LEFT]_CAN_ID DoorOpened FRONT LEFT = false
+10.2s I DOOR_REVERSAL_NETWORK_PERIOD N DOOR_REVERSAL_SENSOR_[FRONT][LEFT]_CAN_ID DoorReversal FRONT LEFT = true
+
+;#arc 5a/5b
+10.61s A F DoorMotor FRONT LEFT : command == NUDGE
+10.61s A S DoorControl[FRONT][LEFT] : STATE == DOOR_NUDGE

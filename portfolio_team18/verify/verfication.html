@@ -1,0 +1,217 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <meta content="text/html; charset=ISO-8859-1"
+      http-equiv="Content-Type">
+    <title>18649 - High Level Requirements Verification</title>
+  </head>
+  <body>
+    <h1 style="text-align: center;">18649 - High Level Requirements
+      Verification<br>
+    </h1>
+    <hr style="width: 100%; height: 2px;">18649 Fall 2013 <br>
+    Group 18 - Sairam Krishnan (sbkrishn), Yi Huo (yhuo), Yigit Bilgen
+    (mbilgen), Abhijit Lele (alele) <br>
+    <hr style="width: 100%; height: 2px;">
+    <h2>Verification Framework Description<br>
+    </h2>
+    The Runtime Monitor we implemented monitors physical payloads and
+    network messages to track the system state. It gives off warnings
+    when any of the high level requirements R-T6 through R-T10 are
+    violated. <br>
+    For the following list, RM refers to Runtime Monitor.
+    <ul>
+      <li>R-T6: The Car shall only stop at Floors for which there are
+        pending calls.</li>
+      RM monitors the Drive payload, and checks that when it is
+      commanded to STOP,
+      <ul>
+        <li>a) the car is at a floor</li>
+        <li>b) that floor has at least one HallCall or CarCall that is
+          TRUE.</li>
+      </ul>
+      <br>
+      <img src="r6.png">
+      <li>R-T7: The Car shall only open Doors at Hallways for which
+        there are pending calls.</li>
+      RM monitors the DoorClosed payload, and checks that when it
+      becomes FALSE,
+      <ul>
+        <li>a) the car is at a floor</li>
+        <li>b) that floor and hallway has at least one HallCall or
+          CarCall that is TRUE.</li>
+      </ul>
+      <br>
+      <img src="r7.png"> <br>
+      <li>R-T8: The Car Lanterns shall be use in a way that does not
+        confuse passengers.</li>
+      <ul>
+        <li>R-T8.1: If any door is open at a hallway and there are any
+          pending calls at any other floor(s), a Car Lantern shall turn
+          on.</li>
+        RM monitors the DoorClosed payload, and checks that when it
+        becomes FALSE,
+        <ul>
+          <li>a) at most one CarLantern[d] is TRUE</li>
+          <li>b) if any HallCall[f] or CarCall[f] is TRUE for f !=
+            CurrentFloor, exactly one CarLantern[d] is TRUE. </li>
+        </ul>
+        <br>
+        <img src="r8_1.png"> <br>
+        <li>R-T8.2: If one of the car lanterns is lit, the direction
+          indicated shall not change while the doors are open.</li>
+          RM monitors the CarLantern[d] payload, and checks that when it
+          becomes TRUE,
+        <ul>
+          <li>a) no other CarLantern[d] == TRUE has been received
+            without an intervening DoorClosed payload for that floor.</li>
+        </ul>
+      </ul>
+    </ul>
+    <div align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <img alt="r8.2" src="r8.2.png" height="555" width="532"></div>
+    <ul>
+      <ul>
+        <br>
+        <li>R-T8.3: If one of the car lanterns is lit, the car shall
+          service any calls in that direction first.</li>
+        RM monitors the CarLantern[d] payload and checks that when it becomes TRUE:
+        <ul>
+          <li>a) d is equal to mDesiredFloor.d</li>
+        </ul>
+      </ul>
+    </ul>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <img alt="r8.3" src="r8.3.png" height="687" width="565">
+    <ul>
+      <ul>
+        <br>
+      </ul>
+      <br>
+      <li>R-T9: The Drive shall be commanded to fast speed to the
+        maximum degree practicable.</li>
+      RM monitors the Drive payload, and checks that when it is set to
+      STOP,
+      <ul>
+        <li>if the elevator is at a different floor than the last floor
+          it was commanded to STOP at, it has been set to FAST between
+          the two floors.</li>
+      </ul>
+      <br>
+      <img src="r9.png"> <br>
+      <li>R-T10: For each stop at a floor, at least one door reversal
+        shall have occured before the doors are commanded to nudge.</li>
+      RM monitors the DoorMotor payload and checks that when it is set
+      to NUDGE,
+      <ul>
+        <li>at least one DoorReversal message has been received for each
+          of the doors on that hallway, for the current floor.</li>
+      </ul>
+      <br>
+      <img src="r10.png"> <br>
+    </ul>
+    <br>
+    <h2>Verification Instructions</h2>
+    <br>
+    Add instructions here<br>
+    <br>
+    <h2>Verification Results</h2>
+    <br>
+    <table style="text-align: left; width: 100%;" border="1"
+      cellpadding="2" cellspacing="2">
+      <tbody>
+        <tr>
+          <td style="vertical-align: top; font-weight: bold;">Acceptance
+            Test Name<br>
+          </td>
+          <td style="vertical-align: top; font-weight: bold;">Verification
+            Status<br>
+          </td>
+          <td style="vertical-align: top; font-weight: bold;">Link to
+            Verification Results<br>
+          </td>
+          <td style="vertical-align: top; font-weight: bold;">Notes<br></td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top;">proj7acceptance1.pass<br></td>
+          <td style="vertical-align: top;">pass<br></td>
+          <td style="vertical-align: top;"><a href="elevator-proj7acceptance1.pass-0.stats">proj7_a1.stats</a><br></td>
+          <td style="vertical-align: top;"><br></td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top;">proj7acceptance2.pass<br></td>
+          <td style="vertical-align: top;">pass<br></td>
+          <td style="vertical-align: top;"><a href="elevator-proj7acceptance2.pass-0.stats">proj7_a2.stats</a><br></td>
+          <td style="vertical-align: top;"><br></td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top;">proj7acceptance3.pass<br></td>
+          <td style="vertical-align: top;">pass<br></td>
+          <td style="vertical-align: top;"><a href="elevator-proj7acceptance3.pass-0.stats">proj7_a3.stats</a><br></td>
+          <td style="vertical-align: top;"><br></td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top;">proj8group18acceptance1.pass<br></td>
+          <td style="vertical-align: top;">pass<br></td>
+          <td style="vertical-align: top;"><a href="elevator-proj8group18acceptance1.pass-0.stats">proj8.stats</a><br></td>
+          <td style="vertical-align: top;"><br></td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top;">proj10acceptance1.pass<br></td>
+          <td style="vertical-align: top;">pass<br></td>
+          <td style="vertical-align: top;"><a href="elevator-proj10acceptance1.pass-0.stats">proj10_a1.stats</a><br></td>
+          <td style="vertical-align: top;"><br></td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top;">proj10acceptance2.pass<br></td>
+          <td style="vertical-align: top;">pass<br></td>
+          <td style="vertical-align: top;"><a href="elevator-proj10acceptance2.pass-0.stats">proj10_a2.stats</a><br></td>
+          <td style="vertical-align: top;"><br></td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top;">proj10acceptance3.pass<br></td>
+          <td style="vertical-align: top;">pass<br></td>
+          <td style="vertical-align: top;"><a href="elevator-proj10acceptance3.pass-0.stats">proj10_a3.stats</a><br></td>
+          <td style="vertical-align: top;"><br></td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top;">proj11acceptance1.pass<br></td>
+          <td style="vertical-align: top;">pass<br></td>
+          <td style="vertical-align: top;"><a href="elevator-proj11acceptance1.pass-0.stats">proj11_a1.stats</a><br></td>
+          <td style="vertical-align: top;"><br></td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top;">proj11acceptance2.pass<br></td>
+          <td style="vertical-align: top;">pass<br></td>
+          <td style="vertical-align: top;"><a href="elevator-proj11acceptance2.pass-0.stats">proj11_a2.stats</a><br></td>
+          <td style="vertical-align: top;"><br></td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top;">proj11acceptance3.pass<br></td>
+          <td style="vertical-align: top;">pass<br></td>
+          <td style="vertical-align: top;"><a href="elevator-proj11acceptance3.pass-0.stats">proj11_a3.stats</a><br></td>
+          <td style="vertical-align: top;"><br></td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top;">uppeak_final.pass<br></td>
+          <td style="vertical-align: top;">pass<br></td>
+          <td style="vertical-align: top;"><a href="elevator-uppeak_final.pass-0.stats">uppeak_final.stats</a><br></td>
+          <td style="vertical-align: top;"><br></td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top;">downpeak_final.pass<br></td>
+          <td style="vertical-align: top;">pass<br></td>
+          <td style="vertical-align: top;"><a href="elevator-downpeak_final.pass-0.stats">downpeak_final.stats</a><br></td>
+          <td style="vertical-align: top;"><br></td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top;">normal_final.pass<br></td>
+          <td style="vertical-align: top;">pass<br></td>
+          <td style="vertical-align: top;"><a href="elevator-normal_final.pass-0.stats">normal_final.stats</a><br></td>
+          <td style="vertical-align: top;"><br></td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+  </body>
+</html>

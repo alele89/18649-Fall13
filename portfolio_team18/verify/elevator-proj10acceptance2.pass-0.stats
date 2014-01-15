@@ -1,0 +1,116 @@
+;18-649 Fall '13
+;Group 18
+;Mustafa Yigit Bilgen (mbilgen)
+;Yi Huo (yhuo)
+;Sairam Krishnan (sbkrishn)
+;Abhijit Lele(alele)
+
+Simulator Parameters:
+Command line = -head header.txt -seed 666666666 -monitor Proj11RuntimeMonitor -b 200 -fs 5.0 -pf proj10acceptance2.pass
+RandomSeed = 666666666
+CanNetworkBitTime = 5000 ns
+Effective Can Bitrate = 199999.99999999997
+Run Time = null
+Real time rate = null
+Acceptance Test File = proj10acceptance2.pass
+Monitors: Proj11RuntimeMonitor  
+
+STATISTICS FOR ELEVATOR SIMULATION PASSENGER DELIVERY
+-----------------------------------------------------
+
+
+These passengers were delivered:
+Passenger 0: INJECTED AT 1.0s and DELIVERED in 52.48s
+  Satisfaction score: 100.0
+Passenger 1: INJECTED AT 2.4s and DELIVERED in 66.951s
+  Satisfaction score: 100.0
+Passenger 6: INJECTED AT 39.0s and DELIVERED in 30.459s
+  Satisfaction score: 100.0
+Passenger 3: INJECTED AT 7.5s and DELIVERED in 63.188s
+  Satisfaction score: 100.0
+Passenger 2: INJECTED AT 6.7s and DELIVERED in 66.096s
+  Satisfaction score: 100.0
+Passenger 4: INJECTED AT 7.7s and DELIVERED in 66.579s
+  Satisfaction score: 100.0
+Passenger 12: INJECTED AT 61.0s and DELIVERED in 41.519s
+  Satisfaction score: 100.0
+Passenger 11: INJECTED AT 60.0s and DELIVERED in 62.463s
+  Satisfaction score: 100.0
+Passenger 26: INJECTED AT 150.0s and DELIVERED in 55.214s
+  Satisfaction score: 100.0
+Passenger 7: INJECTED AT 43.0s and DELIVERED in 210.643s
+  Satisfaction score: 100.0
+Passenger 19: INJECTED AT 86.0s and DELIVERED in 167.979s
+  Satisfaction score: 100.0
+Passenger 9: INJECTED AT 47.0s and DELIVERED in 207.929s
+  Satisfaction score: 100.0
+Passenger 14: INJECTED AT 66.0s and DELIVERED in 189.31s
+  Satisfaction score: 100.0
+Passenger 18: INJECTED AT 84.0s and DELIVERED in 172.622s
+  Satisfaction score: 100.0
+Passenger 21: INJECTED AT 92.0s and DELIVERED in 166.269s
+  Satisfaction score: 100.0
+Passenger 16: INJECTED AT 73.0s and DELIVERED in 186.441s
+  Satisfaction score: 100.0
+Passenger 15: INJECTED AT 73.0s and DELIVERED in 187.803s
+  Satisfaction score: 100.0
+Passenger 24: INJECTED AT 100.5s and DELIVERED in 202.699s
+  Satisfaction score: 100.0
+Passenger 25: INJECTED AT 101.0s and DELIVERED in 219.029s
+  Satisfaction score: 100.0
+Passenger 17: INJECTED AT 83.0s and DELIVERED in 301.884s
+  Satisfaction score: 100.0
+Passenger 13: INJECTED AT 64.0s and DELIVERED in 322.109s
+  Satisfaction score: 100.0
+Passenger 10: INJECTED AT 57.0s and DELIVERED in 330.4s
+  Satisfaction score: 100.0
+Passenger 8: INJECTED AT 43.0s and DELIVERED in 345.905s
+  Satisfaction score: 3.125
+    @261.530000000: 0.50 Expected to move DOWN but moved UP
+    @265.350000000: 0.50 Car passed passenger's destination floor without servicing it
+    @277.930000000: 0.50 Expected to move DOWN but moved UP
+    @294.330000000: 0.50 Expected to move DOWN but moved UP
+    @310.930000000: 0.50 Expected to move DOWN but moved UP
+Passenger 5: INJECTED AT 39.0s and DELIVERED in 351.969s
+  Satisfaction score: 100.0
+Passenger 22: INJECTED AT 92.0s and DELIVERED in 301.08s
+  Satisfaction score: 100.0
+Passenger 20: INJECTED AT 91.0s and DELIVERED in 303.726s
+  Satisfaction score: 100.0
+Passenger 23: INJECTED AT 100.0s and DELIVERED in 316.782s
+  Satisfaction score: 90.0
+    @271.520000000: 0.90 Repeated hall call press
+
+Passenger Delivery Summary
+Delivered: 27
+Stranded: 0
+Total: 27
+
+Deliver Stats (lower is better):
+Average_delivery_time: 184.797
+Maximum_delivery_time:  351.969
+Delivery_performance_score:  1091.158
+
+Satisfaction Stats (higher is better):
+Average_satisfaction_score: 96.042
+Min_satisfaction_score:  3.125
+Satisfaction_performance_score:  387.292
+
+
+
+
+Network Utilization Summary:
+Recent: 69.50 % Max: 69.50 %  Overall:  69.50 %
+
+Monitors Warning Results: 
+RuntimeMonitor generated 0 warnings.
+
+Monitors Summmary Results: 
+R-T.6 Violations: 0
+R-T.7 Violations: 0
+R-T.8.1 Violations: 0
+R-T.8.2 Violations: 0
+R-T.8.3 Violations: 0
+R-T.9 Violations: 0
+R-T.10 Violations: 0
+

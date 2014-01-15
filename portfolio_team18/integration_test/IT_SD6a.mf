@@ -1,0 +1,72 @@
+;18-649 Fall '13
+;Group 18
+;Mustafa Yigit Bilgen (mbilgen)
+;Yi Huo (yhuo)
+;Sairam Krishnan (sbkrishn)
+;Abhijit Lele(alele)
+;
+;Integration Test for SD 6a - Tests
+
+#INCLUDE defines.mf
+
+;Set up preconditions
+;Assuming that the elevator wants to stop at 5th floor and go up.
+;The car is moving up, and is at Ist floor.
+;#arc 1a,1c,1d
+0s I AT_FLOOR_PERIOD N AT_FLOOR_[1][FRONT]_CAN_ID AtFloor 1 FRONT = true
+0s I DISPATCHER_PERIOD N DESIRED_FLOOR_CAN_ID DesiredFloor = 5 FRONT UP
+0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = true
+0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][RIGHT]_CAN_ID DoorClosed FRONT RIGHT = true
+0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][LEFT]_CAN_ID DoorClosed BACK LEFT = true
+0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][RIGHT]_CAN_ID DoorClosed BACK RIGHT = true
+0s I CAR_LEVEL_POSITION_PERIOD N LEVEL_SENSOR_[UP]_CAN_ID Leveling UP = true
+0s I CAR_LEVEL_POSITION_PERIOD N LEVEL_SENSOR_[DOWN]_CAN_ID Leveling DOWN = true
+
+;#arc 1b
+0.2s A F CarPositionIndicator : floor == 1
+
+0.7s I DRIVE_CONTROL_PERIOD F DriveSpeed = UP 0.20
+;#arc 2a,2b
+0.89s A S DriveControl : STATE == DRIVE_MOVING
+
+;#arc 3a
+1.00s I CAR_LEVEL_POSITION_PERIOD N CAR_LEVEL_POSITION_CAN_ID CarLevelPosition = 200
+1.00s I DRIVE_CONTROL_PERIOD F DriveSpeed = UP 1
+
+;#arc 3b,3c
+1.50s A F Drive :  speed == FAST
+1.50s A F Drive :  direction == UP
+1.50s A S DriveControl : STATE == DRIVE_MOVING_FAST
+
+;#arc 4a
+2.00s I CAR_LEVEL_POSITION_PERIOD N CAR_LEVEL_POSITION_CAN_ID CarLevelPosition = 19990
+2.00s I DRIVE_CONTROL_PERIOD F DriveSpeed = UP 0.25
+
+;#arc 4b,4c
+2.50s A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 0.25
+2.50s A S DriveControl : STATE == DRIVE_MOVING
+
+2.80s I AT_FLOOR_PERIOD N AT_FLOOR_[1][FRONT]_CAN_ID AtFloor 1 FRONT = false
+3.20s I AT_FLOOR_PERIOD N AT_FLOOR_[5][FRONT]_CAN_ID AtFloor 5 FRONT = true
+3.20s I DISPATCHER_PERIOD N DESIRED_FLOOR_CAN_ID DesiredFloor = 5 STOP FRONT
+
+;#arc 4d, 4e
+3.20s I CAR_LEVEL_POSITION_PERIOD N LEVEL_SENSOR_[UP]_CAN_ID Leveling UP = false
+3.20s I CAR_LEVEL_POSITION_PERIOD N LEVEL_SENSOR_[DOWN]_CAN_ID Leveling DOWN = true
+3.20s I DRIVE_CONTROL_PERIOD F DriveSpeed = UP 0.10
+
+3.50s A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == UP
+3.60s A F Drive :  speed == LEVEL
+3.50s A F Drive :  direction == UP
+3.50s A S DriveControl : STATE == DRIVE_Level_UP
+
+4.50s I CAR_LEVEL_POSITION_PERIOD N LEVEL_SENSOR_[UP]_CAN_ID Leveling UP = true
+4.50s I CAR_LEVEL_POSITION_PERIOD N LEVEL_SENSOR_[DOWN]_CAN_ID Leveling DOWN = true
+4.50s I DRIVE_CONTROL_PERIOD F DriveSpeed = STOP 0
+
+;#arc 5a
+5.2s A F CarPositionIndicator : floor == 5
+
+;#arc 5b,5c,5d
+5.75s A S DriveControl : STATE == DRIVE_STOP
+5.75s A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 0

@@ -1,0 +1,75 @@
+;18-649 Fall 2013
+;Group 18
+;Mustafa Yigit Bilgen (mbilgen)
+;Yi Huo (yhuo)
+;Sairam Krishnan (sbkrishn)
+;Abhijit Lele(alele)
+;
+;Integration Test for SD7a - Tests
+
+#INCLUDE defines.mf
+
+;Set up preconditions and assumptions.
+;Empty car
+0s I WEIGHT_PERIOD N CAR_WEIGHT_CAN_ID CarWeight = 0
+
+;Elevator has stopped at floor 5.
+0.0s I DRIVE_CONTROL_PERIOD N DRIVE_SPEED_CAN_ID DriveSpeed = 0.0 STOP
+
+;All doors are closed.
+0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = true
+0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][RIGHT]_CAN_ID DoorClosed FRONT RIGHT = true
+0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][LEFT]_CAN_ID DoorClosed BACK LEFT = true
+0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][RIGHT]_CAN_ID DoorClosed BACK RIGHT = true
+0s I DOOR_OPENED_SENSOR_PERIOD N DOOR_OPEN_SENSOR_[FRONT][LEFT]_CAN_ID DoorOpened FRONT LEFT = false
+0s I DOOR_OPENED_SENSOR_PERIOD N DOOR_OPEN_SENSOR_[FRONT][RIGHT]_CAN_ID DoorOpened FRONT RIGHT = false
+0s I DOOR_OPENED_SENSOR_PERIOD N DOOR_OPEN_SENSOR_[BACK][LEFT]_CAN_ID DoorOpened BACK LEFT = false
+0s I DOOR_OPENED_SENSOR_PERIOD N DOOR_OPEN_SENSOR_[BACK][RIGHT]_CAN_ID DoorOpened BACK RIGHT = false
+
+;Dispatcher intends direction up, and car is at floor 5.
+0s I AT_FLOOR_PERIOD N AT_FLOOR_[5][FRONT]_CAN_ID AtFloor 5 FRONT = true
+0s I DISPATCHER_PERIOD N DESIRED_FLOOR_CAN_ID DesiredFloor = 5 FRONT DOWN
+
+;Doors should close after 10 seconds.
+0s I DISPATCHER_PERIOD N DESIRED_DWELL_[FRONT]_CAN_ID DesiredDwell FRONT = 10 
+
+;#arc '1'
+0.5s A F DoorMotor FRONT LEFT : command == OPEN
+0.5s A F DoorMotor FRONT RIGHT : command == OPEN
+
+;#arc '2a'
+0.6s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = false
+0.6s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][RIGHT]_CAN_ID DoorClosed FRONT RIGHT = false
+
+;#arc '2b'
+1.01s A F CarLantern UP : lighted == false
+1.01s A F CarLantern DOWN : lighted == true
+
+;#arc '3a'
+1.2s I DOOR_OPENED_SENSOR_PERIOD N DOOR_OPEN_SENSOR_[FRONT][LEFT]_CAN_ID DoorOpened FRONT LEFT = true
+1.2s I DOOR_OPENED_SENSOR_PERIOD N DOOR_OPEN_SENSOR_[FRONT][RIGHT]_CAN_ID DoorOpened FRONT RIGHT = true
+
+;#arc '3b'
+1.51s A F DoorMotor FRONT LEFT : command == STOP
+1.51s A F DoorMotor FRONT RIGHT : command == STOP
+
+;#arc '4a/4b'
+12.01s A F DoorMotor FRONT LEFT : command == CLOSE
+12.01s A F DoorMotor FRONT RIGHT : command == CLOSE
+
+;#arc '4c/5a'
+12.2s I DOOR_OPENED_SENSOR_PERIOD N DOOR_OPEN_SENSOR_[FRONT][LEFT]_CAN_ID DoorOpened FRONT LEFT = false
+12.2s I DOOR_OPENED_SENSOR_PERIOD N DOOR_OPEN_SENSOR_[FRONT][RIGHT]_CAN_ID DoorOpened FRONT RIGHT = false
+12.2s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = true
+12.2s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][RIGHT]_CAN_ID DoorClosed FRONT RIGHT = true
+
+;Setup for arcs '4d' and '5b'
+12.2s I AT_FLOOR_PERIOD N AT_FLOOR_[5][FRONT]_CAN_ID AtFloor 5 FRONT = false
+
+;#arc '4d'
+12.51s A F DoorMotor FRONT LEFT : command == STOP
+12.51s A F DoorMotor FRONT RIGHT : command == STOP
+
+;#arc '5b'
+12.51s A F CarLantern UP : lighted == false
+12.51s A F CarLantern DOWN : lighted == false

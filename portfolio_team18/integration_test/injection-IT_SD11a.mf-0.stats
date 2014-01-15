@@ -1,0 +1,31 @@
+18649 Fall 2013
+Team 18
+Yi Huo (yhuo)
+Mustafa Bilgen (mbilgen)
+Sairam Krishnan (sbkrishn)
+Abhijit Lele (alele)
+
+Simulator Parameters:
+Command line = -head header.txt -cf IT_SD11a.cf -mf IT_SD11a.mf
+RandomSeed = 1386533688459
+CanNetworkBitTime = 0 ns
+Effective Can Bitrate = Infinity
+Run Time = null
+Real time rate = null
+Message File = IT_SD11a.mf
+Controller File = IT_SD11a.cf
+
+Assertion Results:
+@0.5s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@48b9e55c :: getValue ?== false PASSED
+@0.5s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@1970b890 :: getValue ?== false PASSED
+@0.5s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@48a70acd :: getValue ?== false PASSED
+@1.0s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@1ea01711 :: getFloor ?== 1 PASSED
+@1.0s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@762cd5a3 :: getHallway ?== NONE PASSED
+@1.0s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@3e697087 :: getDirection ?== STOP PASSED
+
+
+******************Summary******************
+Passed:  6
+Failed:  0
+Total :  6
+

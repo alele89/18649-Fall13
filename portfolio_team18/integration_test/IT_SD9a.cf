@@ -1,0 +1,16 @@
+;18-649 Fall 2013
+;Group 18
+;Mustafa Yigit Bilgen (mbilgen)
+;Yi Huo (yhuo)
+;Sairam Krishnan (sbkrishn)
+;Abhijit Lele(alele)
+;
+;Integration Test for SD 9a - Configuration File
+
+LanternControl UP 200.0ms true
+LanternControl DOWN 200.0ms true
+Dispatcher 8 10.0ms true
+DoorControl FRONT LEFT 10.0ms true
+DoorControl FRONT RIGHT 10.0ms true
+DoorControl BACK LEFT 10.0ms true
+DoorControl BACK RIGHT 10.0ms true

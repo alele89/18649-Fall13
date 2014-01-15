@@ -1,0 +1,26 @@
+18649 Fall 2013
+Team 18
+Yi Huo (yhuo)
+Mustafa Bilgen (mbilgen)
+Sairam Krishnan (sbkrishn)
+Abhijit Lele (alele)
+
+Simulator Parameters:
+Command line = -head header.txt -cf IT_SD1a.cf -mf IT_SD1a.mf
+RandomSeed = 1386533499280
+CanNetworkBitTime = 0 ns
+Effective Can Bitrate = Infinity
+Run Time = null
+Real time rate = null
+Message File = IT_SD1a.mf
+Controller File = IT_SD1a.cf
+
+Assertion Results:
+@0.81s:  PASSED simulator.payloads.HallLightPayload$ReadableHallLightPayload@5ec09652 :: lighted ?== true PASSED
+
+
+******************Summary******************
+Passed:  1
+Failed:  0
+Total :  1
+

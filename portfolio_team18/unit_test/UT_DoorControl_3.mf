@@ -1,0 +1,299 @@
+;18-649 Fall 2013
+;Group 18
+;Yi Huo (yhuo)
+;Mustafa Bilgen (mbilgen)
+;Sairam Krishnan (sbkrishn)
+;Abhijit Lele(alele)
+;
+;Door Control Unit Test # 3 - More advanced tests (reversals, etc.)
+;
+;Inputs:
+;   mAtFloor[f, b]
+;   mDriveSpeed
+;   mDesiredFloor
+;   mDesiredDwell[b]
+;   mDoorClosed[b, r]
+;   mDoorOpened[b, r]
+;   mDoorReversal[b, r]
+;   mCarCall[f, b]
+;   mHallCall[f, b, d]
+;   mCarWeight
+;
+;Outputs:
+;   DoorMotor[b,r]
+
+#INCLUDE defines.mf
+
+;Initialize - Elevator has stopped at the desired floor and hallway. All doors are closed, and both
+;the desired direction and the drive's direction are STOP (but drive speed is nonzero).
+0.0s I AT_FLOOR_PERIOD N AT_FLOOR_[1][FRONT]_CAN_ID AtFloor 1 FRONT = true
+0.0s I DISPATCHER_PERIOD N DESIRED_FLOOR_CAN_ID DesiredFloor = 1 STOP FRONT
+0.0s I DRIVE_CONTROL_PERIOD N DRIVE_SPEED_CAN_ID DriveSpeed = 1.0 STOP
+
+;All doors are initially closed, so door reversal sensors detect nothing.
+0.0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = true
+0.0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][RIGHT]_CAN_ID DoorClosed FRONT RIGHT = true
+0.0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][LEFT]_CAN_ID DoorClosed BACK LEFT = true
+0.0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][RIGHT]_CAN_ID DoorClosed BACK RIGHT = true
+0.0s I DOOR_REVERSAL_NETWORK_PERIOD N DOOR_REVERSAL_SENSOR_[FRONT][LEFT]_CAN_ID DoorReversal FRONT LEFT = false
+0.0s I DOOR_REVERSAL_NETWORK_PERIOD N DOOR_REVERSAL_SENSOR_[FRONT][RIGHT]_CAN_ID DoorReversal FRONT RIGHT = false
+
+;Set DesiredDwell to 3 seconds. (Keep doors open for 3 seconds.)
+0.0s I DISPATCHER_PERIOD N DESIRED_DWELL_[FRONT]_CAN_ID DesiredDwell FRONT = 3
+
+;#transtion 'T.5.1'
+;#state 'S.5.2: DOOR_OPENING' for front doors
+0.31s A F DoorMotor FRONT LEFT : command == OPEN
+0.31s A F DoorMotor FRONT RIGHT : command == OPEN
+0.31s A S DoorControl[FRONT][LEFT] : STATE == DOOR_OPENING
+0.31s A S DoorControl[FRONT][RIGHT] : STATE == DOOR_OPENING
+;#state 'S.5.1: DOOR_CLOSED' for back doors
+0.31s A F DoorMotor BACK LEFT : command == STOP
+0.31s A F DoorMotor BACK RIGHT : command == STOP
+0.31s A S DoorControl[BACK][LEFT] : STATE == DOOR_CLOSED
+0.31s A S DoorControl[BACK][RIGHT] : STATE == DOOR_CLOSED
+
+;Setup for transition 'T.5.2' - Elevator is stopped at the floor, and front doors are fully open.
+0.4s I DOOR_OPENED_SENSOR_PERIOD N DOOR_OPEN_SENSOR_[FRONT][LEFT]_CAN_ID DoorOpened FRONT LEFT = true
+0.4s I DOOR_OPENED_SENSOR_PERIOD N DOOR_OPEN_SENSOR_[FRONT][RIGHT]_CAN_ID DoorOpened FRONT RIGHT = true
+;Update mDesiredFloor since it is fully computed by the time that the doors are fully open.
+0.4s I DISPATCHER_PERIOD N DESIRED_FLOOR_CAN_ID DesiredFloor = 2 STOP FRONT
+
+;#transition 'T.5.2'
+;#state 'S.5.3: DOOR_OPEN'
+0.81s A F DoorMotor FRONT LEFT : command == STOP
+0.81s A F DoorMotor FRONT RIGHT : command == STOP
+0.81s A S DoorControl[FRONT][LEFT] : STATE == DOOR_OPEN
+0.81s A S DoorControl[FRONT][RIGHT] : STATE == DOOR_OPEN
+;#state 'S.5.1: DOOR_CLOSED' for back doors
+0.81s A F DoorMotor BACK LEFT : command == STOP
+0.81s A F DoorMotor BACK RIGHT : command == STOP
+0.81s A S DoorControl[BACK][LEFT] : STATE == DOOR_CLOSED
+0.81s A S DoorControl[BACK][RIGHT] : STATE == DOOR_CLOSED
+
+;Check whether doors remain fully open as long as the car weight exceeds the elevator's MaxCapacity (14000).
+0.9s I WEIGHT_PERIOD N CAR_WEIGHT_CAN_ID CarWeight = 14001
+;#state 'S.5.3: DOOR_OPEN'
+4.01s A F DoorMotor FRONT LEFT : command == STOP
+4.01s A F DoorMotor FRONT RIGHT : command == STOP
+4.01s A S DoorControl[FRONT][LEFT] : STATE == DOOR_OPEN
+4.01s A S DoorControl[FRONT][RIGHT] : STATE == DOOR_OPEN
+;#state 'S.5.1: DOOR_CLOSED' for back doors
+4.01s A F DoorMotor BACK LEFT : command == STOP
+4.01s A F DoorMotor BACK RIGHT : command == STOP
+4.01s A S DoorControl[BACK][LEFT] : STATE == DOOR_CLOSED
+4.01s A S DoorControl[BACK][RIGHT] : STATE == DOOR_CLOSED
+
+;Setup for transition 'T.5.3' - Excess weight is offloaded from the elevator, and CountDown has expired.
+5.0s I WEIGHT_PERIOD N CAR_WEIGHT_CAN_ID CarWeight = 14000
+5.0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = false
+5.0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][RIGHT]_CAN_ID DoorClosed FRONT RIGHT = false
+
+;#transition 'T.5.3' - After CountDown timer expires, doors start closing.
+;#state 'S.5.4: DOOR_CLOSING'
+5.41s A F DoorMotor FRONT LEFT : command == CLOSE
+5.41s A F DoorMotor FRONT RIGHT : command == CLOSE
+5.41s A S DoorControl[FRONT][LEFT] : STATE == DOOR_CLOSING
+5.41s A S DoorControl[FRONT][RIGHT] : STATE == DOOR_CLOSING
+;#state 'S.5.1: DOOR_CLOSED' for back doors
+5.41s A F DoorMotor BACK LEFT : command == STOP
+5.41s A F DoorMotor BACK RIGHT : command == STOP
+5.41s A S DoorControl[BACK][LEFT] : STATE == DOOR_CLOSED
+5.41s A S DoorControl[BACK][RIGHT] : STATE == DOOR_CLOSED
+
+;Setup for transition 'T.5.5' - Front doors open when car is overweight.
+5.5s I WEIGHT_PERIOD N CAR_WEIGHT_CAN_ID CarWeight = 14001
+5.5s I DOOR_OPENED_SENSOR_PERIOD N DOOR_OPEN_SENSOR_[FRONT][LEFT]_CAN_ID DoorOpened FRONT LEFT = false
+5.5s I DOOR_OPENED_SENSOR_PERIOD N DOOR_OPEN_SENSOR_[FRONT][RIGHT]_CAN_ID DoorOpened FRONT RIGHT = false 
+
+;#transition 'T.5.5'
+;#state 'S.5.2: DOOR_OPENING' for front doors
+6.01s A F DoorMotor FRONT LEFT : command == OPEN
+6.01s A F DoorMotor FRONT RIGHT : command == OPEN
+6.01s A S DoorControl[FRONT][LEFT] : STATE == DOOR_OPENING
+6.01s A S DoorControl[FRONT][RIGHT] : STATE == DOOR_OPENING
+;#state 'S.5.1: DOOR_CLOSED' for back doors
+6.01s A F DoorMotor BACK LEFT : command == STOP
+6.01s A F DoorMotor BACK RIGHT : command == STOP
+6.01s A S DoorControl[BACK][LEFT] : STATE == DOOR_CLOSED
+6.01s A S DoorControl[BACK][RIGHT] : STATE == DOOR_CLOSED
+
+;Setup for transition 'T.5.2' - Elevator is stopped at the floor, and front doors are fully open.
+6.1s I DOOR_OPENED_SENSOR_PERIOD N DOOR_OPEN_SENSOR_[FRONT][LEFT]_CAN_ID DoorOpened FRONT LEFT = true
+6.1s I DOOR_OPENED_SENSOR_PERIOD N DOOR_OPEN_SENSOR_[FRONT][RIGHT]_CAN_ID DoorOpened FRONT RIGHT = true
+
+;#transition 'T.5.2'
+;#state 'S.5.3: DOOR_OPEN' for front doors
+6.51s A F DoorMotor FRONT LEFT : command == STOP
+6.51s A F DoorMotor FRONT RIGHT : command == STOP
+6.51s A S DoorControl[FRONT][LEFT] : STATE == DOOR_OPEN
+6.51s A S DoorControl[FRONT][RIGHT] : STATE == DOOR_OPEN
+;#state 'S.5.1: DOOR_CLOSED' for back doors
+6.51s A F DoorMotor BACK LEFT : command == STOP
+6.51s A F DoorMotor BACK RIGHT : command == STOP
+6.51s A S DoorControl[BACK][LEFT] : STATE == DOOR_CLOSED
+6.51s A S DoorControl[BACK][RIGHT] : STATE == DOOR_CLOSED
+
+;Setup for transition 'T.5.3'
+6.6s I WEIGHT_PERIOD N CAR_WEIGHT_CAN_ID CarWeight = 14000
+6.6s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = false
+6.6s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][RIGHT]_CAN_ID DoorClosed FRONT RIGHT = false
+
+;#transition 'T.5.3' - After CountDown timer expires, doors start closing.
+;#state 'S.5.4: DOOR_CLOSING' for front doors
+9.51s A F DoorMotor FRONT LEFT : command == CLOSE
+9.51s A F DoorMotor FRONT RIGHT : command == CLOSE
+9.51s A S DoorControl[FRONT][LEFT] : STATE == DOOR_CLOSING
+9.51s A S DoorControl[FRONT][RIGHT] : STATE == DOOR_CLOSING
+;#state 'S.5.1: DOOR_CLOSED' for back doors
+9.51s A F DoorMotor BACK LEFT : command == STOP
+9.51s A F DoorMotor BACK RIGHT : command == STOP
+9.51s A S DoorControl[BACK][LEFT] : STATE == DOOR_CLOSED
+9.51s A S DoorControl[BACK][RIGHT] : STATE == DOOR_CLOSED
+
+;Setup for transition 'T.5.7' - First (and only) door reversal
+9.6s I DOOR_REVERSAL_NETWORK_PERIOD N DOOR_REVERSAL_SENSOR_[FRONT][LEFT]_CAN_ID DoorReversal FRONT LEFT = true
+9.6s I DOOR_REVERSAL_NETWORK_PERIOD N DOOR_REVERSAL_SENSOR_[FRONT][RIGHT]_CAN_ID DoorReversal FRONT RIGHT = true
+
+;#transition 'T.5.7'
+;#state 'S.5.5 : DOOR_REVERSED' for front doors
+9.71s A S DoorControl[FRONT][LEFT] : STATE == DOOR_REVERSED
+9.71s A S DoorControl[FRONT][RIGHT] : STATE == DOOR_REVERSED
+
+;#transition 'T.5.8'
+;#state 'S.5.2 : DOOR_OPENING'
+9.81s A S DoorControl[FRONT][LEFT] : STATE == DOOR_OPENING
+9.81s A S DoorControl[FRONT][RIGHT] : STATE == DOOR_OPENING
+
+;Setup for transition 'T.5.2'
+9.9s I DOOR_OPENED_SENSOR_PERIOD N DOOR_OPEN_SENSOR_[FRONT][LEFT]_CAN_ID DoorOpened FRONT LEFT = true
+9.9s I DOOR_OPENED_SENSOR_PERIOD N DOOR_OPEN_SENSOR_[FRONT][RIGHT]_CAN_ID DoorOpened FRONT RIGHT = true
+
+;#transition 'T.5.2'
+;#state 'S.5.3: DOOR_OPEN' for front doors
+10.31s A F DoorMotor FRONT LEFT : command == STOP
+10.31s A F DoorMotor FRONT RIGHT : command == STOP
+10.31s A S DoorControl[FRONT][LEFT] : STATE == DOOR_OPEN
+10.31s A S DoorControl[FRONT][RIGHT] : STATE == DOOR_OPEN
+;#state 'S.5.1: DOOR_CLOSED' for back doors
+10.31s A F DoorMotor BACK LEFT : command == STOP
+10.31s A F DoorMotor BACK RIGHT : command == STOP
+10.31s A S DoorControl[BACK][LEFT] : STATE == DOOR_CLOSED
+10.31s A S DoorControl[BACK][RIGHT] : STATE == DOOR_CLOSED
+
+;Setup for transition 'T.5.3'
+10.4s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = false
+10.4s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][RIGHT]_CAN_ID DoorClosed FRONT RIGHT = false
+10.4s I DOOR_REVERSAL_NETWORK_PERIOD N DOOR_REVERSAL_SENSOR_[FRONT][LEFT]_CAN_ID DoorReversal FRONT LEFT = false
+10.4s I DOOR_REVERSAL_NETWORK_PERIOD N DOOR_REVERSAL_SENSOR_[FRONT][RIGHT]_CAN_ID DoorReversal FRONT RIGHT = false
+
+;#transition 'T.5.3' - After CountDown timer expires, front doors start closing.
+;#state 'S.5.4: DOOR_CLOSING' for front doors
+13.11s A F DoorMotor FRONT LEFT : command == CLOSE
+13.11s A F DoorMotor FRONT RIGHT : command == CLOSE
+13.11s A S DoorControl[FRONT][LEFT] : STATE == DOOR_CLOSING
+13.11s A S DoorControl[FRONT][RIGHT] : STATE == DOOR_CLOSING
+;#state 'S.5.1: DOOR_CLOSED' for back doors
+13.11s A F DoorMotor BACK LEFT : command == STOP
+13.11s A F DoorMotor BACK RIGHT : command == STOP
+13.11s A S DoorControl[BACK][LEFT] : STATE == DOOR_CLOSED
+13.11s A S DoorControl[BACK][RIGHT] : STATE == DOOR_CLOSED
+
+;Setup for transition 'T.5.6'
+13.2s I DOOR_REVERSAL_NETWORK_PERIOD N DOOR_REVERSAL_SENSOR_[FRONT][LEFT]_CAN_ID DoorReversal FRONT LEFT = true
+13.2s I DOOR_REVERSAL_NETWORK_PERIOD N DOOR_REVERSAL_SENSOR_[FRONT][RIGHT]_CAN_ID DoorReversal FRONT RIGHT = true
+
+;#transition 'T.5.6' - Front doors start nudging for subsequent door reversal triggers.
+;#state 'S.5.6: DOOR_NUDGE'
+13.51s A F DoorMotor FRONT LEFT : command == NUDGE
+13.51s A F DoorMotor FRONT RIGHT : command == NUDGE
+13.51s A S DoorControl[FRONT][LEFT] : STATE == DOOR_NUDGE
+13.51s A S DoorControl[FRONT][RIGHT] : STATE == DOOR_NUDGE
+;#state 'S.5.1: DOOR_CLOSED' for back doors
+13.51s A F DoorMotor BACK LEFT : command == STOP
+13.51s A F DoorMotor BACK RIGHT : command == STOP
+13.51s A S DoorControl[BACK][LEFT] : STATE == DOOR_CLOSED
+13.51s A S DoorControl[BACK][RIGHT] : STATE == DOOR_CLOSED
+
+;Setup for transition 'T.5.10'
+13.6s I WEIGHT_PERIOD N CAR_WEIGHT_CAN_ID CarWeight = 14001
+13.6s I DOOR_OPENED_SENSOR_PERIOD N DOOR_OPEN_SENSOR_[FRONT][LEFT]_CAN_ID DoorOpened FRONT LEFT = false
+13.6s I DOOR_OPENED_SENSOR_PERIOD N DOOR_OPEN_SENSOR_[FRONT][RIGHT]_CAN_ID DoorOpened FRONT RIGHT = false
+
+;#transition 'T.5.10'
+;#state 'S.5.2: DOOR_OPENING' for front doors
+14.01s A F DoorMotor FRONT LEFT : command == OPEN
+14.01s A F DoorMotor FRONT RIGHT : command == OPEN
+14.01s A S DoorControl[FRONT][LEFT] : STATE == DOOR_OPENING
+14.01s A S DoorControl[FRONT][RIGHT] : STATE == DOOR_OPENING
+;#state 'S.5.1: DOOR_CLOSED' for back doors
+14.01s A F DoorMotor BACK LEFT : command == STOP
+14.01s A F DoorMotor BACK RIGHT : command == STOP
+14.01s A S DoorControl[BACK][LEFT] : STATE == DOOR_CLOSED
+14.01s A S DoorControl[BACK][RIGHT] : STATE == DOOR_CLOSED
+
+;Setup for transition 'T.5.2' - Elevator is stopped at the floor, and front doors are fully open.
+14.1s I DOOR_OPENED_SENSOR_PERIOD N DOOR_OPEN_SENSOR_[FRONT][LEFT]_CAN_ID DoorOpened FRONT LEFT = true
+14.1s I DOOR_OPENED_SENSOR_PERIOD N DOOR_OPEN_SENSOR_[FRONT][RIGHT]_CAN_ID DoorOpened FRONT RIGHT = true
+
+;#transition 'T.5.2'
+;#state 'S.5.3: DOOR_OPEN' for front doors
+14.51s A F DoorMotor FRONT LEFT : command == STOP
+14.51s A F DoorMotor FRONT RIGHT : command == STOP
+14.51s A S DoorControl[FRONT][LEFT] : STATE == DOOR_OPEN
+14.51s A S DoorControl[FRONT][RIGHT] : STATE == DOOR_OPEN
+;#state 'S.5.1: DOOR_CLOSED' for back doors
+14.51s A F DoorMotor BACK LEFT : command == STOP
+14.51s A F DoorMotor BACK RIGHT : command == STOP
+14.51s A S DoorControl[BACK][LEFT] : STATE == DOOR_CLOSED
+14.51s A S DoorControl[BACK][RIGHT] : STATE == DOOR_CLOSED
+
+;Setup for transition 'T.5.3'
+14.6s I WEIGHT_PERIOD N CAR_WEIGHT_CAN_ID CarWeight = 14000
+14.6s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = false
+14.6s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][RIGHT]_CAN_ID DoorClosed FRONT RIGHT = false
+14.6s I DOOR_REVERSAL_NETWORK_PERIOD N DOOR_REVERSAL_SENSOR_[FRONT][LEFT]_CAN_ID DoorReversal FRONT LEFT = false
+14.6s I DOOR_REVERSAL_NETWORK_PERIOD N DOOR_REVERSAL_SENSOR_[FRONT][RIGHT]_CAN_ID DoorReversal FRONT RIGHT = false
+
+;#transition 'T.5.3' - After CountDown timer expires, front doors start closing.
+;#state 'S.5.4: DOOR_CLOSING' for front doors
+17.51s A F DoorMotor FRONT LEFT : command == CLOSE
+17.51s A F DoorMotor FRONT RIGHT : command == CLOSE
+17.51s A S DoorControl[FRONT][LEFT] : STATE == DOOR_CLOSING
+17.51s A S DoorControl[FRONT][RIGHT] : STATE == DOOR_CLOSING
+;#state 'S.5.1: DOOR_CLOSED' for back doors
+17.51s A F DoorMotor BACK LEFT : command == STOP
+17.51s A F DoorMotor BACK RIGHT : command == STOP
+17.51s A S DoorControl[BACK][LEFT] : STATE == DOOR_CLOSED
+17.51s A S DoorControl[BACK][RIGHT] : STATE == DOOR_CLOSED
+
+;Setup for transition 'T.5.6'
+17.6s I DOOR_REVERSAL_NETWORK_PERIOD N DOOR_REVERSAL_SENSOR_[FRONT][LEFT]_CAN_ID DoorReversal FRONT LEFT = true
+17.6s I DOOR_REVERSAL_NETWORK_PERIOD N DOOR_REVERSAL_SENSOR_[FRONT][RIGHT]_CAN_ID DoorReversal FRONT RIGHT = true
+
+;#transition 'T.5.6' - Front doors start nudging for subsequent door reversal triggers.
+;#state 'S.5.6: DOOR_NUDGE' for front doors
+18.01s A F DoorMotor FRONT LEFT : command == NUDGE
+18.01s A F DoorMotor FRONT RIGHT : command == NUDGE
+18.01s A S DoorControl[FRONT][LEFT] : STATE == DOOR_NUDGE
+18.01s A S DoorControl[FRONT][RIGHT] : STATE == DOOR_NUDGE
+;#state 'S.5.1: DOOR_CLOSED' for back doors
+18.01s A F DoorMotor BACK LEFT : command == STOP
+18.01s A F DoorMotor BACK RIGHT : command == STOP
+18.01s A S DoorControl[BACK][LEFT] : STATE == DOOR_CLOSED
+18.01s A S DoorControl[BACK][RIGHT] : STATE == DOOR_CLOSED
+
+;Setup for transition 'T.5.9'
+18.2s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = true
+18.2s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][RIGHT]_CAN_ID DoorClosed FRONT RIGHT = true
+
+;#transition 'T.5.9'
+;#state 'S.5.1: DOOR_CLOSED' for front doors and back doors
+18.61s A F DoorMotor FRONT LEFT : command == STOP
+18.61s A F DoorMotor FRONT RIGHT : command == STOP
+18.61s A S DoorControl[FRONT][LEFT] : STATE == DOOR_CLOSED
+18.61s A S DoorControl[FRONT][RIGHT] : STATE == DOOR_CLOSED
+18.61s A F DoorMotor BACK LEFT : command == STOP
+18.61s A F DoorMotor BACK RIGHT : command == STOP
+18.61s A S DoorControl[BACK][LEFT] : STATE == DOOR_CLOSED
+18.61s A S DoorControl[BACK][RIGHT] : STATE == DOOR_CLOSED

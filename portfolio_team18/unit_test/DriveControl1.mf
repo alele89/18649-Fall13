@@ -1,0 +1,73 @@
+;18-649 Fall '13
+;Group 18
+;Mustafa Yigit Bilgen (mbilgen)
+;Yi Huo (yhuo)
+;Sairam Krishnan (sbkrishn)
+;Abhijit Lele(alele)
+;
+;This unit test tests DriveController
+
+; \
+ ;* 
+ ;* Input interface:
+ ;* - mAtFloor[f,b]
+ ;* - mDesiredFloor
+ ;* - mDoorClosed[b,r]
+ ;* - mlevel[d]
+ ;* - mEmergencyBrake
+ ;* 
+ ;* Output interface:
+ ;* - Drive[s,d]
+ ;* - mDrive[f,b]
+ ;* - mDriveSpeed[f,b]
+ ;* 
+ ;* @author alele
+ ;*/
+ ;Unit test for scenario : Elevator goes from Stop - Level UP - Stop
+
+#INCLUDE defines.mf
+
+;Initialize Drive Controller
+
+0.0s I AT_FLOOR_PERIOD N AT_FLOOR_[1][FRONT]_CAN_ID AtFloor 1 FRONT = true
+0.0s I DRIVE_CONTROL_PERIOD N DESIRED_FLOOR_CAN_ID DesiredFloor = 1 STOP FRONT   
+0.0s I LEVEL_SENSOR_PERIOD N LEVEL_SENSOR_[DOWN]_CAN_ID Leveling DOWN = true
+0.0s I LEVEL_SENSOR_PERIOD N LEVEL_SENSOR_[UP]_CAN_ID Leveling UP = true
+
+;Checking the drive in stop state
+
+0.50s A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == STOP
+0.50s A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 0
+0.50s A F Drive :  speed == STOP
+0.50s A F Drive :  direction == STOP
+0.50s A S DriveControl : STATE == DRIVE_STOP
+
+;Insertions to simulate leveling 'UP' requirement for elevator
+;# Transition [T 6.5]
+0.80s I AT_FLOOR_PERIOD N AT_FLOOR_[1][FRONT]_CAN_ID AtFloor 1 FRONT = true
+0.80s I DRIVE_CONTROL_PERIOD N DESIRED_FLOOR_CAN_ID DesiredFloor = 1 STOP FRONT 
+0.80s I LEVEL_SENSOR_PERIOD N LEVEL_SENSOR_[UP]_CAN_ID Leveling UP = false
+0.80s I LEVEL_SENSOR_PERIOD N LEVEL_SENSOR_[DOWN]_CAN_ID Leveling DOWN = true
+0.80s I DRIVE_CONTROL_PERIOD F DriveSpeed = UP 0
+
+ ;Assertions to check if the Elevator is in leveling state.
+1.50s A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == UP
+1.50s A N DRIVE_SPEED_CAN_ID DriveSpeed : getSpeed == 0
+1.50s A F Drive :  speed == LEVEL
+1.50s A F Drive :  direction == UP
+1.50s A S DriveControl : STATE == DRIVE_Level_UP
+
+;Insertions to force elevator to Stop state again
+2.50s I AT_FLOOR_PERIOD N AT_FLOOR_[1][FRONT]_CAN_ID AtFloor 1 FRONT = true
+2.50s I DRIVE_CONTROL_PERIOD N DESIRED_FLOOR_CAN_ID DesiredFloor = 1 STOP FRONT 
+2.50s I LEVEL_SENSOR_PERIOD N LEVEL_SENSOR_[UP]_CAN_ID Leveling UP = true
+2.50s I LEVEL_SENSOR_PERIOD N LEVEL_SENSOR_[DOWN]_CAN_ID Leveling DOWN = true
+2.50s I DRIVE_CONTROL_PERIOD F DriveSpeed = STOP 0
+
+
+;Assertions to check Elevator in 'STOP' state.
+;Transition [T 6.4]
+2.75s A S DriveControl : STATE == DRIVE_STOP
+3.50s A F Drive :  direction == STOP
+3.50s A N DRIVE_SPEED_CAN_ID DriveSpeed : getDirection == STOP
+3.50s A F Drive :  speed == STOP

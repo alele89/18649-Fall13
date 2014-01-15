@@ -1,0 +1,848 @@
+;18-649 Fall '13
+;Group 18
+;Mustafa Yigit Bilgen (mbilgen)
+;Yi Huo (yhuo)
+;Sairam Krishnan (sbkrishn)
+;Abhijit Lele(alele)
+
+Simulator Parameters:
+Command line = -head header.txt -seed 666666666 -monitor Proj11RuntimeMonitor -b 200 -fs 5.0 -pf uppeak_final.pass
+RandomSeed = 666666666
+CanNetworkBitTime = 5000 ns
+Effective Can Bitrate = 199999.99999999997
+Run Time = null
+Real time rate = null
+Acceptance Test File = uppeak_final.pass
+Monitors: Proj11RuntimeMonitor  
+
+STATISTICS FOR ELEVATOR SIMULATION PASSENGER DELIVERY
+-----------------------------------------------------
+
+
+These passengers were delivered:
+Passenger 0: INJECTED AT 60.0s and DELIVERED in 24.44s
+  Satisfaction score: 100.0
+Passenger 1: INJECTED AT 66.8s and DELIVERED in 35.244s
+  Satisfaction score: 100.0
+Passenger 5: INJECTED AT 90.6s and DELIVERED in 42.929s
+  Satisfaction score: 100.0
+Passenger 6: INJECTED AT 92.5s and DELIVERED in 57.159s
+  Satisfaction score: 100.0
+Passenger 3: INJECTED AT 73.6s and DELIVERED in 93.428s
+  Satisfaction score: 100.0
+Passenger 14: INJECTED AT 134.9s and DELIVERED in 72.31s
+  Satisfaction score: 100.0
+Passenger 18: INJECTED AT 149.7s and DELIVERED in 58.822s
+  Satisfaction score: 100.0
+Passenger 22: INJECTED AT 171.4s and DELIVERED in 54.36s
+  Satisfaction score: 100.0
+Passenger 2: INJECTED AT 69.2s and DELIVERED in 158.636s
+  Satisfaction score: 100.0
+Passenger 4: INJECTED AT 80.9s and DELIVERED in 148.419s
+  Satisfaction score: 100.0
+Passenger 11: INJECTED AT 119.6s and DELIVERED in 111.303s
+  Satisfaction score: 100.0
+Passenger 15: INJECTED AT 136.6s and DELIVERED in 106.203s
+  Satisfaction score: 100.0
+Passenger 19: INJECTED AT 156.2s and DELIVERED in 88.479s
+  Satisfaction score: 100.0
+Passenger 16: INJECTED AT 140.3s and DELIVERED in 118.421s
+  Satisfaction score: 100.0
+Passenger 20: INJECTED AT 163.5s and DELIVERED in 95.886s
+  Satisfaction score: 100.0
+Passenger 13: INJECTED AT 134.3s and DELIVERED in 170.189s
+  Satisfaction score: 100.0
+Passenger 25: INJECTED AT 188.2s and DELIVERED in 118.309s
+  Satisfaction score: 100.0
+Passenger 21: INJECTED AT 166.2s and DELIVERED in 141.869s
+  Satisfaction score: 100.0
+Passenger 9: INJECTED AT 111.1s and DELIVERED in 209.509s
+  Satisfaction score: 100.0
+Passenger 28: INJECTED AT 205.3s and DELIVERED in 132.9s
+  Satisfaction score: 100.0
+Passenger 10: INJECTED AT 114.4s and DELIVERED in 225.1s
+  Satisfaction score: 100.0
+Passenger 34: INJECTED AT 249.2s and DELIVERED in 91.56s
+  Satisfaction score: 100.0
+Passenger 37: INJECTED AT 261.399999999s and DELIVERED in 93.921000001s
+  Satisfaction score: 100.0
+Passenger 7: INJECTED AT 99.9s and DELIVERED in 273.743s
+  Satisfaction score: 100.0
+Passenger 57: INJECTED AT 377.6s and DELIVERED in 14.182s
+  Satisfaction score: 100.0
+Passenger 45: INJECTED AT 295.6s and DELIVERED in 98.312s
+  Satisfaction score: 100.0
+Passenger 49: INJECTED AT 319.6s and DELIVERED in 89.588s
+  Satisfaction score: 100.0
+Passenger 53: INJECTED AT 347.7s and DELIVERED in 105.901s
+  Satisfaction score: 100.0
+Passenger 55: INJECTED AT 364.7s and DELIVERED in 104.629s
+  Satisfaction score: 100.0
+Passenger 24: INJECTED AT 182.3s and DELIVERED in 303.659s
+  Satisfaction score: 100.0
+Passenger 43: INJECTED AT 285.0s and DELIVERED in 202.792s
+  Satisfaction score: 100.0
+Passenger 30: INJECTED AT 214.7s and DELIVERED in 287.781s
+  Satisfaction score: 100.0
+Passenger 29: INJECTED AT 206.4s and DELIVERED in 297.43s
+  Satisfaction score: 100.0
+Passenger 39: INJECTED AT 263.399999999s and DELIVERED in 254.818000001s
+  Satisfaction score: 100.0
+Passenger 71: INJECTED AT 459.1s and DELIVERED in 60.685s
+  Satisfaction score: 100.0
+Passenger 48: INJECTED AT 311.4s and DELIVERED in 223.762s
+  Satisfaction score: 100.0
+Passenger 42: INJECTED AT 280.3s and DELIVERED in 255.524s
+  Satisfaction score: 100.0
+Passenger 60: INJECTED AT 399.6s and DELIVERED in 137.038s
+  Satisfaction score: 100.0
+Passenger 77: INJECTED AT 484.2s and DELIVERED in 67.844s
+  Satisfaction score: 100.0
+Passenger 67: INJECTED AT 442.6s and DELIVERED in 141.499s
+  Satisfaction score: 100.0
+Passenger 75: INJECTED AT 469.8s and DELIVERED in 133.229s
+  Satisfaction score: 100.0
+Passenger 87: INJECTED AT 526.5s and DELIVERED in 92.399s
+  Satisfaction score: 100.0
+Passenger 41: INJECTED AT 279.8s and DELIVERED in 383.256s
+  Satisfaction score: 100.0
+Passenger 93: INJECTED AT 549.8s and DELIVERED in 145.34s
+  Satisfaction score: 100.0
+Passenger 72: INJECTED AT 461.1s and DELIVERED in 235.911s
+  Satisfaction score: 100.0
+Passenger 78: INJECTED AT 488.6s and DELIVERED in 223.513s
+  Satisfaction score: 100.0
+Passenger 58: INJECTED AT 385.3s and DELIVERED in 328.401s
+  Satisfaction score: 100.0
+Passenger 92: INJECTED AT 543.5s and DELIVERED in 193.621s
+  Satisfaction score: 100.0
+Passenger 114: INJECTED AT 646.4s and DELIVERED in 92.8s
+  Satisfaction score: 100.0
+Passenger 81: INJECTED AT 493.2s and DELIVERED in 247.828s
+  Satisfaction score: 100.0
+Passenger 88: INJECTED AT 528.1s and DELIVERED in 214.887s
+  Satisfaction score: 100.0
+Passenger 115: INJECTED AT 653.0s and DELIVERED in 95.85s
+  Satisfaction score: 100.0
+Passenger 124: INJECTED AT 699.0s and DELIVERED in 63.933s
+  Satisfaction score: 100.0
+Passenger 94: INJECTED AT 551.8s and DELIVERED in 212.967s
+  Satisfaction score: 100.0
+Passenger 96: INJECTED AT 560.4s and DELIVERED in 205.548s
+  Satisfaction score: 100.0
+Passenger 134: INJECTED AT 749.0s and DELIVERED in 19.736s
+  Satisfaction score: 100.0
+Passenger 130: INJECTED AT 731.4s and DELIVERED in 46.768s
+  Satisfaction score: 100.0
+Passenger 61: INJECTED AT 409.5s and DELIVERED in 369.81s
+  Satisfaction score: 100.0
+Passenger 97: INJECTED AT 565.9s and DELIVERED in 215.341s
+  Satisfaction score: 100.0
+Passenger 109: INJECTED AT 622.9s and DELIVERED in 159.931s
+  Satisfaction score: 100.0
+Passenger 100: INJECTED AT 578.5s and DELIVERED in 249.381s
+  Satisfaction score: 100.0
+Passenger 107: INJECTED AT 615.2s and DELIVERED in 214.526s
+  Satisfaction score: 100.0
+Passenger 148: INJECTED AT 799.8s and DELIVERED in 33.042s
+  Satisfaction score: 100.0
+Passenger 102: INJECTED AT 593.8s and DELIVERED in 250.044s
+  Satisfaction score: 100.0
+Passenger 135: INJECTED AT 749.7s and DELIVERED in 111.447s
+  Satisfaction score: 100.0
+Passenger 140: INJECTED AT 764.2s and DELIVERED in 98.177s
+  Satisfaction score: 100.0
+Passenger 139: INJECTED AT 760.8s and DELIVERED in 115.833s
+  Satisfaction score: 100.0
+Passenger 47: INJECTED AT 309.4s and DELIVERED in 631.521s
+  Satisfaction score: 100.0
+Passenger 89: INJECTED AT 534.2s and DELIVERED in 408.511s
+  Satisfaction score: 100.0
+Passenger 113: INJECTED AT 638.8s and DELIVERED in 342.654s
+  Satisfaction score: 100.0
+Passenger 126: INJECTED AT 710.1s and DELIVERED in 273.316s
+  Satisfaction score: 100.0
+Passenger 145: INJECTED AT 789.3s and DELIVERED in 208.441s
+  Satisfaction score: 100.0
+Passenger 133: INJECTED AT 745.7s and DELIVERED in 268.764s
+  Satisfaction score: 100.0
+Passenger 108: INJECTED AT 616.3s and DELIVERED in 414.509s
+  Satisfaction score: 100.0
+Passenger 152: INJECTED AT 823.6s and DELIVERED in 209.319s
+  Satisfaction score: 100.0
+Passenger 105: INJECTED AT 610.8s and DELIVERED in 424.131s
+  Satisfaction score: 100.0
+Passenger 79: INJECTED AT 489.6s and DELIVERED in 546.815s
+  Satisfaction score: 100.0
+Passenger 32: INJECTED AT 234.6s and DELIVERED in 803.156s
+  Satisfaction score: 100.0
+Passenger 161: INJECTED AT 864.7s and DELIVERED in 199.864s
+  Satisfaction score: 100.0
+Passenger 170: INJECTED AT 914.0s and DELIVERED in 183.387s
+  Satisfaction score: 100.0
+Passenger 165: INJECTED AT 878.4s and DELIVERED in 234.56s
+  Satisfaction score: 100.0
+Passenger 185: INJECTED AT 985.4s and DELIVERED in 129.586s
+  Satisfaction score: 100.0
+Passenger 155: INJECTED AT 836.4s and DELIVERED in 293.388s
+  Satisfaction score: 100.0
+Passenger 177: INJECTED AT 941.6s and DELIVERED in 189.363s
+  Satisfaction score: 100.0
+Passenger 167: INJECTED AT 890.7s and DELIVERED in 255.326s
+  Satisfaction score: 100.0
+Passenger 66: INJECTED AT 433.2s and DELIVERED in 737.95s
+  Satisfaction score: 100.0
+Passenger 178: INJECTED AT 944.8s and DELIVERED in 227.931s
+  Satisfaction score: 100.0
+Passenger 54: INJECTED AT 355.9s and DELIVERED in 844.479s
+  Satisfaction score: 100.0
+Passenger 147: INJECTED AT 792.9s and DELIVERED in 423.181s
+  Satisfaction score: 100.0
+Passenger 168: INJECTED AT 895.5s and DELIVERED in 322.409s
+  Satisfaction score: 100.0
+Passenger 150: INJECTED AT 813.5s and DELIVERED in 427.531s
+  Satisfaction score: 100.0
+Passenger 184: INJECTED AT 979.4s and DELIVERED in 278.075s
+  Satisfaction score: 100.0
+Passenger 199: INJECTED AT 1070.8s and DELIVERED in 187.983s
+  Satisfaction score: 100.0
+Passenger 80: INJECTED AT 491.3s and DELIVERED in 782.341s
+  Satisfaction score: 100.0
+Passenger 212: INJECTED AT 1124.0s and DELIVERED in 149.739s
+  Satisfaction score: 100.0
+Passenger 95: INJECTED AT 559.0s and DELIVERED in 716.491s
+  Satisfaction score: 100.0
+Passenger 237: INJECTED AT 1251.1s and DELIVERED in 24.59s
+  Satisfaction score: 100.0
+Passenger 73: INJECTED AT 463.6s and DELIVERED in 813.633s
+  Satisfaction score: 100.0
+Passenger 236: INJECTED AT 1243.5s and DELIVERED in 37.784s
+  Satisfaction score: 100.0
+Passenger 205: INJECTED AT 1094.5s and DELIVERED in 205.393s
+  Satisfaction score: 100.0
+Passenger 200: INJECTED AT 1075.599999999s and DELIVERED in 226.046000001s
+  Satisfaction score: 100.0
+Passenger 198: INJECTED AT 1062.9s and DELIVERED in 240.703s
+  Satisfaction score: 100.0
+Passenger 189: INJECTED AT 1008.4s and DELIVERED in 296.963s
+  Satisfaction score: 100.0
+Passenger 251: INJECTED AT 1321.6s and DELIVERED in 29.424s
+  Satisfaction score: 100.0
+Passenger 224: INJECTED AT 1171.1s and DELIVERED in 194.011s
+  Satisfaction score: 100.0
+Passenger 220: INJECTED AT 1153.5s and DELIVERED in 227.937s
+  Satisfaction score: 100.0
+Passenger 219: INJECTED AT 1152.1s and DELIVERED in 246.233s
+  Satisfaction score: 100.0
+Passenger 173: INJECTED AT 923.5s and DELIVERED in 525.39s
+  Satisfaction score: 100.0
+Passenger 160: INJECTED AT 856.1s and DELIVERED in 628.123s
+  Satisfaction score: 100.0
+Passenger 8: INJECTED AT 108.1s and DELIVERED in 1377.645s
+  Satisfaction score: 100.0
+Passenger 122: INJECTED AT 697.0s and DELIVERED in 789.927s
+  Satisfaction score: 100.0
+Passenger 190: INJECTED AT 1017.4s and DELIVERED in 482.571s
+  Satisfaction score: 100.0
+Passenger 257: INJECTED AT 1362.4s and DELIVERED in 139.085s
+  Satisfaction score: 100.0
+Passenger 241: INJECTED AT 1270.3s and DELIVERED in 232.638s
+  Satisfaction score: 100.0
+Passenger 259: INJECTED AT 1373.1s and DELIVERED in 132.646s
+  Satisfaction score: 100.0
+Passenger 99: INJECTED AT 574.0s and DELIVERED in 942.375s
+  Satisfaction score: 100.0
+Passenger 179: INJECTED AT 946.2s and DELIVERED in 571.423s
+  Satisfaction score: 100.0
+Passenger 76: INJECTED AT 474.3s and DELIVERED in 1058.744s
+  Satisfaction score: 100.0
+Passenger 249: INJECTED AT 1311.3s and DELIVERED in 223.106s
+  Satisfaction score: 100.0
+Passenger 272: INJECTED AT 1441.1s and DELIVERED in 174.781s
+  Satisfaction score: 100.0
+Passenger 265: INJECTED AT 1408.0s and DELIVERED in 223.578s
+  Satisfaction score: 100.0
+Passenger 283: INJECTED AT 1505.8s and DELIVERED in 129.308s
+  Satisfaction score: 100.0
+Passenger 279: INJECTED AT 1485.8s and DELIVERED in 161.878s
+  Satisfaction score: 100.0
+Passenger 169: INJECTED AT 904.9s and DELIVERED in 785.164s
+  Satisfaction score: 100.0
+Passenger 235: INJECTED AT 1234.3s and DELIVERED in 457.845s
+  Satisfaction score: 100.0
+Passenger 68: INJECTED AT 445.4s and DELIVERED in 1269.081s
+  Satisfaction score: 100.0
+Passenger 234: INJECTED AT 1226.1s and DELIVERED in 504.508s
+  Satisfaction score: 100.0
+Passenger 284: INJECTED AT 1507.0s and DELIVERED in 225.523s
+  Satisfaction score: 100.0
+Passenger 131: INJECTED AT 738.0s and DELIVERED in 1009.184s
+  Satisfaction score: 100.0
+Passenger 318: INJECTED AT 1686.3s and DELIVERED in 62.131s
+  Satisfaction score: 100.0
+Passenger 304: INJECTED AT 1599.4s and DELIVERED in 151.692s
+  Satisfaction score: 100.0
+Passenger 297: INJECTED AT 1566.4s and DELIVERED in 197.786s
+  Satisfaction score: 100.0
+Passenger 243: INJECTED AT 1275.9s and DELIVERED in 488.446s
+  Satisfaction score: 100.0
+Passenger 123: INJECTED AT 697.5s and DELIVERED in 1067.886s
+  Satisfaction score: 100.0
+Passenger 263: INJECTED AT 1399.7s and DELIVERED in 367.724s
+  Satisfaction score: 100.0
+Passenger 204: INJECTED AT 1091.4s and DELIVERED in 677.153s
+  Satisfaction score: 100.0
+Passenger 311: INJECTED AT 1641.7s and DELIVERED in 130.102s
+  Satisfaction score: 100.0
+Passenger 307: INJECTED AT 1615.4s and DELIVERED in 174.364s
+  Satisfaction score: 100.0
+Passenger 303: INJECTED AT 1596.0s and DELIVERED in 194.905s
+  Satisfaction score: 100.0
+Passenger 323: INJECTED AT 1713.1s and DELIVERED in 79.835s
+  Satisfaction score: 100.0
+Passenger 288: INJECTED AT 1526.8s and DELIVERED in 268.109s
+  Satisfaction score: 100.0
+Passenger 111: INJECTED AT 629.5s and DELIVERED in 1166.782s
+  Satisfaction score: 50.0
+    @1693.442000000: 0.50 After the car came by 4 times without showing arrows compatible with UP, finally gave up and got on anyway.
+Passenger 336: INJECTED AT 1773.0s and DELIVERED in 34.122s
+  Satisfaction score: 100.0
+Passenger 324: INJECTED AT 1716.4s and DELIVERED in 124.446s
+  Satisfaction score: 100.0
+Passenger 301: INJECTED AT 1587.0s and DELIVERED in 269.743s
+  Satisfaction score: 100.0
+Passenger 331: INJECTED AT 1753.4s and DELIVERED in 106.216s
+  Satisfaction score: 100.0
+Passenger 332: INJECTED AT 1753.6s and DELIVERED in 122.68s
+  Satisfaction score: 100.0
+Passenger 188: INJECTED AT 999.4s and DELIVERED in 909.249s
+  Satisfaction score: 100.0
+Passenger 132: INJECTED AT 744.3s and DELIVERED in 1165.529s
+  Satisfaction score: 100.0
+Passenger 222: INJECTED AT 1161.1s and DELIVERED in 750.793s
+  Satisfaction score: 100.0
+Passenger 247: INJECTED AT 1299.6s and DELIVERED in 634.619s
+  Satisfaction score: 100.0
+Passenger 253: INJECTED AT 1338.0s and DELIVERED in 628.709s
+  Satisfaction score: 100.0
+Passenger 149: INJECTED AT 805.4s and DELIVERED in 1177.759s
+  Satisfaction score: 50.0
+    @1842.259000000: 0.50 After the car came by 4 times without showing arrows compatible with UP, finally gave up and got on anyway.
+Passenger 50: INJECTED AT 327.7s and DELIVERED in 1672.439s
+  Satisfaction score: 100.0
+Passenger 372: INJECTED AT 1944.0s and DELIVERED in 56.187s
+  Satisfaction score: 100.0
+Passenger 269: INJECTED AT 1423.5s and DELIVERED in 578.16s
+  Satisfaction score: 100.0
+Passenger 330: INJECTED AT 1752.6s and DELIVERED in 249.825s
+  Satisfaction score: 100.0
+Passenger 346: INJECTED AT 1805.1s and DELIVERED in 199.269s
+  Satisfaction score: 100.0
+Passenger 70: INJECTED AT 455.1s and DELIVERED in 1551.04s
+  Satisfaction score: 50.0
+    @1873.480000000: 0.50 After the car came by 4 times without showing arrows compatible with UP, finally gave up and got on anyway.
+Passenger 277: INJECTED AT 1472.7s and DELIVERED in 543.745s
+  Satisfaction score: 100.0
+Passenger 362: INJECTED AT 1893.3s and DELIVERED in 125.338s
+  Satisfaction score: 100.0
+Passenger 381: INJECTED AT 1999.5s and DELIVERED in 34.154s
+  Satisfaction score: 100.0
+Passenger 374: INJECTED AT 1960.9s and DELIVERED in 87.822s
+  Satisfaction score: 100.0
+Passenger 373: INJECTED AT 1953.0s and DELIVERED in 112.136s
+  Satisfaction score: 100.0
+Passenger 355: INJECTED AT 1850.9s and DELIVERED in 215.509s
+  Satisfaction score: 100.0
+Passenger 357: INJECTED AT 1864.6s and DELIVERED in 203.68s
+  Satisfaction score: 100.0
+Passenger 390: INJECTED AT 2036.3s and DELIVERED in 34.612s
+  Satisfaction score: 100.0
+Passenger 354: INJECTED AT 1850.0s and DELIVERED in 231.949s
+  Satisfaction score: 100.0
+Passenger 382: INJECTED AT 2000.3s and DELIVERED in 84.642s
+  Satisfaction score: 100.0
+Passenger 23: INJECTED AT 176.1s and DELIVERED in 1948.762s
+  Satisfaction score: 100.0
+Passenger 300: INJECTED AT 1583.0s and DELIVERED in 558.257s
+  Satisfaction score: 100.0
+Passenger 375: INJECTED AT 1968.7s and DELIVERED in 189.744s
+  Satisfaction score: 100.0
+Passenger 280: INJECTED AT 1490.0s and DELIVERED in 684.544s
+  Satisfaction score: 100.0
+Passenger 151: INJECTED AT 818.0s and DELIVERED in 1357.974s
+  Satisfaction score: 100.0
+Passenger 380: INJECTED AT 1992.9s and DELIVERED in 198.84s
+  Satisfaction score: 100.0
+Passenger 369: INJECTED AT 1928.5s and DELIVERED in 278.77s
+  Satisfaction score: 100.0
+Passenger 351: INJECTED AT 1834.5s and DELIVERED in 373.116s
+  Satisfaction score: 100.0
+Passenger 334: INJECTED AT 1764.4s and DELIVERED in 444.671s
+  Satisfaction score: 100.0
+Passenger 356: INJECTED AT 1855.8s and DELIVERED in 353.696s
+  Satisfaction score: 100.0
+Passenger 293: INJECTED AT 1546.9s and DELIVERED in 664.582s
+  Satisfaction score: 100.0
+Passenger 378: INJECTED AT 1981.8s and DELIVERED in 242.694s
+  Satisfaction score: 100.0
+Passenger 103: INJECTED AT 598.0s and DELIVERED in 1628.203s
+  Satisfaction score: 100.0
+Passenger 231: INJECTED AT 1206.8s and DELIVERED in 1047.16s
+  Satisfaction score: 100.0
+Passenger 83: INJECTED AT 505.9s and DELIVERED in 1765.8s
+  Satisfaction score: 100.0
+Passenger 339: INJECTED AT 1781.6s and DELIVERED in 508.224s
+  Satisfaction score: 100.0
+Passenger 387: INJECTED AT 2026.1s and DELIVERED in 303.21s
+  Satisfaction score: 100.0
+Passenger 216: INJECTED AT 1142.1s and DELIVERED in 1189.197s
+  Satisfaction score: 100.0
+Passenger 252: INJECTED AT 1329.9s and DELIVERED in 1015.434s
+  Satisfaction score: 100.0
+Passenger 270: INJECTED AT 1425.4s and DELIVERED in 921.911s
+  Satisfaction score: 100.0
+Passenger 273: INJECTED AT 1447.3s and DELIVERED in 901.853s
+  Satisfaction score: 100.0
+Passenger 298: INJECTED AT 1574.8s and DELIVERED in 775.995s
+  Satisfaction score: 100.0
+Passenger 338: INJECTED AT 1778.5s and DELIVERED in 583.667s
+  Satisfaction score: 100.0
+Passenger 157: INJECTED AT 843.6s and DELIVERED in 1518.727s
+  Satisfaction score: 100.0
+Passenger 264: INJECTED AT 1407.4s and DELIVERED in 956.373s
+  Satisfaction score: 100.0
+Passenger 176: INJECTED AT 938.6s and DELIVERED in 1470.411s
+  Satisfaction score: 100.0
+Passenger 309: INJECTED AT 1630.4s and DELIVERED in 811.109s
+  Satisfaction score: 100.0
+Passenger 335: INJECTED AT 1772.6s and DELIVERED in 670.42s
+  Satisfaction score: 100.0
+Passenger 62: INJECTED AT 416.3s and DELIVERED in 2043.265s
+  Satisfaction score: 100.0
+Passenger 286: INJECTED AT 1517.5s and DELIVERED in 943.402s
+  Satisfaction score: 100.0
+Passenger 225: INJECTED AT 1176.0s and DELIVERED in 1286.405s
+  Satisfaction score: 100.0
+Passenger 316: INJECTED AT 1669.9s and DELIVERED in 806.398s
+  Satisfaction score: 100.0
+Passenger 127: INJECTED AT 713.6s and DELIVERED in 1764.697s
+  Satisfaction score: 25.0
+    @1918.577000000: 0.50 After the car came by 5 times without showing arrows compatible with UP, finally gave up and got on anyway.
+    @2410.957000000: 0.50 After the car came by 5 times without showing arrows compatible with UP, finally gave up and got on anyway.
+Passenger 141: INJECTED AT 770.0s and DELIVERED in 1710.056s
+  Satisfaction score: 100.0
+Passenger 377: INJECTED AT 1973.5s and DELIVERED in 518.827s
+  Satisfaction score: 100.0
+Passenger 305: INJECTED AT 1604.6s and DELIVERED in 888.851s
+  Satisfaction score: 100.0
+Passenger 275: INJECTED AT 1460.0s and DELIVERED in 1035.414s
+  Satisfaction score: 100.0
+Passenger 186: INJECTED AT 993.2s and DELIVERED in 1545.368s
+  Satisfaction score: 100.0
+Passenger 302: INJECTED AT 1592.6s and DELIVERED in 963.419s
+  Satisfaction score: 100.0
+Passenger 361: INJECTED AT 1890.9s and DELIVERED in 681.4s
+  Satisfaction score: 100.0
+Passenger 217: INJECTED AT 1144.6s and DELIVERED in 1444.171s
+  Satisfaction score: 100.0
+Passenger 290: INJECTED AT 1532.6s and DELIVERED in 1072.095s
+  Satisfaction score: 100.0
+Passenger 271: INJECTED AT 1433.5s and DELIVERED in 1188.365s
+  Satisfaction score: 100.0
+Passenger 313: INJECTED AT 1653.3s and DELIVERED in 968.581s
+  Satisfaction score: 100.0
+Passenger 202: INJECTED AT 1085.8s and DELIVERED in 1537.818s
+  Satisfaction score: 100.0
+Passenger 327: INJECTED AT 1734.2s and DELIVERED in 890.595s
+  Satisfaction score: 100.0
+Passenger 230: INJECTED AT 1205.2s and DELIVERED in 1421.234s
+  Satisfaction score: 100.0
+Passenger 125: INJECTED AT 706.3s and DELIVERED in 1931.7s
+  Satisfaction score: 100.0
+Passenger 194: INJECTED AT 1042.2s and DELIVERED in 1597.694s
+  Satisfaction score: 100.0
+Passenger 207: INJECTED AT 1098.3s and DELIVERED in 1587.98s
+  Satisfaction score: 100.0
+Passenger 69: INJECTED AT 445.9s and DELIVERED in 2241.905s
+  Satisfaction score: 100.0
+Passenger 17: INJECTED AT 147.6s and DELIVERED in 2563.164s
+  Satisfaction score: 100.0
+Passenger 386: INJECTED AT 2016.1s and DELIVERED in 696.305s
+  Satisfaction score: 100.0
+Passenger 191: INJECTED AT 1022.6s and DELIVERED in 1705.235s
+  Satisfaction score: 100.0
+Passenger 317: INJECTED AT 1678.1s and DELIVERED in 1051.702s
+  Satisfaction score: 100.0
+Passenger 65: INJECTED AT 429.1s and DELIVERED in 2302.812s
+  Satisfaction score: 100.0
+Passenger 101: INJECTED AT 587.0s and DELIVERED in 2146.978s
+  Satisfaction score: 100.0
+Passenger 154: INJECTED AT 829.5s and DELIVERED in 1922.792s
+  Satisfaction score: 100.0
+Passenger 262: INJECTED AT 1391.2s and DELIVERED in 1363.221s
+  Satisfaction score: 100.0
+Passenger 12: INJECTED AT 128.8s and DELIVERED in 2627.359s
+  Satisfaction score: 100.0
+Passenger 261: INJECTED AT 1388.0s and DELIVERED in 1382.083s
+  Satisfaction score: 100.0
+Passenger 347: INJECTED AT 1813.7s and DELIVERED in 973.197s
+  Satisfaction score: 100.0
+Passenger 296: INJECTED AT 1563.8s and DELIVERED in 1224.392s
+  Satisfaction score: 100.0
+Passenger 349: INJECTED AT 1824.3s and DELIVERED in 965.912s
+  Satisfaction score: 100.0
+Passenger 256: INJECTED AT 1353.6s and DELIVERED in 1497.941s
+  Satisfaction score: 100.0
+Passenger 274: INJECTED AT 1450.8s and DELIVERED in 1416.107s
+  Satisfaction score: 100.0
+Passenger 379: INJECTED AT 1990.9s and DELIVERED in 892.863s
+  Satisfaction score: 100.0
+Passenger 250: INJECTED AT 1316.0s and DELIVERED in 1583.891s
+  Satisfaction score: 100.0
+Passenger 276: INJECTED AT 1468.5s and DELIVERED in 1431.635s
+  Satisfaction score: 100.0
+Passenger 376: INJECTED AT 1973.4s and DELIVERED in 927.762s
+  Satisfaction score: 100.0
+Passenger 221: INJECTED AT 1155.8s and DELIVERED in 1760.668s
+  Satisfaction score: 100.0
+Passenger 183: INJECTED AT 975.5s and DELIVERED in 1942.371s
+  Satisfaction score: 100.0
+Passenger 246: INJECTED AT 1292.2s and DELIVERED in 1627.57s
+  Satisfaction score: 100.0
+Passenger 195: INJECTED AT 1043.2s and DELIVERED in 1920.76s
+  Satisfaction score: 100.0
+Passenger 233: INJECTED AT 1217.9s and DELIVERED in 1766.444s
+  Satisfaction score: 100.0
+Passenger 90: INJECTED AT 535.1s and DELIVERED in 2465.644s
+  Satisfaction score: 100.0
+Passenger 86: INJECTED AT 522.2s and DELIVERED in 2478.875s
+  Satisfaction score: 100.0
+Passenger 162: INJECTED AT 870.9s and DELIVERED in 2131.467s
+  Satisfaction score: 100.0
+Passenger 82: INJECTED AT 498.2s and DELIVERED in 2504.606s
+  Satisfaction score: 12.5
+    @2693.106000000: 0.50 After the car came by 5 times without showing arrows compatible with UP, finally gave up and got on anyway.
+    @2833.086000000: 0.50 After the car came by 5 times without showing arrows compatible with UP, finally gave up and got on anyway.
+    @2965.586000000: 0.50 After the car came by 5 times without showing arrows compatible with UP, finally gave up and got on anyway.
+Passenger 38: INJECTED AT 262.8s and DELIVERED in 2741.271s
+  Satisfaction score: 100.0
+Passenger 310: INJECTED AT 1638.1s and DELIVERED in 1368.076s
+  Satisfaction score: 100.0
+Passenger 218: INJECTED AT 1150.5s and DELIVERED in 1857.703s
+  Satisfaction score: 100.0
+Passenger 153: INJECTED AT 827.3s and DELIVERED in 2199.064s
+  Satisfaction score: 100.0
+Passenger 278: INJECTED AT 1479.3s and DELIVERED in 1596.347s
+  Satisfaction score: 100.0
+Passenger 345: INJECTED AT 1803.4s and DELIVERED in 1287.754s
+  Satisfaction score: 100.0
+Passenger 244: INJECTED AT 1276.5s and DELIVERED in 1816.772s
+  Satisfaction score: 100.0
+Passenger 294: INJECTED AT 1553.8s and DELIVERED in 1555.919s
+  Satisfaction score: 100.0
+Passenger 174: INJECTED AT 932.4s and DELIVERED in 2178.846s
+  Satisfaction score: 100.0
+Passenger 266: INJECTED AT 1408.1s and DELIVERED in 1717.685s
+  Satisfaction score: 100.0
+Passenger 258: INJECTED AT 1364.7s and DELIVERED in 1778.046s
+  Satisfaction score: 100.0
+Passenger 248: INJECTED AT 1309.0s and DELIVERED in 1833.883s
+  Satisfaction score: 100.0
+Passenger 144: INJECTED AT 787.5s and DELIVERED in 2357.099s
+  Satisfaction score: 100.0
+Passenger 333: INJECTED AT 1756.4s and DELIVERED in 1432.417s
+  Satisfaction score: 100.0
+Passenger 260: INJECTED AT 1382.8s and DELIVERED in 1822.479s
+  Satisfaction score: 100.0
+Passenger 328: INJECTED AT 1743.0s and DELIVERED in 1478.579s
+  Satisfaction score: 100.0
+Passenger 163: INJECTED AT 871.1s and DELIVERED in 2366.971s
+  Satisfaction score: 100.0
+Passenger 329: INJECTED AT 1745.0s and DELIVERED in 1494.355s
+  Satisfaction score: 100.0
+Passenger 197: INJECTED AT 1053.2s and DELIVERED in 2187.643s
+  Satisfaction score: 100.0
+Passenger 208: INJECTED AT 1105.1s and DELIVERED in 2151.263s
+  Satisfaction score: 100.0
+Passenger 35: INJECTED AT 250.5s and DELIVERED in 3007.57s
+  Satisfaction score: 100.0
+Passenger 344: INJECTED AT 1800.4s and DELIVERED in 1459.181s
+  Satisfaction score: 100.0
+Passenger 358: INJECTED AT 1872.8s and DELIVERED in 1431.633s
+  Satisfaction score: 100.0
+Passenger 120: INJECTED AT 684.7s and DELIVERED in 2621.623s
+  Satisfaction score: 100.0
+Passenger 352: INJECTED AT 1836.8s and DELIVERED in 1484.176s
+  Satisfaction score: 100.0
+Passenger 44: INJECTED AT 294.6s and DELIVERED in 3028.434s
+  Satisfaction score: 100.0
+Passenger 211: INJECTED AT 1122.6s and DELIVERED in 2201.831s
+  Satisfaction score: 100.0
+Passenger 370: INJECTED AT 1931.0s and DELIVERED in 1405.865s
+  Satisfaction score: 100.0
+Passenger 226: INJECTED AT 1181.1s and DELIVERED in 2157.178s
+  Satisfaction score: 100.0
+Passenger 192: INJECTED AT 1032.4s and DELIVERED in 2321.411s
+  Satisfaction score: 100.0
+Passenger 315: INJECTED AT 1666.6s and DELIVERED in 1688.449s
+  Satisfaction score: 100.0
+Passenger 116: INJECTED AT 660.2s and DELIVERED in 2738.375s
+  Satisfaction score: 100.0
+Passenger 366: INJECTED AT 1913.4s and DELIVERED in 1487.196s
+  Satisfaction score: 100.0
+Passenger 159: INJECTED AT 847.6s and DELIVERED in 2567.463s
+  Satisfaction score: 100.0
+Passenger 137: INJECTED AT 758.9s and DELIVERED in 2672.465s
+  Satisfaction score: 100.0
+Passenger 210: INJECTED AT 1120.2s and DELIVERED in 2313.189s
+  Satisfaction score: 100.0
+Passenger 203: INJECTED AT 1086.4s and DELIVERED in 2348.713s
+  Satisfaction score: 100.0
+Passenger 367: INJECTED AT 1921.2s and DELIVERED in 1526.153s
+  Satisfaction score: 100.0
+Passenger 214: INJECTED AT 1135.7s and DELIVERED in 2328.395s
+  Satisfaction score: 100.0
+Passenger 326: INJECTED AT 1731.3s and DELIVERED in 1749.155s
+  Satisfaction score: 100.0
+Passenger 295: INJECTED AT 1560.4s and DELIVERED in 1967.03s
+  Satisfaction score: 100.0
+Passenger 368: INJECTED AT 1928.4s and DELIVERED in 1600.182s
+  Satisfaction score: 100.0
+Passenger 27: INJECTED AT 201.7s and DELIVERED in 3328.753s
+  Satisfaction score: 100.0
+Passenger 320: INJECTED AT 1698.3s and DELIVERED in 1845.252s
+  Satisfaction score: 100.0
+Passenger 26: INJECTED AT 198.2s and DELIVERED in 3364.414s
+  Satisfaction score: 100.0
+Passenger 312: INJECTED AT 1650.0s and DELIVERED in 1914.07s
+  Satisfaction score: 100.0
+Passenger 106: INJECTED AT 613.0s and DELIVERED in 2965.693s
+  Satisfaction score: 100.0
+Passenger 59: INJECTED AT 391.0s and DELIVERED in 3204.225s
+  Satisfaction score: 100.0
+Passenger 365: INJECTED AT 1905.4s and DELIVERED in 1691.256s
+  Satisfaction score: 100.0
+Passenger 388: INJECTED AT 2034.9s and DELIVERED in 1583.43s
+  Satisfaction score: 100.0
+Passenger 289: INJECTED AT 1531.5s and DELIVERED in 2110.785s
+  Satisfaction score: 100.0
+Passenger 353: INJECTED AT 1841.2s and DELIVERED in 1802.946s
+  Satisfaction score: 100.0
+Passenger 299: INJECTED AT 1579.2s and DELIVERED in 2081.105s
+  Satisfaction score: 100.0
+Passenger 136: INJECTED AT 750.1s and DELIVERED in 2911.552s
+  Satisfaction score: 100.0
+Passenger 360: INJECTED AT 1885.7s and DELIVERED in 1791.919s
+  Satisfaction score: 100.0
+Passenger 110: INJECTED AT 629.0s and DELIVERED in 3065.773s
+  Satisfaction score: 100.0
+Passenger 384: INJECTED AT 2007.2s and DELIVERED in 1703.201s
+  Satisfaction score: 100.0
+Passenger 337: INJECTED AT 1776.7s and DELIVERED in 1935.574s
+  Satisfaction score: 100.0
+Passenger 227: INJECTED AT 1190.2s and DELIVERED in 2523.223s
+  Satisfaction score: 100.0
+Passenger 391: INJECTED AT 2042.0s and DELIVERED in 1717.542s
+  Satisfaction score: 100.0
+Passenger 182: INJECTED AT 966.4s and DELIVERED in 2809.419s
+  Satisfaction score: 100.0
+Passenger 350: INJECTED AT 1830.9s and DELIVERED in 1946.307s
+  Satisfaction score: 100.0
+Passenger 46: INJECTED AT 303.5s and DELIVERED in 3475.635s
+  Satisfaction score: 100.0
+Passenger 180: INJECTED AT 954.6s and DELIVERED in 2838.169s
+  Satisfaction score: 100.0
+Passenger 291: INJECTED AT 1537.1s and DELIVERED in 2271.481s
+  Satisfaction score: 100.0
+Passenger 389: INJECTED AT 2035.8s and DELIVERED in 1774.714s
+  Satisfaction score: 100.0
+Passenger 56: INJECTED AT 369.4s and DELIVERED in 3456.715s
+  Satisfaction score: 100.0
+Passenger 385: INJECTED AT 2015.8s and DELIVERED in 1826.7s
+  Satisfaction score: 100.0
+Passenger 314: INJECTED AT 1657.1s and DELIVERED in 2231.565s
+  Satisfaction score: 100.0
+Passenger 359: INJECTED AT 1881.0s and DELIVERED in 2023.987s
+  Satisfaction score: 100.0
+Passenger 223: INJECTED AT 1169.2s and DELIVERED in 2751.459s
+  Satisfaction score: 100.0
+Passenger 128: INJECTED AT 719.7s and DELIVERED in 3202.952s
+  Satisfaction score: 100.0
+Passenger 52: INJECTED AT 344.2s and DELIVERED in 3594.678s
+  Satisfaction score: 100.0
+Passenger 268: INJECTED AT 1415.7s and DELIVERED in 2524.638s
+  Satisfaction score: 100.0
+Passenger 40: INJECTED AT 270.399999999s and DELIVERED in 3685.551000001s
+  Satisfaction score: 100.0
+Passenger 238: INJECTED AT 1256.0s and DELIVERED in 2701.679s
+  Satisfaction score: 100.0
+Passenger 325: INJECTED AT 1722.2s and DELIVERED in 2249.609s
+  Satisfaction score: 100.0
+Passenger 292: INJECTED AT 1543.9s and DELIVERED in 2478.822s
+  Satisfaction score: 100.0
+Passenger 164: INJECTED AT 872.6s and DELIVERED in 3152.076s
+  Satisfaction score: 100.0
+Passenger 342: INJECTED AT 1791.0s and DELIVERED in 2234.913s
+  Satisfaction score: 100.0
+Passenger 308: INJECTED AT 1622.8s and DELIVERED in 2404.555s
+  Satisfaction score: 100.0
+Passenger 31: INJECTED AT 224.6s and DELIVERED in 3814.642s
+  Satisfaction score: 100.0
+Passenger 209: INJECTED AT 1112.2s and DELIVERED in 2928.761s
+  Satisfaction score: 100.0
+Passenger 319: INJECTED AT 1689.7s and DELIVERED in 2366.899s
+  Satisfaction score: 100.0
+Passenger 363: INJECTED AT 1895.6s and DELIVERED in 2176.843s
+  Satisfaction score: 100.0
+Passenger 118: INJECTED AT 669.0s and DELIVERED in 3420.233s
+  Satisfaction score: 100.0
+Passenger 340: INJECTED AT 1783.2s and DELIVERED in 2352.672s
+  Satisfaction score: 100.0
+Passenger 166: INJECTED AT 884.8s and DELIVERED in 3252.585s
+  Satisfaction score: 100.0
+Passenger 138: INJECTED AT 759.9s and DELIVERED in 3378.835s
+  Satisfaction score: 100.0
+Passenger 228: INJECTED AT 1194.7s and DELIVERED in 2946.212s
+  Satisfaction score: 100.0
+Passenger 245: INJECTED AT 1283.1s and DELIVERED in 2869.073s
+  Satisfaction score: 100.0
+Passenger 146: INJECTED AT 792.1s and DELIVERED in 3377.013s
+  Satisfaction score: 100.0
+Passenger 171: INJECTED AT 921.6s and DELIVERED in 3264.895s
+  Satisfaction score: 100.0
+Passenger 172: INJECTED AT 922.8s and DELIVERED in 3263.79s
+  Satisfaction score: 100.0
+Passenger 121: INJECTED AT 690.5s and DELIVERED in 3497.304s
+  Satisfaction score: 100.0
+Passenger 98: INJECTED AT 566.7s and DELIVERED in 3667.321s
+  Satisfaction score: 100.0
+Passenger 158: INJECTED AT 846.8s and DELIVERED in 3389.51s
+  Satisfaction score: 100.0
+Passenger 142: INJECTED AT 778.0s and DELIVERED in 3472.53s
+  Satisfaction score: 100.0
+Passenger 282: INJECTED AT 1502.9s and DELIVERED in 2764.332s
+  Satisfaction score: 100.0
+Passenger 371: INJECTED AT 1936.2s and DELIVERED in 2348.796s
+  Satisfaction score: 100.0
+Passenger 343: INJECTED AT 1794.3s and DELIVERED in 2492.306s
+  Satisfaction score: 100.0
+Passenger 36: INJECTED AT 257.899999999s and DELIVERED in 4043.370000001s
+  Satisfaction score: 100.0
+Passenger 112: INJECTED AT 633.5s and DELIVERED in 3684.028s
+  Satisfaction score: 100.0
+Passenger 129: INJECTED AT 722.5s and DELIVERED in 3596.418s
+  Satisfaction score: 100.0
+Passenger 213: INJECTED AT 1127.4s and DELIVERED in 3238.549s
+  Satisfaction score: 100.0
+Passenger 117: INJECTED AT 664.3s and DELIVERED in 3718.415s
+  Satisfaction score: 100.0
+Passenger 175: INJECTED AT 933.3s and DELIVERED in 3465.177s
+  Satisfaction score: 100.0
+Passenger 281: INJECTED AT 1498.9s and DELIVERED in 2919.001s
+  Satisfaction score: 100.0
+Passenger 63: INJECTED AT 419.3s and DELIVERED in 4000.34s
+  Satisfaction score: 100.0
+Passenger 85: INJECTED AT 512.799999999s and DELIVERED in 3921.498000001s
+  Satisfaction score: 100.0
+Passenger 33: INJECTED AT 241.7s and DELIVERED in 4193.945s
+  Satisfaction score: 100.0
+Passenger 193: INJECTED AT 1034.9s and DELIVERED in 3402.048s
+  Satisfaction score: 100.0
+Passenger 206: INJECTED AT 1095.0s and DELIVERED in 3343.697s
+  Satisfaction score: 100.0
+Passenger 254: INJECTED AT 1344.9s and DELIVERED in 3140.881s
+  Satisfaction score: 100.0
+Passenger 181: INJECTED AT 961.0s and DELIVERED in 3526.553s
+  Satisfaction score: 100.0
+Passenger 267: INJECTED AT 1412.0s and DELIVERED in 3090.338s
+  Satisfaction score: 100.0
+Passenger 187: INJECTED AT 994.5s and DELIVERED in 3523.474s
+  Satisfaction score: 100.0
+Passenger 196: INJECTED AT 1043.599999999s and DELIVERED in 3491.068000001s
+  Satisfaction score: 100.0
+Passenger 232: INJECTED AT 1214.6s and DELIVERED in 3321.215s
+  Satisfaction score: 100.0
+Passenger 242: INJECTED AT 1275.3s and DELIVERED in 3262.421s
+  Satisfaction score: 100.0
+Passenger 321: INJECTED AT 1707.4s and DELIVERED in 2831.614s
+  Satisfaction score: 100.0
+Passenger 74: INJECTED AT 467.6s and DELIVERED in 4083.899s
+  Satisfaction score: 100.0
+Passenger 201: INJECTED AT 1083.4s and DELIVERED in 3516.116s
+  Satisfaction score: 100.0
+Passenger 91: INJECTED AT 537.5s and DELIVERED in 4063.216s
+  Satisfaction score: 100.0
+Passenger 306: INJECTED AT 1605.6s and DELIVERED in 3012.782s
+  Satisfaction score: 100.0
+Passenger 322: INJECTED AT 1713.0s and DELIVERED in 2921.474s
+  Satisfaction score: 100.0
+Passenger 229: INJECTED AT 1201.6s and DELIVERED in 3434.643s
+  Satisfaction score: 100.0
+Passenger 285: INJECTED AT 1515.5s and DELIVERED in 3122.671s
+  Satisfaction score: 100.0
+Passenger 364: INJECTED AT 1896.8s and DELIVERED in 2753.742s
+  Satisfaction score: 100.0
+Passenger 84: INJECTED AT 506.3s and DELIVERED in 4145.542s
+  Satisfaction score: 100.0
+Passenger 239: INJECTED AT 1261.5s and DELIVERED in 3405.834s
+  Satisfaction score: 100.0
+Passenger 240: INJECTED AT 1269.5s and DELIVERED in 3429.654s
+  Satisfaction score: 100.0
+Passenger 64: INJECTED AT 427.6s and DELIVERED in 4294.957s
+  Satisfaction score: 100.0
+Passenger 104: INJECTED AT 603.4s and DELIVERED in 4136.177s
+  Satisfaction score: 100.0
+Passenger 156: INJECTED AT 838.8s and DELIVERED in 3901.892s
+  Satisfaction score: 100.0
+Passenger 383: INJECTED AT 2001.2s and DELIVERED in 2740.911s
+  Satisfaction score: 100.0
+Passenger 287: INJECTED AT 1519.9s and DELIVERED in 3239.858s
+  Satisfaction score: 100.0
+Passenger 348: INJECTED AT 1815.6s and DELIVERED in 2944.368s
+  Satisfaction score: 100.0
+Passenger 255: INJECTED AT 1352.0s and DELIVERED in 3409.431s
+  Satisfaction score: 100.0
+Passenger 143: INJECTED AT 781.2s and DELIVERED in 3980.85s
+  Satisfaction score: 100.0
+Passenger 341: INJECTED AT 1787.4s and DELIVERED in 2989.159s
+  Satisfaction score: 100.0
+Passenger 119: INJECTED AT 676.7s and DELIVERED in 4139.267s
+  Satisfaction score: 100.0
+Passenger 215: INJECTED AT 1137.7s and DELIVERED in 3699.939s
+  Satisfaction score: 100.0
+Passenger 51: INJECTED AT 334.9s and DELIVERED in 4504.845s
+  Satisfaction score: 100.0
+
+Passenger Delivery Summary
+Delivered: 392
+Stranded: 0
+Total: 392
+
+Deliver Stats (lower is better):
+Average_delivery_time: 1394.378
+Maximum_delivery_time:  4504.845
+Delivery_performance_score:  10082.356
+
+Satisfaction Stats (higher is better):
+Average_satisfaction_score: 99.203
+Min_satisfaction_score:  12.500
+Satisfaction_performance_score:  409.311
+
+
+
+
+Network Utilization Summary:
+Recent: 69.50 % Max: 69.50 %  Overall:  69.50 %
+
+Monitors Warning Results: 
+RuntimeMonitor generated 0 warnings.
+
+Monitors Summmary Results: 
+R-T.6 Violations: 0
+R-T.7 Violations: 0
+R-T.8.1 Violations: 0
+R-T.8.2 Violations: 0
+R-T.8.3 Violations: 0
+R-T.9 Violations: 0
+R-T.10 Violations: 0
+

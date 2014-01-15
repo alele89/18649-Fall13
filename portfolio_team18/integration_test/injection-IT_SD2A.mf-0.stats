@@ -1,0 +1,52 @@
+18649 Fall 2013
+Team 18
+Yi Huo (yhuo)
+Mustafa Bilgen (mbilgen)
+Sairam Krishnan (sbkrishn)
+Abhijit Lele (alele)
+
+Simulator Parameters:
+Command line = -head header.txt -cf IT_SD2a.cf -mf IT_SD2a.mf
+RandomSeed = 1386533544386
+CanNetworkBitTime = 0 ns
+Effective Can Bitrate = Infinity
+Run Time = null
+Real time rate = null
+Message File = IT_SD2a.mf
+Controller File = IT_SD2a.cf
+
+Assertion Results:
+@0.21s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@4d0155fb :: getValue ?== true PASSED
+@0.21s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@65afdbbb :: getValue ?== true PASSED
+@0.21s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@7e086558 :: getFloor ?== 1 PASSED
+@0.21s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@55015495 :: getDirection ?== UP PASSED
+@0.21s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@6326d235 :: getHallway ?== FRONT PASSED
+@0.21s:  PASSED simulator.payloads.CarCallPayload$ReadableCarCallPayload@3884b2bb :: isPressed ?== false PASSED
+@0.21s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@652bce43 :: getValue ?== 5 PASSED
+@2.71s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@544928ae :: getValue ?== true PASSED
+@2.71s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@58a0ee03 :: getValue ?== true PASSED
+@2.71s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@17973271 :: getValue ?== false PASSED
+@2.71s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@34547854 :: getValue ?== false PASSED
+@2.71s:  PASSED simulator.payloads.DoorOpenPayload$ReadableDoorOpenPayload@43e27370 :: isOpen ?== false PASSED
+@2.71s:  PASSED simulator.payloads.DoorOpenPayload$ReadableDoorOpenPayload@3ee3f8b9 :: isOpen ?== false PASSED
+@3.91s:  PASSED simulator.payloads.CarCallPayload$ReadableCarCallPayload@5de2d159 :: isPressed ?== true PASSED
+@3.91s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@62b4bb65 :: getValue ?== true PASSED
+@8.81s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@38e2e4d7 :: command ?== CLOSE PASSED
+@8.81s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@38a7b68a :: command ?== CLOSE PASSED
+@8.81s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@140de537 :: command ?== STOP PASSED
+@8.81s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@15a08be5 :: command ?== STOP PASSED
+@10.51s:  PASSED simulator.payloads.DoorClosedPayload$ReadableDoorClosedPayload@1bd871 :: isClosed ?== true PASSED
+@10.51s:  PASSED simulator.payloads.DoorClosedPayload$ReadableDoorClosedPayload@67ba0609 :: isClosed ?== true PASSED
+@10.51s:  PASSED simulator.payloads.DoorClosedPayload$ReadableDoorClosedPayload@74a893ff :: isClosed ?== true PASSED
+@10.51s:  PASSED simulator.payloads.DoorClosedPayload$ReadableDoorClosedPayload@3abd6b1e :: isClosed ?== true PASSED
+@10.51s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@2964a05d :: command ?== STOP PASSED
+@10.51s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@273fe4e4 :: command ?== STOP PASSED
+@10.51s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@8c3d026 :: command ?== STOP PASSED
+@10.51s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@7e6ab533 :: command ?== STOP PASSED
+
+
+******************Summary******************
+Passed:  27
+Failed:  0
+Total :  27
+

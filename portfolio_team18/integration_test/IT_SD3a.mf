@@ -1,0 +1,76 @@
+;18649 Fall 2013
+;Team 18
+;Yi Huo (yhuo)
+;Mustafa Bilgen (mbilgen)
+;Sairam Krishnan (sbkrishn)
+;Abhijit Lele (alele)
+;
+;Integration Test for SD 3a - Tests
+
+#INCLUDE defines.mf
+
+;set up preconditions
+;hall call button is pressed
+0s I DISPATCHER_PERIOD N DESIRED_FLOOR_CAN_ID DesiredFloor = 3 FRONT UP
+0s I HALL_BUTTON_CONTROL_PERIOD N HALL_CALL_[3][FRONT][UP]_CAN_ID Boolean = true
+0s I HALL_BUTTON_CONTROL_PERIOD F HallCall 3 FRONT UP = true
+0s I DOOR_CONTROL_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = true
+0s I DOOR_CONTROL_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][RIGHT]_CAN_ID DoorClosed FRONT RIGHT = true 
+0s I DOOR_CONTROL_PERIOD N DOOR_CLOSED_SENSOR_[BACK][LEFT]_CAN_ID DoorClosed BACK LEFT = true
+0s I DOOR_CONTROL_PERIOD N DOOR_CLOSED_SENSOR_[BACK][RIGHT]_CAN_ID DoorClosed BACK RIGHT = true
+0s I AT_FLOOR_PERIOD N AT_FLOOR_[3][FRONT]_CAN_ID AtFloor 3 FRONT = false
+0s I DISPATCHER_PERIOD N DESIRED_DWELL_[FRONT]_CAN_ID DesiredDwell FRONT = 2
+0s I WEIGHT_PERIOD N CAR_WEIGHT_CAN_ID CarWeight = 200
+
+;make sure elevator is moving
+0.51s A F Drive : speed == SLOW
+0.51s A F Drive : direction == UP
+
+;#arc '1a'
+0.70s I AT_FLOOR_PERIOD N AT_FLOOR_[3][FRONT]_CAN_ID AtFloor 3 FRONT = true
+0.70s I LEVEL_SENSOR_PERIOD N LEVEL_SENSOR_[UP]_CAN_ID Leveling UP = false
+0.70s I LEVEL_SENSOR_PERIOD N LEVEL_SENSOR_[DOWN]_CAN_ID Leveling DOWN = true
+0.70s I DRIVE_PERIOD F DriveSpeed = UP 0.20
+0.70s I CAR_LEVEL_POSITION_PERIOD N CAR_LEVEL_POSITION_CAN_ID CarLevelPosition = 9800
+
+;make sure elevator is leveling
+0.91s A F Drive : speed == LEVEL
+0.91s A F Drive : direction == UP
+
+;#arc '1b'
+1.00s I LEVEL_SENSOR_PERIOD N LEVEL_SENSOR_[UP]_CAN_ID Leveling UP = true
+1.00s I LEVEL_SENSOR_PERIOD N LEVEL_SENSOR_[DOWN]_CAN_ID Leveling DOWN = true
+
+;#arc '1c'
+1.11s A F Drive : speed == STOP
+
+;#arc '1d'
+1.20s I DRIVE_CONTROL_PERIOD N DRIVE_SPEED_CAN_ID DriveSpeed = 0 STOP
+
+;#arc '2a'
+1.51s A F DoorMotor FRONT LEFT : command == OPEN
+1.51s A F DoorMotor FRONT RIGHT : command == OPEN
+1.51s A F DoorMotor BACK LEFT : command == STOP
+1.51s A F DoorMotor BACK RIGHT : command == STOP
+
+;#arc '2b/2c'
+1.70s I DOOR_CONTROL_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = false
+1.70s I DOOR_CONTROL_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][RIGHT]_CAN_ID DoorClosed FRONT RIGHT = false
+1.70s I DOOR_CONTROL_PERIOD N DOOR_OPEN_SENSOR_[FRONT][LEFT]_CAN_ID DoorOpened FRONT LEFT = true
+1.70s I DOOR_CONTROL_PERIOD N DOOR_OPEN_SENSOR_[FRONT][RIGHT]_CAN_ID DoorOpened FRONT RIGHT = true
+
+;#arc '2d/2e'
+2.71s A F CarLantern UP : lighted == true
+2.71s A F DoorMotor FRONT LEFT : command == STOP
+2.71s A F DoorMotor FRONT RIGHT : command == STOP
+2.71s A F DoorMotor BACK LEFT : command == STOP
+2.71s A F DoorMotor BACK RIGHT : command == STOP
+
+;#arc '3/4'
+;passenger gets in elevator and doors close
+4.01s A F DoorMotor FRONT LEFT : command == CLOSE
+4.01s A F DoorMotor FRONT RIGHT : command == CLOSE
+4.01s A F DoorMotor BACK LEFT : command == STOP 
+4.01s A F DoorMotor BACK RIGHT : command == STOP
+
+

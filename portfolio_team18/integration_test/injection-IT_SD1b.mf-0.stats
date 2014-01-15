@@ -1,0 +1,32 @@
+18649 Fall 2013
+Team 18
+Yi Huo (yhuo)
+Mustafa Bilgen (mbilgen)
+Sairam Krishnan (sbkrishn)
+Abhijit Lele (alele)
+
+Simulator Parameters:
+Command line = -head header.txt -cf IT_SD1b.cf -mf IT_SD1b.mf
+RandomSeed = 1386533519116
+CanNetworkBitTime = 0 ns
+Effective Can Bitrate = Infinity
+Run Time = null
+Real time rate = null
+Message File = IT_SD1b.mf
+Controller File = IT_SD1b.cf
+
+Assertion Results:
+@5.5s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@76e62093 :: command ?== CLOSE PASSED
+@5.5s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@c8bbbf4 :: command ?== CLOSE PASSED
+@6.1s:  PASSED simulator.payloads.HallLightPayload$ReadableHallLightPayload@57bfaf97 :: lighted ?== true PASSED
+@7.5s:  PASSED simulator.payloads.DoorClosedPayload$ReadableDoorClosedPayload@4d0155fb :: isClosed ?== true PASSED
+@7.5s:  PASSED simulator.payloads.DoorClosedPayload$ReadableDoorClosedPayload@65afdbbb :: isClosed ?== true PASSED
+@7.8s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@7e086558 :: command ?== STOP PASSED
+@7.8s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@55015495 :: command ?== STOP PASSED
+
+
+******************Summary******************
+Passed:  7
+Failed:  0
+Total :  7
+

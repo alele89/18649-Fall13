@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html;charset=ISO-8859-1" http-equiv="Content-Type">
+  <title>18649 - Network Schedule</title>
+</head>
+<body>
+<h1 style="text-align: center;">18649 - Network Schedule<br>
+</h1>
+    <hr style="width: 100%; height: 2px;"> 18649 Fall 2013<br>
+    Group 18 - Sairam Krishnan (sbkrishn), Yi Huo (yhuo), Abhijit Lele
+    (alele), Mustafa Bilgen (mbilgen)
+<hr style="width: 100%; height: 2px;">
+<h2>CAN Message Dictionary<br>
+</h2>
+    <table style="font-family: 'Times New Roman'; letter-spacing:
+      normal; text-indent: 0px; text-transform: none; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; orphans: 2; widows: 2; text-align:
+      left; width: 825px;" border="1" cellpadding="2" cellspacing="2">
+      <tbody>
+        <tr>
+          <td style="vertical-align: top;" bgcolor="#c0c0c0"><b>Sender Node Name</b><br></td>
+          <td style="vertical-align: top;" bgcolor="#c0c0c0"><b>Message Name</b><br></td>
+          <td style="vertical-align: top;" bgcolor="#c0c0c0"><b>Deadline (ms)</b><br></td>
+          <td style="vertical-align: top;" bgcolor="#c0c0c0"><b>Message ID</b><br></td>
+          <td style="vertical-align: top;" bgcolor="#c0c0c0"><b>Sender Node Type</b><br></td>
+          <td style="vertical-align: top;" bgcolor="#c0c0c0"><b>Replication Type</b><br></td>
+          <td style="vertical-align: top;" bgcolor="#c0c0c0"><b>Base CAN ID</b><br></td>
+        </tr>
+        <tr><td>DriveControl</td><td>mDriveSpeed</td><td>5</td><td>100</td><td>132</td><td>none</td><td>0x08648400</td></tr>        
+        <tr><td>Door Reversal Sensor</td><td>mDoorReversal</td><td>10</td><td>200</td><td>2</td><td>Hallway, side</td><td>0x08C80200</td></tr>
+        <tr><td>Level Sensor</td><td>mLevel</td><td>10</td><td>250</td><td>4</td><td>Direction</td><td>0x08FA0400</td></tr>
+        <tr><td>AtFloor Sensor</td><td>mAtFloor</td><td>50</td><td>300</td><td>6</td><td>Floor, Hallway</td><td>0x092C0600</td></tr>
+        <tr><td>CarLevelPosition Sensor</td><td>mCarLevelPosition</td><td>50</td><td>350</td><td>8</td><td>none</td><td>0x095E0800</td></tr>
+        <tr><td>Dispatcher</td><td>mDesiredDwell</td><td>50</td><td>450</td><td>136</td><td>Hallway</td><td>0x09C28800</td></tr>
+        <tr><td>Dispatcher</td><td>mDesiredFloor</td><td>50</td><td>500</td><td>136</td><td>none</td><td>0x09F48800</td></tr>
+        <tr><td>Safety Object</td><td>mEmergencyBrake</td><td>50</td><td>550</td><td>10</td><td>none</td><td>0x0A260A00</td></tr>
+        <tr><td>CarButtonControl</td><td>mCarCall</td><td>100</td><td>600</td><td>138</td><td>Floor, Hallway</td><td>0x0A588A00</td></tr>
+        <tr><td>Door Closed Sensor</td><td>mDoorClosed</td><td>100</td><td>700</td><td>12</td><td>Hallway, side</td><td>0x0ABC0C00</td></tr>
+        <tr><td>HallButtonControl</td><td>mHallCall</td><td>100</td><td>750</td><td>140</td><td>Floor, Hallway, Direction</td><td>0x0AEE8C00</td></tr>
+        <tr><td>Weight Sensor</td><td>mCarWeight</td><td>200</td><td>900</td><td>14</td><td>none</td><td>0x0B840E00</td></tr>
+        <tr><td>Weight Sensor</td><td>mCarWeightAlarm</td><td>200</td><td>950</td><td>14</td><td>none</td><td>0x0BB60E00</td></tr>
+        <tr><td>Door Opened Sensor</td><td>mDoorOpened</td><td>200</td><td>1000</td><td>16</td><td>Hallway, side</td><td>0x0BE81000</td></tr>
+        <tr><td>Hoistway Limit Sensor</td><td>mHoistwayLimit</td><td>200</td><td>1050</td><td>18</td><td>Direction</td><td>0x0C1A1200</td></tr>      
+      </tbody>
+    </table>
+<h2>Network Schedule Analaysis</h2>
+<br>
+    <table style="font-family: 'Times New Roman'; letter-spacing:
+          normal; text-indent: 0px; text-transform: none; word-spacing: 0px;
+          -webkit-text-stroke-width: 0px; orphans: 2; widows: 2; text-align:
+          left; width: 825px;" border="1" cellpadding="2" cellspacing="2">
+    <tbody>
+    <tr style="vertical-align: top;" bgcolor="#c0c0c0"><td colspan="5"></td><th colspan="3">Field 1</th><th colspan="3">Field 2</th><th colspan="3">Field 3</th><th colspan="6"></th></tr>
+     <tr style="vertical-align: top;" bgcolor="#c0c0c0"><th>Sender Node Name</th><th>Message Name</th><th>Base CAN ID</th><th>Replication Count</th><th>Deadline (ms)</th><th>Desc</th><th>Type</th><th>Bit Len</th><th>Desc</th><th>Type</th><th>Bit Len</th><th>Desc</th><th>Type</th><th>Bit Len</th><th>Total Payload Bit Len</th><th>Total Payload Byte Len</th><th>Best Case Msg Len</th><th>Worst Case Msg Len</th><th>Best Case BW (bits/sec)</th><th>Worst Case BW (bits/sec)</th></tr>
+     <tr><td>DriveControl</td><td>mDriveSpeed</td><td>0x08648400</td><td>1</td><td>5</td><td bgcolor="#0xffff99">Speed</td><td bgcolor="#0xffff99">float (m/s)</td><td bgcolor="#0xffff99">32</td><td>Direction</td><td>enum</td><td>32</td><td bgcolor="#0xffff99">n/a</td><td bgcolor="#0xffff99">n/a</td><td bgcolor="#0xffff99">0</td><td>64</td><td>8</td><td>131</td><td>160</td><td>26200</td><td>32000</td></tr>
+     <tr><td>Door Reversal Sensor</td><td>mDoorReversal</td><td>0x08C80200</td><td>4</td><td>10</td><td bgcolor="#0xffff99">Reversed</td><td bgcolor="#0xffff99">boolean</td><td bgcolor="#0xffff99">1</td><td>n/a</td><td>n/a</td><td>0</td><td bgcolor="#0xffff99">n/a</td><td bgcolor="#0xffff99">n/a</td><td bgcolor="#0xffff99">0</td><td>1</td><td>1</td><td>75</td><td>90</td><td>30000</td><td>36000</td></tr>
+     <tr><td>Level Sensor</td><td>mLevel</td><td>0x08FA0400</td><td>2</td><td>10</td><td bgcolor="#0xffff99">Leveled</td><td bgcolor="#0xffff99">boolean</td><td bgcolor="#0xffff99">1</td><td>n/a</td><td>n/a</td><td>0</td><td bgcolor="#0xffff99">n/a</td><td bgcolor="#0xffff99">n/a</td><td bgcolor="#0xffff99">0</td><td>1</td><td>1</td><td>75</td><td>90</td><td>15000</td><td>18000</td></tr>
+     <tr><td>AtFloor Sensor</td><td>mAtFloor</td><td>0x092C0600</td><td>10</td><td>50</td><td bgcolor="#0xffff99">AtFloor</td><td bgcolor="#0xffff99">boolean</td><td bgcolor="#0xffff99">1</td><td>n/a</td><td>n/a</td><td>0</td><td bgcolor="#0xffff99">n/a</td><td bgcolor="#0xffff99">n/a</td><td bgcolor="#0xffff99">0</td><td>1</td><td>1</td><td>75</td><td>90</td><td>15000</td><td>18000</td></tr>
+     <tr><td>CarLevelPosition Sensor</td><td>mCarLevelPosition</td><td>0x095E0800</td><td>1</td><td>50</td><td bgcolor="#0xffff99">Position</td><td bgcolor="#0xffff99">int (mm)</td><td bgcolor="#0xffff99">32</td><td>n/a</td><td>n/a</td><td>0</td><td bgcolor="#0xffff99">n/a</td><td bgcolor="#0xffff99">n/a</td><td bgcolor="#0xffff99">0</td><td>32</td><td>4</td><td>99</td><td>120</td><td>1980</td><td>2400</td></tr>
+     <tr><td>Dispatcher</td><td>mDesiredDwell</td><td>0x09C28800</td><td>2</td><td>50</td><td bgcolor="#0xffff99">Dwell</td><td bgcolor="#0xffff99">int (s)</td><td bgcolor="#0xffff99">32</td><td>n/a</td><td>n/a</td><td>0</td><td bgcolor="#0xffff99">n/a</td><td bgcolor="#0xffff99">n/a</td><td bgcolor="#0xffff99">0</td><td>32</td><td>4</td><td>99</td><td>120</td><td>3960</td><td>4800</td></tr>
+     <tr><td>Dispatcher</td><td>mDesiredFloor</td><td>0x09F48800</td><td>1</td><td>50</td><td bgcolor="#0xffff99">Floor</td><td bgcolor="#0xffff99">int</td><td bgcolor="#0xffff99">32</td><td>Hallway</td><td>enum</td><td>16</td><td bgcolor="#0xffff99">Direction</td><td bgcolor="#0xffff99">enum</td><td bgcolor="#0xffff99">16</td><td>64</td><td>8</td><td>131</td><td>160</td><td>2620</td><td>3200</td></tr>
+     <tr><td>Safety Object</td><td>mEmergencyBrake</td><td>0x0A260A00</td><td>1</td><td>50</td><td bgcolor="#0xffff99">Ebrake</td><td bgcolor="#0xffff99">boolean</td><td bgcolor="#0xffff99">1</td><td>n/a</td><td>n/a</td><td>0</td><td bgcolor="#0xffff99">n/a</td><td bgcolor="#0xffff99">n/a</td><td bgcolor="#0xffff99">0</td><td>1</td><td>1</td><td>75</td><td>90</td><td>1500</td><td>1800</td></tr>
+     <tr><td>CarButtonControl</td><td>mCarCall</td><td>0x0A588A00</td><td>10</td><td>100</td><td bgcolor="#0xffff99">CarCall</td><td bgcolor="#0xffff99">boolean</td><td bgcolor="#0xffff99">32</td><td>n/a</td><td>n/a</td><td>0</td><td bgcolor="#0xffff99">n/a</td><td bgcolor="#0xffff99">n/a</td><td bgcolor="#0xffff99">0</td><td>32</td><td>4</td><td>99</td><td>120</td><td>9900</td><td>12000</td></tr>
+     <tr><td>Door Closed Sensor</td><td>mDoorClosed</td><td>0x0ABC0C00</td><td>4</td><td>100</td><td bgcolor="#0xffff99">Closed</td><td bgcolor="#0xffff99">boolean</td><td bgcolor="#0xffff99">1</td><td>n/a</td><td>n/a</td><td>0</td><td bgcolor="#0xffff99">n/a</td><td bgcolor="#0xffff99">n/a</td><td bgcolor="#0xffff99">0</td><td>1</td><td>1</td><td>75</td><td>90</td><td>3000</td><td>3600</td></tr>
+     <tr><td>HallButtonControl</td><td>mHallCall</td><td>0x0AEE8C00</td><td>17</td><td>100</td><td bgcolor="#0xffff99">HallCall</td><td bgcolor="#0xffff99">boolean</td><td bgcolor="#0xffff99">32</td><td>n/a</td><td>n/a</td><td>0</td><td bgcolor="#0xffff99">n/a</td><td bgcolor="#0xffff99">n/a</td><td bgcolor="#0xffff99">0</td><td>32</td><td>4</td><td>99</td><td>120</td><td>16830</td><td>20400</td></tr>
+     <tr><td>Weight Sensor</td><td>mCarWeight</td><td>0x0B840E00</td><td>1</td><td>200</td><td bgcolor="#0xffff99">Weight</td><td bgcolor="#0xffff99">int (lb)</td><td bgcolor="#0xffff99">16</td><td>n/a</td><td>n/a</td><td>0</td><td bgcolor="#0xffff99">n/a</td><td bgcolor="#0xffff99">n/a</td><td bgcolor="#0xffff99">0</td><td>16</td><td>2</td><td>83</td><td>100</td><td>415</td><td>500</td></tr>
+     <tr><td>Weight Sensor</td><td>mCarWeightAlarm</td><td>0x0BB60E00</td><td>1</td><td>200</td><td bgcolor="#0xffff99">Alarm</td><td bgcolor="#0xffff99">boolean</td><td bgcolor="#0xffff99">1</td><td>n/a</td><td>n/a</td><td>0</td><td bgcolor="#0xffff99">n/a</td><td bgcolor="#0xffff99">n/a</td><td bgcolor="#0xffff99">0</td><td>1</td><td>1</td><td>75</td><td>90</td><td>375</td><td>450</td></tr>
+     <tr><td>Door Opened Sensor</td><td>mDoorOpened</td><td>0x0BE81000</td><td>4</td><td>200</td><td bgcolor="#0xffff99">Opened</td><td bgcolor="#0xffff99">boolean</td><td bgcolor="#0xffff99">1</td><td>n/a</td><td>n/a</td><td>0</td><td bgcolor="#0xffff99">n/a</td><td bgcolor="#0xffff99">n/a</td><td bgcolor="#0xffff99">0</td><td>1</td><td>1</td><td>75</td><td>90</td><td>1500</td><td>1800</td></tr>
+     <tr><td>Hoistway Limit Sensor</td><td>mHoistwayLimit</td><td>0x0C1A1200</td><td>2</td><td>200</td><td bgcolor="#0xffff99">HWLimit</td><td bgcolor="#0xffff99">boolean</td><td bgcolor="#0xffff99">1</td><td>n/a</td><td>n/a</td><td>0</td><td bgcolor="#0xffff99">n/a</td><td bgcolor="#0xffff99">n/a</td><td bgcolor="#0xffff99">0</td><td>1</td><td>1</td><td>75</td><td>90</td><td>750</td><td>900</td></tr>
+     <tr><td colspan="17"></td><td>Total bw</td><td>129030</td><td>155850</td></tr>
+      </tbody>
+     </table>
+
+<br>
+<a href="network-schedule.xls">Network Schedule (excel spreadsheet)</a><br>
+<br>
+<h2>Simulation Analysis</h2>
+<br>
+<br>
+
+Simulator Parameters:<br>
+Command line = -pf proj7acceptance1.pass -b 200 -fs 5 -monitor Proj11RuntimeMonitor<br>
+RandomSeed = 1384744806586<br>
+CanNetworkBitTime = 5000 ns<br>
+Effective Can Bitrate = 199999.99999999997<br>
+Run Time = null<br>
+Real time rate = null<br>
+Acceptance Test File = proj7acceptance1.pass<br>
+Monitors: Proj11RuntimeMonitor  <br>
+
+<br>
+<br>
+-omitted-<br>
+<br>
+<br>
+Network Utilization Summary:<br>
+Recent: 69.20 % Max: 69.20 %  Overall:  69.20 %<br>
+<br>
+<br>
+200 kbps * 69.20% = 138.4 kbps, which is within the best case and worst case network utilization bounds. Therefore, the theoretical and simulation analyses match.
+</body>
+</html>

@@ -1,0 +1,10 @@
+;18649 Fall 2013
+;Group 18
+;Mustafa Yigit Bilgen (mbilgen)
+;Yi Huo (yhuo)
+;Sairam Krishnan (sbkrishn)
+;Abhijit Lele(alele)
+;
+;CarPositionControl Unit Test - Configuration File
+
+CarPositionControl 10ms true

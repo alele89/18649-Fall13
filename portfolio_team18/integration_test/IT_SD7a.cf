@@ -1,0 +1,13 @@
+;18-649 Fall 2013
+;Group 18
+;Mustafa Yigit Bilgen (mbilgen)
+;Yi Huo (yhuo)
+;Sairam Krishnan (sbkrishn)
+;Abhijit Lele(alele)
+;
+;Integration Test for SD 7a - Configuration File
+
+DoorControl FRONT LEFT 100ms TRUE
+DoorControl FRONT RIGHT 100ms TRUE
+LanternControl UP 100ms true
+LanternControl DOWN 100ms true

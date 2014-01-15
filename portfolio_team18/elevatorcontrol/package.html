@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html;charset=ISO-8859-1" http-equiv="Content-Type">
+  <title>18649 Elevator Implementation</title>
+</head>
+<body>
+<h1 style="text-align: center;">18649 - Elevator Control Package<br>
+</h1>
+<hr style="width: 100%; height: 2px;">18649 Fall 2013<br>
+Group 18 - Sairam Krishnan (sbkrishn), Yi Huo (yhuo), Yigit Bilgen (mbilgen), Abhijit Lele (alele) <br>
+<hr style="width: 100%; height: 2px;">
+<h2>Controller Files</h2>
+<ul>
+ <li>
+ 	<a href="CarButtonControl.java">CarButtonControl</a> -
+ 	Controller that handles car button presses (buttons within the car).
+ </li>
+ <li>
+ 	<a href="CarPositionControl.java">CarPositionControl</a> -
+ 	Controller that tracks the car position and informs the user what floor the car is or was at.
+ </li>
+ <li>
+ 	<a href="Dispatcher.java">Dispatcher</a> -
+ 	Controller that determines the next floor, hallway, and direction that the car must travel to.
+ </li>
+ <li>
+ 	<a href="DoorControl.java">DoorControl</a> -
+ 	Controller corresponding to a single door facing a particular hallway; handles opening, 
+ 	closing, and reversal.
+ </li>
+ <li>
+ 	<a href="DriveControl.java">DriveControl</a> -
+    Controller that handles the car's drive and thereby controls its motion.
+    <br>
+    NOTE: This controller runs with a period of 5 ms, instead of the default (10 ms). The reason for this is because after detecting that the commit point is reached, the elevator still travels at FAST speed before slowing down (10 ms * 5 m/s = extra 5 cm). This is because the state chart does not allow actions on transitions. By reducing the period, we hope to reduce the overshoot by 2.5 cm. This should reduce the slack needed on commit point calculations, and allow the elevator to move at FAST speed for a larger amount of time, increasing performance.<br>
+    Approved by: Gunjan.
+ </li>
+ <li>
+ 	<a href="HallButtonControl.java">HallButtonControl</a> -
+ 	Controller that handles hall button presses (the up and down buttons in the hall, outside the car).
+ </li>
+ <li>
+ 	<a href="LanternControl.java">LanternControl</a> -
+ 	Controller that manages the car lanterns, which tell the passenger what direction the car
+ 	is going in.
+ </li>
+</ul>
+<h2>Translator Files</h2>
+<ul>
+ <li>
+ 	<a href="DesiredDwellCanPayloadTranslator.java">DesiredDwellCanPayloadTranslator</a> -
+ 	Handle the mDesiredDwell network message, which specifies how long the doors need to remain open.
+ </li>
+ <li>
+ 	<a href="DesiredFloorCanPayloadTranslator.java">DesiredFloorCanPayloadTranslator</a> -
+ 	Handle the mDesiredFloor network message, which specifies the next floor that the dispatcher
+ 	wants the car to stop at.
+ </li>
+ <li>
+ 	<a href="DriveCommandCanPayloadTranslator.java">DriveCommandCanPayloadTranslator</a> -
+ 	Handle the mDrive network message.
+ </li>
+ <li>
+ 	<a href="DoorMotorCanPayloadTranslator.java">DoorMotorCanPayloadTranslator</a> -
+ 	Handle the mDoorMotor network message.
+ </li>
+ <li>
+ 	<a href="DriveSpeedCanPayloadTranslator.java">DriveSpeedCanPayloadTranslator</a> -
+ 	Handle the mDriveSpeed network message.
+ </li>
+</ul>
+<h2>Utility Files</h2>
+<ul>
+ <li>
+ 	<a href="Utility.java">Utility</a> - Contains utility functions to handle some 
+ 	repeatable configuration and information retrieval tasks.
+ </li>
+ <li><a href="MessageDictionary.java">MessageDictionary</a> - Contains the list of possible
+ 	network messages and their corresponding can ids</li>
+</ul>
+
+<h2>Runtime Monitors</h2>
+<ul>
+ <li>
+  <a href="Proj7RuntimeMonitor.java">Proj7RuntimeMonitor</a> - Monitors various performance statistics.
+ </li>
+ <li>
+  <a href="Proj11RuntimeMonitor.java">Proj11RuntimeMonitor</a> - Validates the elevator against high level requirements R.T-6 ~ R.T-10.
+ </li>
+</ul>
+</body>
+</html>

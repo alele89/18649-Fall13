@@ -1,0 +1,39 @@
+18649 Fall 2013
+Team 18
+Yi Huo (yhuo)
+Mustafa Bilgen (mbilgen)
+Sairam Krishnan (sbkrishn)
+Abhijit Lele (alele)
+
+Simulator Parameters:
+Command line = -head header.txt -cf IT_SD7b.cf -mf IT_SD7b.mf
+RandomSeed = 1386533614015
+CanNetworkBitTime = 0 ns
+Effective Can Bitrate = Infinity
+Run Time = null
+Real time rate = null
+Message File = IT_SD7b.mf
+Controller File = IT_SD7b.cf
+
+Assertion Results:
+@0.81s:  PASSED simulator.payloads.HallLightPayload$ReadableHallLightPayload@30b95f2 :: lighted ?== true PASSED
+@0.81s:  PASSED simulator.payloads.HallLightPayload$ReadableHallLightPayload@76938855 :: lighted ?== false PASSED
+@1.31s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@646d8051 :: command ?== OPEN PASSED
+@1.31s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@3b13eb9c :: command ?== OPEN PASSED
+@1.91s:  PASSED simulator.payloads.CarLanternPayload$ReadableCarLanternPayload@5d4f83d1 :: lighted ?== true PASSED
+@1.91s:  PASSED simulator.payloads.CarLanternPayload$ReadableCarLanternPayload@28b48e23 :: lighted ?== false PASSED
+@2.51s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@40ca6f53 :: command ?== STOP PASSED
+@2.51s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@23b35955 :: command ?== STOP PASSED
+@2.81s:  PASSED simulator.payloads.HallLightPayload$ReadableHallLightPayload@3fd48679 :: lighted ?== false PASSED
+@2.81s:  PASSED simulator.payloads.HallLightPayload$ReadableHallLightPayload@3f15676d :: lighted ?== false PASSED
+@13.81s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@9ff5160 :: command ?== CLOSE PASSED
+@13.81s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@495c0102 :: command ?== CLOSE PASSED
+@14.51s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@65e84ff1 :: command ?== STOP PASSED
+@14.51s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@2ad7532 :: command ?== STOP PASSED
+
+
+******************Summary******************
+Passed:  14
+Failed:  0
+Total :  14
+

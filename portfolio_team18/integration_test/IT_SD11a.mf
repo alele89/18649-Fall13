@@ -1,0 +1,30 @@
+;18-649 Fall 2013
+;Group 18
+;Mustafa Yigit Bilgen (mbilgen)
+;Yi Huo (yhuo)
+;Sairam Krishnan (sbkrishn)
+;Abhijit Lele(alele)
+;
+;Integration Test for SD 11a - Tests
+
+#INCLUDE defines.mf
+
+;Set up preconditions
+;Assuming that the elevator started off moving to 1st floor.
+;Get the elevator to 1st floor.
+0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = false
+0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][RIGHT]_CAN_ID DoorClosed FRONT RIGHT = true
+0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][LEFT]_CAN_ID DoorClosed BACK LEFT = true
+0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][RIGHT]_CAN_ID DoorClosed BACK RIGHT = true
+
+;#arc '1a'
+0.5s A N AT_FLOOR_[1][FRONT]_CAN_ID AtFloor 1 FRONT : getValue == false
+0.5s A N AT_FLOOR_[1][BACK]_CAN_ID AtFloor 1 BACK : getValue == false
+
+;#arc '1b'
+0.5s A N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT : getValue == false
+
+;#arc '1c'
+1s A N DESIRED_FLOOR_CAN_ID DesiredFloor : getFloor == 1
+1s A N DESIRED_FLOOR_CAN_ID DesiredFloor : getHallway == NONE
+1s A N DESIRED_FLOOR_CAN_ID DesiredFloor : getDirection == STOP

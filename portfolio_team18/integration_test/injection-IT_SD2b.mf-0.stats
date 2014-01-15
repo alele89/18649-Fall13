@@ -1,0 +1,45 @@
+18649 Fall 2013
+Team 18
+Yi Huo (yhuo)
+Mustafa Bilgen (mbilgen)
+Sairam Krishnan (sbkrishn)
+Abhijit Lele (alele)
+
+Simulator Parameters:
+Command line = -head header.txt -cf IT_SD2b.cf -mf IT_SD2b.mf
+RandomSeed = 1386533555332
+CanNetworkBitTime = 0 ns
+Effective Can Bitrate = Infinity
+Run Time = null
+Real time rate = null
+Message File = IT_SD2b.mf
+Controller File = IT_SD2b.cf
+
+Assertion Results:
+@0.51s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@57df9c23 :: command ?== OPEN PASSED
+@0.51s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@23b2f0c7 :: command ?== OPEN PASSED
+@0.51s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@610ddf0a :: command ?== OPEN PASSED
+@0.51s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@21b7682d :: command ?== OPEN PASSED
+@1.81s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@35509f8b :: command ?== STOP PASSED
+@1.81s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@a40ff24 :: command ?== STOP PASSED
+@1.81s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@6a6fa22b :: command ?== STOP PASSED
+@1.81s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@4bc78066 :: command ?== STOP PASSED
+@3.81s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@4922c082 :: command ?== CLOSE PASSED
+@3.81s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@4f9f6e39 :: command ?== CLOSE PASSED
+@3.81s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@522edea6 :: command ?== CLOSE PASSED
+@3.81s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@6249e4f :: command ?== CLOSE PASSED
+@7.21s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@1e848c58 :: command ?== NUDGE PASSED
+@7.21s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@1827b40b :: command ?== NUDGE PASSED
+@7.21s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@708a605c :: command ?== NUDGE PASSED
+@7.21s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@27cf35d3 :: command ?== NUDGE PASSED
+@10.11s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@2cf5ebcc :: command ?== STOP PASSED
+@10.11s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@6d61305f :: command ?== STOP PASSED
+@10.11s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@6b414655 :: command ?== STOP PASSED
+@10.11s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@6b8c2354 :: command ?== STOP PASSED
+
+
+******************Summary******************
+Passed:  20
+Failed:  0
+Total :  20
+

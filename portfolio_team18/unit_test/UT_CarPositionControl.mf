@@ -1,0 +1,83 @@
+;18649 Fall 2013
+;Group 18
+;Mustafa Yigit Bilgen (mbilgen)
+;Yi Huo (yhuo)
+;Sairam Krishnan (sbkrishn)
+;Abhijit Lele(alele)
+;
+;CarPositionControl Unit Test
+; 
+;Input interface:
+;   mAtFloor[f,b]
+;   mDesiredFloor
+;   mCarLevelPosiiton
+;   mDriveSpeed
+;
+;Output interface:
+;  CarPositionIndicator
+;  mCarPositionIndicator
+
+#INCLUDE defines.mf
+
+;Initialize CarPosition controller.
+0.0s I AT_FLOOR_PERIOD N AT_FLOOR_[1][FRONT]_CAN_ID AtFloor 1 FRONT = true
+0.0s I DISPATCHER_PERIOD N DESIRED_FLOOR_CAN_ID DesiredFloor = 1 STOP FRONT 
+0.0s I DRIVE_CONTROL_PERIOD N DRIVE_SPEED_CAN_ID DriveSpeed = 0 STOP
+
+;Checking initial conditions - Display current floor (1) while stopped at that floor.
+;#state 'S.10.1 : AT_FLOOR'
+0.21s A S CarPositionControl : STATE == AT_FLOOR
+0.21s A F CarPositionIndicator : floor == 1
+
+;Set up for transition 'T.10.1' - Elevator starts to move up from floor 1.
+0.3s I DISPATCHER_PERIOD N DESIRED_FLOOR_CAN_ID DesiredFloor = 8 STOP FRONT
+0.3s I DRIVE_CONTROL_PERIOD N DRIVE_SPEED_CAN_ID DriveSpeed = 1 UP
+
+;#transition 'T.10.1'
+;#state 'S.10.2 : MOVING'
+0.51s A S CarPositionControl : STATE == MOVING
+0.51s A F CarPositionIndicator : floor == 1
+
+;More testing for transition 'T.10.1' - Elevator out of range of mAtFloor[1] sensors but isn't
+;at the commit point for floor 2; moving faster.
+0.6s I AT_FLOOR_PERIOD N AT_FLOOR_[1][FRONT]_CAN_ID AtFloor 1 FRONT = false
+0.6s I DRIVE_CONTROL_PERIOD N DRIVE_SPEED_CAN_ID DriveSpeed = 5 UP
+
+;#state 'S.10.2 : MOVING'
+0.81s A S CarPositionControl : STATE == MOVING
+0.81s A F CarPositionIndicator : floor == 1
+
+;Set up for transition 'T.10.2' - Elevator arrives at floor 8.
+0.9s I DRIVE_CONTROL_PERIOD N DRIVE_SPEED_CAN_ID DriveSpeed = 0 UP
+0.9s I AT_FLOOR_PERIOD N AT_FLOOR_[8][FRONT]_CAN_ID AtFloor 8 FRONT = true
+
+;#transition 'T.10.2'
+;#state 'S.10.1 : AT_FLOOR'
+1.11s A S CarPositionControl : STATE == AT_FLOOR
+1.11s A F CarPositionIndicator : floor == 8
+
+;Set up for transition 'T.10.1' - Elevator starts moving down to floor 2, back hallway.
+1.2s I AT_FLOOR_PERIOD N AT_FLOOR_[2][BACK]_CAN_ID AtFloor 2 BACK = false
+1.2s I DRIVE_CONTROL_PERIOD N DRIVE_SPEED_CAN_ID DriveSpeed = 2 DOWN
+
+;#transition 'T.10.1'
+;#state 'S.10.2 : MOVING'
+1.41s A S CarPositionControl : STATE == MOVING
+1.41s A F CarPositionIndicator : floor == 8
+
+;Elevator out of range of 8th floor's mAtFloor sensors; still hasn't reached 2nd floor's commit point
+1.5s I DRIVE_CONTROL_PERIOD N DRIVE_SPEED_CAN_ID DriveSpeed = 15 DOWN
+1.5s I AT_FLOOR_PERIOD N AT_FLOOR_[8][FRONT]_CAN_ID AtFloor 8 FRONT = false
+
+;#state 'S.10.2 : MOVING'
+1.71s A S CarPositionControl : STATE == MOVING
+1.71s A F CarPositionIndicator : floor > 2 && floor < 8
+
+;Set up for transition 'T.10.2' - Elevator arrives at 2nd floor, back hallway.
+1.8s I DRIVE_CONTROL_PERIOD N DRIVE_SPEED_CAN_ID DriveSpeed = 0 DOWN
+1.8s I AT_FLOOR_PERIOD N AT_FLOOR_[2][BACK]_CAN_ID AtFloor 2 BACK = true
+
+;#transition 'T.10.2'
+;#state 'S.10.1 : AT_FLOOR'
+2.01s A S CarPositionControl : STATE == AT_FLOOR
+2.01s A F CarPositionIndicator : floor == 2

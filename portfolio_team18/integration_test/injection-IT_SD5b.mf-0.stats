@@ -1,0 +1,37 @@
+18649 Fall 2013
+Team 18
+Yi Huo (yhuo)
+Mustafa Bilgen (mbilgen)
+Sairam Krishnan (sbkrishn)
+Abhijit Lele (alele)
+
+Simulator Parameters:
+Command line = -head header.txt -cf IT_SD5b.cf -mf IT_SD5b.mf
+RandomSeed = 1386533590392
+CanNetworkBitTime = 0 ns
+Effective Can Bitrate = Infinity
+Run Time = null
+Real time rate = null
+Message File = IT_SD5b.mf
+Controller File = IT_SD5b.cf
+
+Assertion Results:
+@5.3s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@74a60905 :: command ?== CLOSE PASSED
+@5.3s:  PASSED DoorControl[FRONT][LEFT]::checkState(STATE) ?== DOOR_CLOSING PASSED
+@6.8s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@1983eae7 :: command ?== NUDGE PASSED
+@6.8s:  PASSED DoorControl[FRONT][LEFT]::checkState(STATE) ?== DOOR_NUDGE PASSED
+@8.7s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@610ddf0a :: command ?== OPEN PASSED
+@8.7s:  PASSED DoorControl[FRONT][LEFT]::checkState(STATE) ?== DOOR_OPENING PASSED
+@9.25s:  PASSED DoorControl[FRONT][LEFT]::checkState(STATE) ?== DOOR_OPEN PASSED
+@9.27s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@35509f8b :: command ?== OPEN PASSED
+@9.57s:  PASSED DoorControl[FRONT][LEFT]::checkState(STATE) ?== DOOR_CLOSING PASSED
+@9.57s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@312e99be :: command ?== CLOSE PASSED
+@10.07s:  PASSED DoorControl[FRONT][LEFT]::checkState(STATE) ?== DOOR_CLOSED PASSED
+@10.07s:  PASSED simulator.payloads.DoorMotorPayload$ReadableDoorMotorPayload@4bc78066 :: command ?== STOP PASSED
+
+
+******************Summary******************
+Passed:  12
+Failed:  0
+Total :  12
+

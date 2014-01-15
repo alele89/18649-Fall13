@@ -1,0 +1,39 @@
+18649 Fall 2013
+Team 18
+Yi Huo (yhuo)
+Mustafa Bilgen (mbilgen)
+Sairam Krishnan (sbkrishn)
+Abhijit Lele (alele)
+
+Simulator Parameters:
+Command line = -cf IT_SD6a.cf -mf IT_SD6a.mf -head header
+RandomSeed = 1386726905183
+CanNetworkBitTime = 0 ns
+Effective Can Bitrate = Infinity
+Run Time = null
+Real time rate = null
+Message File = IT_SD6a.mf
+Controller File = IT_SD6a.cf
+
+Assertion Results:
+@0.2s:  PASSED simulator.payloads.CarPositionIndicatorPayload$ReadableCarPositionIndicatorPayload@637533df :: floor ?== 1 PASSED
+@0.89s:  PASSED DriveControl::checkState(STATE) ?== DRIVE_MOVING PASSED
+@1.5s:  PASSED simulator.payloads.DrivePayload$ReadableDrivePayload@cc26acd :: speed ?== FAST PASSED
+@1.5s:  PASSED simulator.payloads.DrivePayload$ReadableDrivePayload@2844a541 :: direction ?== UP PASSED
+@1.5s:  PASSED DriveControl::checkState(STATE) ?== DRIVE_MOVING_FAST PASSED
+@2.5s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@611c048e :: getSpeed ?== 0.25 PASSED
+@2.5s:  PASSED DriveControl::checkState(STATE) ?== DRIVE_MOVING PASSED
+@3.5s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@6eb1a0f9 :: getDirection ?== UP PASSED
+@3.5s:  PASSED simulator.payloads.DrivePayload$ReadableDrivePayload@22666c7a :: direction ?== UP PASSED
+@3.5s:  PASSED DriveControl::checkState(STATE) ?== DRIVE_Level_UP PASSED
+@3.6s:  PASSED simulator.payloads.DrivePayload$ReadableDrivePayload@5ee819a8 :: speed ?== LEVEL PASSED
+@5.2s:  PASSED simulator.payloads.CarPositionIndicatorPayload$ReadableCarPositionIndicatorPayload@6d3c121b :: floor ?== 5 PASSED
+@5.75s:  PASSED DriveControl::checkState(STATE) ?== DRIVE_STOP PASSED
+@5.75s:  PASSED simulator.payloads.CanMailbox$ReadableCanMailbox@57ec49db :: getSpeed ?== 0.0 PASSED
+
+
+******************Summary******************
+Passed:  14
+Failed:  0
+Total :  14
+

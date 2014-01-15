@@ -1,0 +1,112 @@
+;18-649 Fall '13
+;Group 18
+;Mustafa Yigit Bilgen (mbilgen)
+;Yi Huo (yhuo)
+;Sairam Krishnan (sbkrishn)
+;Abhijit Lele(alele)
+;
+;This unit test tests HallButtonController
+;Inputs:
+; mAtFloor[f, b]
+; mDesiredFloor
+; mDoorClosed[b, r]
+; HallCall[f, b, d]
+;
+;Outputs:
+; HallLight[f, b, d]
+; mHallCall[f, b, d]
+
+#INCLUDE defines.mf
+
+;Initialize - No Hall Calls are being made, all doors are closed, and the dispatcher wants to go
+;the front hallway of the third floor. 
+0s I HALL_BUTTON_CONTROL_PERIOD F HallCall 7 FRONT UP = false
+0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = true
+0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][RIGHT]_CAN_ID DoorClosed FRONT RIGHT = true
+0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][LEFT]_CAN_ID DoorClosed BACK LEFT = true
+0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][RIGHT]_CAN_ID DoorClosed BACK RIGHT = true
+0s I AT_FLOOR_PERIOD N AT_FLOOR_[7][FRONT]_CAN_ID AtFloor 7 FRONT = false
+0s I AT_FLOOR_PERIOD N AT_FLOOR_[7][BACK]_CAN_ID AtFloor 7 BACK = false
+0s I AT_FLOOR_PERIOD N AT_FLOOR_[3][FRONT]_CAN_ID AtFloor 3 FRONT = false
+0s I DISPATCHER_PERIOD N DESIRED_FLOOR_CAN_ID DesiredFloor = 3 FRONT UP
+
+;Check that the 7th floor up hall light is off to start off with since it hasn't been pressed yet.
+;#state 'S.8.1 OFF'
+0.41s A S HallButtonControl[7][FRONT][UP] : STATE == STATE_OFF
+0.41s A F HallLight 7 FRONT UP : lighted == false
+0.41s A N HALL_CALL_[7][FRONT][UP]_CAN_ID Boolean : getValue == false
+
+;7th floor front hallway Hall Button is pressed. (Setup for transition 'T.8.1')
+0.5s I HALL_BUTTON_CONTROL_PERIOD F HallCall 7 FRONT UP = true
+
+;#transition 'T.8.1'
+;#state 'S.8.2'
+0.91s A S HallButtonControl[7][FRONT][UP] : STATE == STATE_ON
+0.91s A F HallLight 7 FRONT UP : lighted == true
+0.91s A N HALL_CALL_[7][FRONT][UP]_CAN_ID Boolean : getValue == true
+
+;Make sure that transition 'T.8.2' doesn't occur unless every guard condition is met.
+;So, end hall button press on 7th floor, front hallway.
+1.00s I HALL_BUTTON_CONTROL_PERIOD F HallCall 7 FRONT UP = false
+
+;still in #state 'S.8.2' 
+;since we aren't at the desired floor and the doors haven't started opening yet,
+;end of hall button press shouldn't turn off 7th floor front hall button
+1.41s A S HallButtonControl[7][FRONT][UP] : STATE == STATE_ON
+1.41s A F HallLight 7 FRONT UP : lighted == true
+1.41s A N HALL_CALL_[7][FRONT][UP]_CAN_ID Boolean : getValue == true
+
+;Check whether hall button in 7th floor is still lit as elevator services another floor (3).
+1.5s I AT_FLOOR_PERIOD N AT_FLOOR_[3][FRONT]_CAN_ID AtFloor 3 FRONT = true
+1.5s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = false
+1.5s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][RIGHT]_CAN_ID DoorClosed FRONT RIGHT = false
+1.5s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][LEFT]_CAN_ID DoorClosed BACK LEFT = false
+1.5s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][RIGHT]_CAN_ID DoorClosed BACK RIGHT = false
+
+;still in #state 'S.8.2'
+1.91s A S HallButtonControl[7][FRONT][UP] : STATE == STATE_ON
+1.91s A F HallLight 7 FRONT UP : lighted == true
+1.91s A N HALL_CALL_[7][FRONT][UP]_CAN_ID Boolean : getValue == true
+
+;Now, check whether the up hall light remains lit when dispatcher desires to go in opposite direction,
+;even if the elevator starts to service this floor.
+2.0s I AT_FLOOR_PERIOD N AT_FLOOR_[3][FRONT]_CAN_ID AtFloor 3 FRONT = false
+2.0s I AT_FLOOR_PERIOD N AT_FLOOR_[7][BACK]_CAN_ID AtFloor 7 BACK = true
+2.0s I AT_FLOOR_PERIOD N AT_FLOOR_[7][FRONT]_CAN_ID AtFloor 7 FRONT = true
+2.0s I DISPATCHER_PERIOD N DESIRED_FLOOR_CAN_ID DesiredFloor = 7 FRONT DOWN
+
+;still in #state 'S.8.2'
+2.41s A S HallButtonControl[7][FRONT][UP] : STATE == STATE_ON
+2.41s A F HallLight 7 FRONT UP : lighted == true
+2.41s A N HALL_CALL_[7][FRONT][UP]_CAN_ID Boolean : getValue == true
+
+;Service back hallway of same floor, check if hall light is still on
+2.5s I DISPATCHER_PERIOD N DESIRED_FLOOR_CAN_ID DesiredFloor = 7 BACK UP
+
+;still in #state 'S.8.2'
+2.91s A S HallButtonControl[7][FRONT][UP] : STATE == STATE_ON
+2.91s A F HallLight 7 FRONT UP : lighted == true
+2.91s A N HALL_CALL_[7][FRONT][UP]_CAN_ID Boolean : getValue == true
+
+;Close all doors, set desired direction to up (same direction as up hall light).
+;Up hall light should remain on since doors are closed.
+3.0s I DISPATCHER_PERIOD N DESIRED_FLOOR_CAN_ID DesiredFloor = 7 FRONT UP
+3.0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = true
+3.0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][RIGHT]_CAN_ID DoorClosed FRONT RIGHT = true
+3.0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][LEFT]_CAN_ID DoorClosed BACK LEFT = true
+3.0s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[BACK][RIGHT]_CAN_ID DoorClosed BACK RIGHT = true
+
+;still in #state 'S.8.2'
+3.41s A S HallButtonControl[7][FRONT][UP] : STATE == STATE_ON
+3.41s A F HallLight 7 FRONT UP : lighted == true
+3.41s A N HALL_CALL_[7][FRONT][UP]_CAN_ID Boolean : getValue == true
+
+;Finally, set up for transition 'T.8.2'
+3.5s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][LEFT]_CAN_ID DoorClosed FRONT LEFT = false
+3.5s I DOOR_CLOSED_SENSOR_PERIOD N DOOR_CLOSED_SENSOR_[FRONT][RIGHT]_CAN_ID DoorClosed FRONT RIGHT = false
+
+;#transition 'T.8.2'
+;#state 'S.8.1'
+3.91s A S HallButtonControl[7][FRONT][UP] : STATE == STATE_OFF
+3.91s A F HallLight 7 FRONT UP : lighted == false
+3.91s A N HALL_CALL_[7][FRONT][UP]_CAN_ID Boolean : getValue == false

@@ -1,0 +1,15 @@
+;there is only one test in the sample file.  Your file shall contain all tests.
+CarButtonControl UT_CarButtonControl.cf UT_CarButtonControl.mf
+CarPositionControl UT_CarPositionControl.cf UT_CarPositionControl.mf
+DoorControl UT_DoorControl.cf UT_DoorControl_1.mf
+DoorControl UT_DoorControl.cf UT_DoorControl_2.mf
+DoorControl UT_DoorControl.cf UT_DoorControl_3.mf
+HallButtonControl UT_HallButtonControl.cf UT_HallButtonControl.mf
+DriveControl DriveControl.cf DriveControl1.mf
+DriveControl DriveControl.cf DriveControl2.mf
+DriveControl DriveControl.cf DriveControl3.mf
+DriveControl DriveControl.cf DriveControl4.mf
+DriveControl DriveControl.cf DriveControl5.mf
+Dispatcher UT_Dispatcher.cf UT_Dispatcher.mf
+Dispatcher UT_Dispatcher.cf UT_Dispatcher_1.mf
+LanternControl UT_LanternControl.cf UT_LanternControl.mf
